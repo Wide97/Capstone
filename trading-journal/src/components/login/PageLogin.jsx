@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import '../styles/PageLogin.css'
+import './PageLogin.css'
 
 function PageLogin() {
   const [email, setEmail] = useState('');
@@ -14,7 +14,7 @@ function PageLogin() {
 
   return (
     <div className="login-container">
-      <h1>TradeLogix</h1>
+      <h1>Login</h1>
       <form onSubmit={handleSubmit}>
         <div>
           <input
