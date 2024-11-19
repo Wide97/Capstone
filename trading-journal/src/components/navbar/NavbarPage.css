@@ -1,0 +1,31 @@
+body{
+  font-family: 'Teko', sans-serif;
+}
+
+
+.navbar {
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.nav-link {
+  font-size: 1.1rem;
+  font-weight: bold;
+  color: #f8f9fa !important;
+  transition: color 0.3s ease;
+}
+
+.nav-link:hover {
+  color: #ad52df !important;
+}
+
+.navbar-animated {
+  background-color: rgba(75, 0, 130, 0.85);
+  transition: opacity 1s ease-out, transform 1s ease-out; 
+  opacity: 0; 
+  transform: translateY(-20px); 
+}
+
+.navbar-animated.visible {
+  opacity: 1; 
+  transform: translateY(0); 
+}

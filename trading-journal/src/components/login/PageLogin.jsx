@@ -1,6 +1,10 @@
 import React, { useState } from "react";
 import { login } from "../utils/api"; 
 import "./PageLogin.css"; 
+import NavbarPage from "../navbar/NavbarPage";
+
+
+
 const PageLogin = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
@@ -22,6 +26,8 @@ const PageLogin = () => {
   };
 
   return (
+    <>
+    <NavbarPage/>
     <div className="container d-flex justify-content-center align-items-center vh-100">
       <div className="login-container">
         <h1 className="text-center">Login</h1>
@@ -56,12 +62,13 @@ const PageLogin = () => {
               required
             />
           </div>
-          <button type="submit" className="btn btn-primary">
+          <button type="submit" className="btn-login">
             Accedi
           </button>
         </form>
       </div>
     </div>
+    </>
   );
 };
 
