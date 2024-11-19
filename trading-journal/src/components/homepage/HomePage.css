@@ -58,3 +58,85 @@ p {
 .btn-primary:active {
   transform: translateY(0);
 }
+
+
+
+/* Hero Section */
+.hero-section {
+  background-size: 400% 400%;
+  animation: gradient 10s ease infinite;
+  color: white;
+  padding: 80px 20px;
+  text-align: center;
+}
+
+.hero-title {
+  font-size: 3rem;
+  font-weight: bold;
+  margin-bottom: 40px;
+}
+
+.hero-title .highlight {
+  color: #ff4d4d;
+}
+
+.hero-description {
+  font-size: 1.2rem;
+  max-width: 700px; 
+  line-height: 1.5;
+  margin: 0 auto 40px auto; 
+}
+
+.cta-button {
+  background: linear-gradient(90deg, #8b00ff, #ff4d4d);
+  border: none;
+  padding: 10px 30px;
+  font-size: 1.2rem;
+  border-radius: 30px;
+  color: white;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  outline: none;
+}
+
+.cta-button:hover {
+  transform: translateY(+5px);
+  box-shadow: 0 8px 20px rgba(173, 82, 223, 0.7);
+  outline: none;
+}
+
+/* Features Section */
+
+
+.features-section {
+  padding: 50px 20px;
+}
+
+.feature-row {
+  margin-bottom: 50px;
+}
+
+.feature-icon-large {
+  font-size: 5rem; 
+  color: #8b00ff;
+  margin-bottom: 20px;
+}
+
+.feature-title {
+  font-size: 2.5rem;
+  font-weight: bold;
+  color: #bb95b9;
+  margin-bottom: 15px;
+}
+
+.feature-description {
+  font-size: 1.2rem;
+  color: #333;
+  line-height: 1.6;
+}
+
+.feature-divider {
+  border: 1px solid #ccc;
+  margin: 40px 0;
+}
+

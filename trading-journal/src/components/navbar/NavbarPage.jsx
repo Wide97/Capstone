@@ -20,7 +20,7 @@ const NavbarPage = () => {
       variant="dark"
     >
       <Container>
-        <Navbar.Brand href="/" style={{ color: "#fff", fontWeight: "bold" }}>
+        <Navbar.Brand href="/"  className="navbar-brand">
           Trading Journal
         </Navbar.Brand>
         <Navbar.Toggle aria-controls="navbar-nav" />
