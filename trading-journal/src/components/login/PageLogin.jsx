@@ -23,10 +23,18 @@ const PageLogin = () => {
 
   return (
     <div className="container d-flex justify-content-center align-items-center vh-100">
-      <div className="login-container shadow-lg rounded">
-        <h1 className="text-center mb-4">Login</h1>
-        {error && <p className="alert alert-danger">{error}</p>}
-        {success && <p className="alert alert-success">{success}</p>}
+      <div className="login-container">
+        <h1 className="text-center">Login</h1>
+        {error && (
+          <p className="alert alert-danger">
+            <i className="bi bi-exclamation-circle"></i> {error}
+          </p>
+        )}
+        {success && (
+          <p className="alert alert-success">
+            <i className="bi bi-check-circle"></i> {success}
+          </p>
+        )}
         <form onSubmit={handleSubmit}>
           <div className="mb-3">
             <input
@@ -48,7 +56,7 @@ const PageLogin = () => {
               required
             />
           </div>
-          <button type="submit" className="btn btn-primary w-100">
+          <button type="submit" className="btn btn-primary">
             Accedi
           </button>
         </form>
