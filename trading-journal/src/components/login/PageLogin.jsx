@@ -1,45 +1,61 @@
-import React, { useState } from 'react';
-import 'bootstrap/dist/css/bootstrap.min.css';
-import './PageLogin.css'
+import React, { useState } from "react";
+import { login } from "../utils/api"; 
+import "./PageLogin.css"; 
+const PageLogin = () => {
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+  const [error, setError] = useState("");
+  const [success, setSuccess] = useState("");
 
-function PageLogin() {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log('Email:', email);
-    console.log('Password:', password);
+    setError("");
+    setSuccess("");
+
+    try {
+      const token = await login(username, password);
+      setSuccess("Login effettuato con successo!");
+      localStorage.setItem("token", token);
+    } catch (err) {
+      setError(err.message || "Errore durante il login.");
+    }
   };
 
   return (
-    <div className="login-container">
-      <h1>Login</h1>
-      <form onSubmit={handleSubmit}>
-        <div>
-          <input
-            type="email"
-            className="form-control"
-            placeholder="Email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            required
-          />
-        </div>
-        <div>
-          <input
-            type="password"
-            className="form-control"
-            placeholder="Password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            required
-          />
-        </div>
-        <button type="submit" className="btn btn-primary">Login</button>
-      </form>
+    <div className="container d-flex justify-content-center align-items-center vh-100">
+      <div className="login-container shadow-lg rounded">
+        <h1 className="text-center mb-4">Login</h1>
+        {error && <p className="alert alert-danger">{error}</p>}
+        {success && <p className="alert alert-success">{success}</p>}
+        <form onSubmit={handleSubmit}>
+          <div className="mb-3">
+            <input
+              type="text"
+              placeholder="Username"
+              className="form-control"
+              value={username}
+              onChange={(e) => setUsername(e.target.value)}
+              required
+            />
+          </div>
+          <div className="mb-3">
+            <input
+              type="password"
+              placeholder="Password"
+              className="form-control"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              required
+            />
+          </div>
+          <button type="submit" className="btn btn-primary w-100">
+            Accedi
+          </button>
+        </form>
+      </div>
     </div>
   );
-}
+};
 
 export default PageLogin;
+

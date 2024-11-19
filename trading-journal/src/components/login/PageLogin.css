@@ -60,6 +60,7 @@ body {
     border: 1px solid #8B0000;
     border-radius: 12px;
     margin-bottom: 25px;
+    margin-right: 20px;
     padding: 15px;
     font-size: 1.2rem;
     transition: border-color 0.3s ease, box-shadow 0.3s ease;
