@@ -53,7 +53,7 @@ const UserNav = () => {
                 <i className="bi bi-person-circle"></i>
               </Dropdown.Toggle>
               <Dropdown.Menu>
-                <Dropdown.Item href="/profile">Profilo</Dropdown.Item>
+                <Dropdown.Item href="/userprofile">Profilo</Dropdown.Item>
                 <Dropdown.Item onClick={handleLogout}>Esci</Dropdown.Item>
               </Dropdown.Menu>
             </Dropdown>
