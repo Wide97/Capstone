@@ -1,13 +1,13 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import NavbarPage from "../navbar/NavbarPage";
 import FooterPage from "../footer/FooterPage";
 import "./UserPage.css";
+import UserNav from "../usernav/UserNav";
 
 const UserPage = () => {
   return (
     <>
-      <NavbarPage />
+      <UserNav />
       <div className="userpage-container">
         <div className="hero-section text-center">
           <h1 className="hero-title">Benvenuto nella tua Dashboard</h1>
@@ -20,7 +20,7 @@ const UserPage = () => {
         <div className="features-section container">
           <div className="row">
             {/* Journal Section */}
-            <div className="col-md-4 text-center">
+            <div className="col-md-6 col-lg-4 text-center">
               <div className="feature-card shadow">
                 <h3 className="feature-title">Journal</h3>
                 <p className="feature-description">
@@ -34,7 +34,7 @@ const UserPage = () => {
             </div>
 
             {/* Analytics Section */}
-            <div className="col-md-4 text-center">
+            <div className="col-md-6 col-lg-4 text-center">
               <div className="feature-card shadow">
                 <h3 className="feature-title">Analytics</h3>
                 <p className="feature-description">
@@ -48,7 +48,7 @@ const UserPage = () => {
             </div>
 
             {/* Reporting Section */}
-            <div className="col-md-4 text-center">
+            <div className="col-md-6 col-lg-4 text-center">
               <div className="feature-card shadow">
                 <h3 className="feature-title">Reporting</h3>
                 <p className="feature-description">

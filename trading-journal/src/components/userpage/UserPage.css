@@ -1,6 +1,7 @@
+
 .userpage-container {
-  font-family: "Poppins", sans-serif;
-  background: linear-gradient(-45deg, #4b0082, #8b00ff, #ad52df, #4b0082);
+  font-family: 'Teko', sans-serif;
+  font-size: 2rem;
   background-size: 400% 400%;
   animation: gradient 10s ease infinite;
   min-height: 100vh;
