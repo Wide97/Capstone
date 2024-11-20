@@ -10,7 +10,7 @@ const FooterPage = () => {
       <Container>
         <Row className="text-center">
           <Col md={6} className="mb-3">
-            <h2 className="navbar-brand">Trading Journal</h2>
+            <h2 className="footer-brand">Trading Journal</h2>
             <p>
               Trading Journal ti aiuta a tracciare le tue operazioni, analizzare
               i tuoi risultati e migliorare come trader. Scopri il potere del
@@ -18,7 +18,7 @@ const FooterPage = () => {
             </p>
           </Col>
           <Col md={6}>
-            <h2 className="navbar-brand">Seguici sui Social</h2>
+            <h2 className="footer-brand">Seguici sui Social</h2>
             <div className="social-icons">
               <a
                 href="https://www.linkedin.com"
