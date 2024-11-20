@@ -12,7 +12,8 @@ const UserPage = () => {
         <div className="hero-section text-center">
           <h1 className="hero-title">Benvenuto nella tua Dashboard</h1>
           <p className="hero-description">
-            Esplora le funzionalità del tuo Trading Journal. Traccia le tue operazioni, analizza i tuoi dati e accedi ai report dettagliati.
+            Esplora le funzionalità del tuo Trading Journal. Traccia le tue
+            operazioni, analizza i tuoi dati e accedi ai report dettagliati.
           </p>
         </div>
 
@@ -23,9 +24,10 @@ const UserPage = () => {
               <div className="feature-card shadow">
                 <h3 className="feature-title">Journal</h3>
                 <p className="feature-description">
-                  Registra le tue operazioni quotidiane e tieni traccia dei tuoi progressi.
+                  Registra le tue operazioni quotidiane e tieni traccia dei tuoi
+                  progressi.
                 </p>
-                <Link to="/userjournal" className="btn btn-primary">
+                <Link to="/userjournal" className="btn-feature text-light">
                   Vai al Journal
                 </Link>
               </div>
@@ -36,9 +38,10 @@ const UserPage = () => {
               <div className="feature-card shadow">
                 <h3 className="feature-title">Analytics</h3>
                 <p className="feature-description">
-                  Analizza le tue performance con grafici dettagliati e statistici.
+                  Analizza le tue performance con grafici dettagliati e
+                  statistici.
                 </p>
-                <Link to="/useranalytics" className="btn btn-primary">
+                <Link to="/useranalytics" className="btn-feature text-light">
                   Vai alle Analytics
                 </Link>
               </div>
@@ -51,7 +54,7 @@ const UserPage = () => {
                 <p className="feature-description">
                   Visualizza tutti i tuoi trade e scarica i report dettagliati.
                 </p>
-                <Link to="/userreport" className="btn btn-primary">
+                <Link to="/userreport" className="btn-feature text-light">
                   Vai al Reporting
                 </Link>
               </div>
