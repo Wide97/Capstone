@@ -1,9 +1,12 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import NavbarPage from "../navbar/NavbarPage";
 import "./RegisterPage.css";
 import FooterPage from "../footer/FooterPage";
 
 const RegisterPage = () => {
+  const navigate = useNavigate();
+
   const [formData, setFormData] = useState({
     username: "",
     password: "",
@@ -14,6 +17,22 @@ const RegisterPage = () => {
 
   const [error, setError] = useState("");
   const [success, setSuccess] = useState("");
+
+  const validateForm = () => {
+    if (!formData.email.includes("@")) {
+      setError("Inserisci un'email valida.");
+      return false;
+    }
+    if (formData.password.length < 8) {
+      setError("La password deve contenere almeno 8 caratteri.");
+      return false;
+    }
+    if (!formData.username || !formData.firstName || !formData.lastName) {
+      setError("Tutti i campi sono obbligatori.");
+      return false;
+    }
+    return true;
+  };
 
   const handleChange = (e) => {
     setFormData({
@@ -26,6 +45,8 @@ const RegisterPage = () => {
     e.preventDefault();
     setError("");
     setSuccess("");
+
+    if (!validateForm()) return;
 
     try {
       const response = await fetch("http://localhost:3001/api/auth/register", {
@@ -41,13 +62,7 @@ const RegisterPage = () => {
       }
 
       setSuccess("Registrazione completata con successo!");
-      setFormData({
-        username: "",
-        password: "",
-        email: "",
-        firstName: "",
-        lastName: "",
-      });
+      setTimeout(() => navigate("/login"), 2000); 
     } catch (err) {
       setError(err.message);
     }
