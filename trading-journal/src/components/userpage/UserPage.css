@@ -1,0 +1,71 @@
+.userpage-container {
+    font-family: "Poppins", sans-serif;
+    background-size: 400% 400%;
+    animation: gradient 10s ease infinite;
+    min-height: 100vh;
+    padding-bottom: 100px;
+  }
+  
+  .hero-section {
+    padding: 60px 20px;
+    color: white;
+  }
+  
+  .hero-title {
+    font-size: 3rem;
+    font-weight: bold;
+    margin-bottom: 20px;
+  }
+  
+  .hero-description {
+    font-size: 1.2rem;
+    color: #f8f9fa;
+  }
+  
+  .features-section {
+    margin-top: 40px;
+  }
+  
+  .feature-card {
+    background-color: white;
+    border-radius: 20px;
+    padding: 30px;
+    margin: 20px 0;
+    color: #4b0082;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  
+  .feature-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+  }
+  
+  .feature-title {
+    font-size: 1.8rem;
+    font-weight: bold;
+    margin-bottom: 15px;
+  }
+  
+  .feature-description {
+    font-size: 1rem;
+    margin-bottom: 20px;
+    color: #4b0082;
+  }
+  
+  .btn-primary {
+    background-color: #8b00ff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 20px;
+    font-size: 1rem;
+    font-weight: bold;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    color: white;
+  }
+  
+  .btn-primary:hover {
+    background-color: #ad52df;
+    transform: translateY(-3px);
+    box-shadow: 0 5px 10px rgba(173, 82, 223, 0.7);
+  }
+  

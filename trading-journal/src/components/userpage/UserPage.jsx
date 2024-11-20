@@ -1,14 +1,63 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import NavbarPage from "../navbar/NavbarPage";
 import FooterPage from "../footer/FooterPage";
+import "./UserPage.css";
 
 const UserPage = () => {
   return (
     <>
       <NavbarPage />
-      <div className="container text-center vh-100 d-flex flex-column justify-content-center align-items-center">
-        <h1 className="mb-4">Benvenuto nella tua pagina utente!</h1>
-        <p>Questa è la tua dashboard personale. Altre funzionalità verranno implementate qui.</p>
+      <div className="userpage-container">
+        <div className="hero-section text-center">
+          <h1 className="hero-title">Benvenuto nella tua Dashboard</h1>
+          <p className="hero-description">
+            Esplora le funzionalità del tuo Trading Journal. Traccia le tue operazioni, analizza i tuoi dati e accedi ai report dettagliati.
+          </p>
+        </div>
+
+        <div className="features-section container">
+          <div className="row">
+            {/* Journal Section */}
+            <div className="col-md-4 text-center">
+              <div className="feature-card shadow">
+                <h3 className="feature-title">Journal</h3>
+                <p className="feature-description">
+                  Registra le tue operazioni quotidiane e tieni traccia dei tuoi progressi.
+                </p>
+                <Link to="/userjournal" className="btn btn-primary">
+                  Vai al Journal
+                </Link>
+              </div>
+            </div>
+
+            {/* Analytics Section */}
+            <div className="col-md-4 text-center">
+              <div className="feature-card shadow">
+                <h3 className="feature-title">Analytics</h3>
+                <p className="feature-description">
+                  Analizza le tue performance con grafici dettagliati e statistici.
+                </p>
+                <Link to="/useranalytics" className="btn btn-primary">
+                  Vai alle Analytics
+                </Link>
+              </div>
+            </div>
+
+            {/* Reporting Section */}
+            <div className="col-md-4 text-center">
+              <div className="feature-card shadow">
+                <h3 className="feature-title">Reporting</h3>
+                <p className="feature-description">
+                  Visualizza tutti i tuoi trade e scarica i report dettagliati.
+                </p>
+                <Link to="/userreport" className="btn btn-primary">
+                  Vai al Reporting
+                </Link>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
       <FooterPage />
     </>
