@@ -31,7 +31,7 @@ body{
 }
 
 .navbar-brand {
-  font-size: 1.8rem; /* Regola la dimensione del testo */
+  font-size: 1.8rem; 
   font-weight: bold;
   background: linear-gradient(90deg, #ff4500, #ffa500, #ffd700, #ff4500);
   background-size: 200% 200%;

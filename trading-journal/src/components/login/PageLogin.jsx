@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { login } from "../utils/api"; 
 import "./PageLogin.css"; 
 import NavbarPage from "../navbar/NavbarPage";
+import FooterPage from "../footer/FooterPage";
 
 
 
@@ -68,6 +69,7 @@ const PageLogin = () => {
         </form>
       </div>
     </div>
+    <FooterPage/>
     </>
   );
 };

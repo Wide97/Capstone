@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import NavbarPage from "../navbar/NavbarPage";
 import "./RegisterPage.css";
+import FooterPage from "../footer/FooterPage";
 
 const RegisterPage = () => {
   const [formData, setFormData] = useState({
@@ -112,6 +113,7 @@ const RegisterPage = () => {
           </form>
         </div>
       </div>
+      <FooterPage />
     </>
   );
 };
