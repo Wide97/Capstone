@@ -1,10 +1,13 @@
 import React, { useState, useEffect } from "react";
+import uploadProfileImage from "../utils/apiImage"; 
 import FooterPage from "../footer/FooterPage";
 import UserNav from "../usernav/UserNav";
 import "./UserProfile.css";
 
 const UserProfile = () => {
   const [userData, setUserData] = useState({});
+  const [imageFile, setImageFile] = useState(null);
+  const [message, setMessage] = useState("");
 
   useEffect(() => {
     const token = localStorage.getItem("token");
@@ -17,40 +20,65 @@ const UserProfile = () => {
     })
       .then((response) => response.json())
       .then((data) => setUserData(data))
-      .catch((error) => console.error("Errore nel recupero dei dati:", error));
+      .catch((error) => console.error("Error fetching user data:", error));
   }, []);
+
+  // Funzione per caricare l'immagine
+  const handleImageUpload = async (e) => {
+    e.preventDefault();
+
+    const token = localStorage.getItem("token");
+
+    // Chiamata alla funzione di caricamento immagine
+    const data = await uploadProfileImage(userData.id, imageFile, token);
+
+    if (data.error) {
+      setMessage(data.error);
+    } else {
+      setMessage("Immagine caricata con successo!");
+      setUserData((prevData) => ({
+        ...prevData,
+        profileImageUrl: data.imageUrl,
+      }));
+    }
+  };
+
+  // Funzione per gestire la selezione dell'immagine
+  const handleFileChange = (e) => {
+    setImageFile(e.target.files[0]);
+  };
 
   return (
     <>
       <UserNav />
       <div className="container user-profile-container">
-        <div className="row justify-content-center">
-          <div className="col-12 text-center">
-            <h2 className="profile-title">Profilo Utente</h2>
-          </div>
+        <div className="profile-header">
+          <h2>Profilo Utente</h2>
         </div>
-        <div className="row justify-content-center">
+        <div className="row">
           <div className="col-md-4 col-sm-12 text-center">
             <img
               className="profile-image"
-              src={userData.profileImageUrl || "https://via.placeholder.com/150"}
-              alt="Immagine Profilo"
-              style={{
-                width: "150px",
-                height: "150px",
-                borderRadius: "50%",
-                objectFit: "cover",
-              }}
+              src={userData.profileImageUrl || "default-image.png"}
+              alt="Profilo"
             />
-            <p className="mt-2">{userData.profileImageUrl ? "Immagine Profilo Presente" : "Nessuna immagine"}</p>
+            <form onSubmit={handleImageUpload}>
+              <input
+                type="file"
+                accept="image/*"
+                onChange={handleFileChange}
+                required
+              />
+              <button type="submit">Carica immagine</button>
+            </form>
+            {message && <p>{message}</p>}
           </div>
-          <div className="col-md-8 col-sm-12 mt-4 mt-md-0">
-            <div className="profile-details">
-              <p><strong>Username:</strong> {userData.username}</p>
-              <p><strong>Email:</strong> {userData.email}</p>
-              <p><strong>Nome:</strong> {userData.firstName}</p>
-              <p><strong>Cognome:</strong> {userData.lastName}</p>
-            </div>
+          <div className="col-md-8 col-sm-12 profile-details">
+            <p><strong>Username:</strong> {userData.username}</p>
+            <p><strong>Email:</strong> {userData.email}</p>
+            <p><strong>Nome:</strong> {userData.firstName}</p>
+            <p><strong>Cognome:</strong> {userData.lastName}</p>
+            <p><strong>Immagine Profilo:</strong> {userData.profileImageUrl ? "Presente" : "Nessuna immagine"}</p>
           </div>
         </div>
       </div>
@@ -60,6 +88,9 @@ const UserProfile = () => {
 };
 
 export default UserProfile;
+
+
+
 
 
 
