@@ -11,7 +11,7 @@ const FooterPage = () => {
         <Row className="text-center">
           <Col md={6} className="mb-3">
             <h2 className="footer-brand">Trading Journal</h2>
-            <p>
+            <p className="footer-p">
               Trading Journal ti aiuta a tracciare le tue operazioni, analizzare
               i tuoi risultati e migliorare come trader. Scopri il potere del
               journaling e delle analytics.

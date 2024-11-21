@@ -9,7 +9,7 @@
 }
 
 .footer-brand {
-  font-size: 1.8rem;
+  font-size: 1rem;
   font-weight: bold;
   background: linear-gradient(90deg, #ff4500, #ffa500, #ffd700, #ff4500);
   background-size: 200% 200%;
@@ -19,8 +19,8 @@
   animation: gradient-animation 5s ease infinite;
 }
 
-p {
-  font-size: 1.2rem;
+.footer-p {
+  font-size: 0.7rem;
   text-align: center;
   margin-top: 10px;
 }
@@ -33,9 +33,13 @@ p {
 }
 
 .social-link {
-  color: #ffd700;
-  font-size: 1.8rem;
-  transition: transform 0.3s ease, color 0.3s ease;
+  background: linear-gradient(90deg, #ff4500, #ffa500, #ffd700, #ff4500);
+  background-size: 200% 200%;
+  font-size: 2rem;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: gradient-animation 5s ease infinite;
 }
 
 .social-link:hover {
@@ -44,10 +48,9 @@ p {
 }
 
 .footer-credit {
-  font-size: 1rem;
+  font-size: 0.7rem;
   color: #f8f9fa;
   text-align: center;
-  margin-top: 20px;
 }
 
 @keyframes gradient-animation {
