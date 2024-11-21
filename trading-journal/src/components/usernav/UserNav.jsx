@@ -20,7 +20,7 @@ const UserNav = () => {
   return (
     <Navbar
       expand="lg"
-      className={`navbar-animated shadow ${isVisible ? "visible" : ""}`}
+      className={`navbar-animated shadow fixed-top ${isVisible ? "visible" : ""}`}
       variant="dark"
     >
       <Container>

@@ -1,4 +1,9 @@
 /* Navbar branding */
+body {
+  padding-top: 130px;
+}
+
+
 .navbar-brand{
     font-size: 1.8rem;
     font-weight: bold;

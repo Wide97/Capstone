@@ -1,94 +1,47 @@
-import React, { useState } from "react";
-import NavbarPage from "../usernav/UserNav" 
+import React, { useState, useEffect } from "react";
 import FooterPage from "../footer/FooterPage";
-import "./UserProfile.css";
+import UserNav from "../usernav/UserNav";
 
 const UserProfile = () => {
-  const [profileImage, setProfileImage] = useState(null);
-  const [username, setUsername] = useState("MarcoWidesott");
-  const [password, setPassword] = useState("");
-  const [success, setSuccess] = useState("");
-  const [error, setError] = useState("");
-
-  const handleImageUpload = (e) => {
-    const file = e.target.files[0];
-    if (file) {
-      setProfileImage(URL.createObjectURL(file));
-    }
-  };
-
-  const handleSaveChanges = () => {
-    if (username.trim() === "" || password.trim() === "") {
-      setError("Username e Password non possono essere vuoti.");
-      setSuccess("");
-      return;
-    }
-    setSuccess("Modifiche salvate con successo!");
-    setError("");
-    // Qui potresti fare una chiamata API per salvare le modifiche
-  };
+  const [userData, setUserData] = useState({});
+  
+  useEffect(() => {
+  
+    const token = localStorage.getItem("token");
+    
+    fetch("http://localhost:3001/api/auth/profile", {
+      method: "GET",
+      headers: {
+        "Authorization": `Bearer ${token}`,
+      },
+    })
+    .then((response) => response.json())
+    .then((data) => setUserData(data))
+    .catch((error) => console.error("Error fetching user data:", error));
+  }, []);
 
   return (
     <>
-      <NavbarPage />
-      <div className="container d-flex flex-column align-items-center my-5">
-        <h1 className="mb-4">Profilo Utente</h1>
-        {error && <div className="alert alert-danger">{error}</div>}
-        {success && <div className="alert alert-success">{success}</div>}
-
-        <div className="profile-container">
-          {/* Immagine del profilo */}
-          <div className="profile-image-container">
+      <UserNav />
+      <div className="container user-profile-container">
+        <div className="profile-header">
+          <h2>Profilo Utente</h2>
+        </div>
+        <div className="row">
+          <div className="col-md-4 col-sm-12 text-center">
             <img
-              src={profileImage || "https://via.placeholder.com/150"}
+              className="profile-image"
+              src={userData.profileImageUrl || "default-image.png"}
               alt="Profilo"
-              className="profile-image me-4"
             />
-            <input
-              type="file"
-              id="profileImageUpload"
-              className="file-input"
-              onChange={handleImageUpload}
-            />
-            <label htmlFor="profileImageUpload" className="upload-label">
-              Cambia Immagine
-            </label>
           </div>
-
-          {/* Form di modifica */}
-          <form className="profile-form mt-4">
-            <div className="mb-3">
-              <label htmlFor="username" className="form-label">
-                Username
-              </label>
-              <input
-                type="text"
-                id="username"
-                className="form-control"
-                value={username}
-                onChange={(e) => setUsername(e.target.value)}
-              />
-            </div>
-            <div className="mb-3">
-              <label htmlFor="password" className="form-label">
-                Nuova Password
-              </label>
-              <input
-                type="password"
-                id="password"
-                className="form-control"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-              />
-            </div>
-            <button
-              type="button"
-              className="btn btn-primary mt-3"
-              onClick={handleSaveChanges}
-            >
-              Salva Modifiche
-            </button>
-          </form>
+          <div className="col-md-8 col-sm-12 profile-details">
+            <p><strong>Username:</strong> {userData.username}</p>
+            <p><strong>Email:</strong> {userData.email}</p>
+            <p><strong>Nome:</strong> {userData.firstName}</p>
+            <p><strong>Cognome:</strong> {userData.lastName}</p>
+            <p><strong>Immagine Profilo:</strong> {userData.profileImageUrl ? "Presente" : "Nessuna immagine"}</p>
+          </div>
         </div>
       </div>
       <FooterPage />
@@ -97,3 +50,5 @@ const UserProfile = () => {
 };
 
 export default UserProfile;
+
+
