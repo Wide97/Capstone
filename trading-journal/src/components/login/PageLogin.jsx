@@ -36,12 +36,12 @@ const PageLogin = () => {
         <div className="login-container">
           <h1 className="text-center mb-5">Login</h1>
           {error && (
-            <p className="alert alert-danger">
+            <p className="alert">
               <i className="bi bi-exclamation-circle"></i> {error}
             </p>
           )}
           {success && (
-            <p className="alert alert-success">
+            <p className="alert">
               <i className="bi bi-check-circle"></i> {success}
             </p>
           )}

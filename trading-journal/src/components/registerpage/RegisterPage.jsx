@@ -74,8 +74,8 @@ const RegisterPage = () => {
       <div className="container d-flex justify-content-center align-items-center vh-100">
         <div className="form-container">
           <h1 className="mb-5">Registrazione</h1>
-          {error && <div className="alert alert-danger">{error}</div>}
-          {success && <div className="alert alert-success">{success}</div>}
+          {error && <div className="alert">{error}</div>}
+          {success && <div className="alert">{success}</div>}
           <form onSubmit={handleSubmit}>
             <input
               type="text"
