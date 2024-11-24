@@ -55,14 +55,24 @@ const UserNav = ({ userData }) => {
                 id="dropdown-profile"
                 className="profile-icon d-flex align-items-center"
               >
-                <span className="profile-username">{userData.username}</span>{" "}
-                
-                <img
-                  src={userData.profileImageUrl || "/path/to/default-image.jpg"} 
-                  alt="Profilo"
-                  className="profile-img ms-2"
-                />
+                {userData ? (
+                  <>
+                    <span className="profile-username">
+                      {userData.username}
+                    </span>
+                    <img
+                      src={
+                        userData.profileImageUrl || "/path/to/default-image.jpg"
+                      }
+                      alt="Profilo"
+                      className="profile-img ms-2"
+                    />
+                  </>
+                ) : (
+                  <span>Caricamento...</span>
+                )}
               </Dropdown.Toggle>
+
               <Dropdown.Menu>
                 <Dropdown.Item href="/userprofile">Profilo</Dropdown.Item>
                 <Dropdown.Item onClick={handleLogout}>Esci</Dropdown.Item>

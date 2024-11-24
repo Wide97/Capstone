@@ -1,13 +1,31 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import FooterPage from "../footer/FooterPage";
 import "./UserPage.css";
 import UserNav from "../usernav/UserNav";
 
 const UserPage = () => {
+  const [userData, setUserData] = useState({});
+
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+  
+    fetch("http://localhost:3001/api/auth/profile", {
+      method: "GET",
+      headers: {
+        "Authorization": `Bearer ${token}`,
+      },
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        setUserData(data.user);  
+      })
+      .catch((error) => console.error("Error fetching user data:", error));
+  }, []);
+
   return (
     <>
-      <UserNav />
+      <UserNav userData={userData} /> 
       <div className="userpage-container">
         <div className="hero-section text-center">
           <h1 className="hero-title">Benvenuto nella tua Dashboard</h1>
@@ -68,3 +86,4 @@ const UserPage = () => {
 };
 
 export default UserPage;
+
