@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Navbar, Nav, Container, Dropdown } from "react-bootstrap";
 import "./UserNav.css";
 
-const UserNav = () => {
+const UserNav = ({ userData }) => {
   const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {
@@ -13,20 +13,25 @@ const UserNav = () => {
   }, []);
 
   const handleLogout = () => {
-    localStorage.removeItem("token"); 
-    window.location.href = "/"; 
+    localStorage.removeItem("token");
+    window.location.href = "/";
   };
 
   return (
     <Navbar
       expand="lg"
-      className={`navbar-animated shadow fixed-top ${isVisible ? "visible" : ""}`}
+      className={`navbar-animated shadow fixed-top ${
+        isVisible ? "visible" : ""
+      }`}
       variant="dark"
     >
       <Container>
-        <Navbar.Brand href="/user" className="navbar-brand d-flex align-items-center">
+        <Navbar.Brand
+          href="/user"
+          className="navbar-brand d-flex align-items-center"
+        >
           <img
-            src="/img/t-removebg-preview.png" 
+            src="/img/t-removebg-preview.png"
             alt="Trading Journal Logo"
             style={{ width: "40px", height: "40px", marginRight: "10px" }}
           />
@@ -48,9 +53,15 @@ const UserNav = () => {
               <Dropdown.Toggle
                 variant="custom"
                 id="dropdown-profile"
-                className="profile-icon"
+                className="profile-icon d-flex align-items-center"
               >
-                <i className="bi bi-person-circle"></i>
+                <span className="profile-username">{userData.username}</span>{" "}
+                
+                <img
+                  src={userData.profileImageUrl || "/path/to/default-image.jpg"} 
+                  alt="Profilo"
+                  className="profile-img ms-2"
+                />
               </Dropdown.Toggle>
               <Dropdown.Menu>
                 <Dropdown.Item href="/userprofile">Profilo</Dropdown.Item>
@@ -65,4 +76,3 @@ const UserNav = () => {
 };
 
 export default UserNav;
-

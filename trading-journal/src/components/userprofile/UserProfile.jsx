@@ -92,7 +92,7 @@ const UserProfile = () => {
 
   return (
     <>
-      <UserNav />
+      <UserNav userData={userData}/>
       <div className="container user-profile-container">
         <div className="profile-header text-center mb-4">
           <h2 className="text-light">Profilo Utente</h2>
