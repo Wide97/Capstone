@@ -76,6 +76,10 @@ const UserProfile = () => {
       alert("ID utente non valido.");
       return;
     }
+    if (newPassword.length < 8) {
+      setMessage("La password deve contenere almeno 8 caratteri.");
+      return;
+    }
 
     try {
       const updatedData = await updateUser(id, newUsername, newPassword);
