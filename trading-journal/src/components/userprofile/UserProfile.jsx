@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import FooterPage from "../footer/FooterPage";
 import UserNav from "../usernav/UserNav";
 import { uploadProfileImage } from "../utils/apiImage";
-import "./UserProfile.css"; // Aggiungi eventuali stili custom
+import "./UserProfile.css"; 
 
 const UserProfile = () => {
   const [userData, setUserData] = useState({});
@@ -12,20 +12,21 @@ const UserProfile = () => {
 
   useEffect(() => {
     const token = localStorage.getItem("token");
-
+  
     fetch("http://localhost:3001/api/auth/profile", {
       method: "GET",
       headers: {
-        Authorization: `Bearer ${token}`,
+        "Authorization": `Bearer ${token}`,  
       },
     })
       .then((response) => response.json())
       .then((data) => {
-        console.log("Dati utente ricevuti:", data);
-        setUserData(data);
+        setUserData(data.user);  
+        setImageUrl(data.user.profileImageUrl);  
       })
       .catch((error) => console.error("Error fetching user data:", error));
   }, []);
+  
 
   useEffect(() => {
     if (message) {
@@ -38,25 +39,36 @@ const UserProfile = () => {
 
   const handleImageUpload = async (e) => {
     e.preventDefault();
-
+  
     const id = userData.id ? userData.id : null;
     if (!id) {
       alert("ID utente non valido.");
       return;
     }
-
+  
     const formData = new FormData();
     formData.append("file", imageFile);
-
+  
     try {
       const updatedUserData = await uploadProfileImage(id, formData);
-      setUserData(updatedUserData);
+  
+      setUserData(updatedUserData.user);
+      setImageUrl(updatedUserData.user.profileImageUrl);
+  
+  
       setMessage("Immagine caricata con successo.");
+      
+      setTimeout(() => {
+        setMessage(""); 
+      }, 2000);
+  
     } catch (error) {
       setMessage("Errore nel caricamento dell'immagine.");
     }
   };
 
+  
+  
   return (
     <>
       <UserNav />

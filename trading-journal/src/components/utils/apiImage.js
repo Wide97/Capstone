@@ -7,7 +7,7 @@ export const uploadProfileImage = async (id, formData) => {
     headers: {
       "Authorization": `Bearer ${token}`,
     },
-    body: formData, 
+    body: formData,
   });
 
   if (!response.ok) {
@@ -26,7 +26,13 @@ export const uploadProfileImage = async (id, formData) => {
   }
 
   const updatedData = await updatedProfileResponse.json();
-  return updatedData;
+
+
+  if (updatedData.newToken) {
+    localStorage.setItem("token", updatedData.newToken);
+  }
+
+  return updatedData; 
 };
 
 
