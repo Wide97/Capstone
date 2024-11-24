@@ -2,31 +2,33 @@ import React, { useState, useEffect } from "react";
 import FooterPage from "../footer/FooterPage";
 import UserNav from "../usernav/UserNav";
 import { uploadProfileImage } from "../utils/apiImage";
-import "./UserProfile.css"; 
+import { updateUser } from "../utils/apiUpadate"; 
+import "./UserProfile.css";
 
 const UserProfile = () => {
   const [userData, setUserData] = useState({});
   const [imageFile, setImageFile] = useState(null);
   const [message, setMessage] = useState("");
+  const [newUsername, setNewUsername] = useState(""); 
+  const [newPassword, setNewPassword] = useState(""); 
   const [imageUrl, setImageUrl] = useState("");
 
   useEffect(() => {
     const token = localStorage.getItem("token");
-  
+
     fetch("http://localhost:3001/api/auth/profile", {
       method: "GET",
       headers: {
-        "Authorization": `Bearer ${token}`,  
+        Authorization: `Bearer ${token}`,
       },
     })
       .then((response) => response.json())
       .then((data) => {
-        setUserData(data.user);  
-        setImageUrl(data.user.profileImageUrl);  
+        setUserData(data.user);
+        setImageUrl(data.user.profileImageUrl);
       })
       .catch((error) => console.error("Error fetching user data:", error));
   }, []);
-  
 
   useEffect(() => {
     if (message) {
@@ -39,36 +41,51 @@ const UserProfile = () => {
 
   const handleImageUpload = async (e) => {
     e.preventDefault();
-  
+
     const id = userData.id ? userData.id : null;
     if (!id) {
       alert("ID utente non valido.");
       return;
     }
-  
+
     const formData = new FormData();
     formData.append("file", imageFile);
-  
+
     try {
       const updatedUserData = await uploadProfileImage(id, formData);
-  
       setUserData(updatedUserData.user);
       setImageUrl(updatedUserData.user.profileImageUrl);
-  
-  
+
       setMessage("Immagine caricata con successo.");
-      
+
       setTimeout(() => {
         setMessage(""); 
       }, 2000);
-  
     } catch (error) {
       setMessage("Errore nel caricamento dell'immagine.");
     }
   };
 
   
-  
+
+  const handleUserUpdate = async (e) => {
+    e.preventDefault();
+
+    const id = userData.id ? userData.id : null;
+    if (!id) {
+      alert("ID utente non valido.");
+      return;
+    }
+
+    try {
+      const updatedData = await updateUser(id, newUsername, newPassword);
+      setUserData(updatedData.user); 
+      setMessage("Dati aggiornati con successo.");
+    } catch (error) {
+      setMessage("Errore nell'aggiornamento dei dati.");
+    }
+  };
+
   return (
     <>
       <UserNav />
@@ -81,9 +98,7 @@ const UserProfile = () => {
             <div className="profile-image-container rounded-circle">
               <img
                 className="profile-image rounded-circle shadow-lg"
-                src={
-                  imageUrl || userData.profileImageUrl || "https://placedog.net/500/280"
-                }
+                src={imageUrl || userData.profileImageUrl || "https://placedog.net/500/280"}
                 alt="Profilo"
                 width="150"
                 height="150"
@@ -104,7 +119,6 @@ const UserProfile = () => {
               <label htmlFor="fileInput" className="file-label">
                 Scegli file
               </label>
-
               <button type="submit" className=" mt-3">
                 Carica immagine
               </button>
@@ -131,8 +145,31 @@ const UserProfile = () => {
               </p>
             </div>
 
-            {message && <div className="alert mt-3">{message}</div>}
+            <form onSubmit={handleUserUpdate}>
+              <div className="form-group">
+                <label>Nuovo Username:</label>
+                <input
+                  type="text"
+                  className="form-control"
+                  value={newUsername}
+                  onChange={(e) => setNewUsername(e.target.value)}
+                />
+              </div>
+              <div className="form-group">
+                <label>Nuova Password:</label>
+                <input
+                  type="password"
+                  className="form-control"
+                  value={newPassword}
+                  onChange={(e) => setNewPassword(e.target.value)}
+                />
+              </div>
+              <button type="submit" className="btn btn-primary mt-3">
+                Aggiorna Dati
+              </button>
+            </form>
 
+            {message && <div className="alert mt-3">{message}</div>}
           </div>
         </div>
       </div>
