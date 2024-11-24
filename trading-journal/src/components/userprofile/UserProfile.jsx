@@ -98,7 +98,7 @@ const UserProfile = () => {
           <h2 className="text-light">Profilo Utente</h2>
         </div>
         <div className="row justify-content-center">
-          <div className="col-md-4 col-sm-12 text-center">
+          <div className="col-md-4 col-sm-12 text-center mb-4">
             <div className="profile-image-container rounded-circle">
               <img
                 className="profile-image rounded-circle shadow-lg"
@@ -149,29 +149,31 @@ const UserProfile = () => {
               </p>
             </div>
 
-            <form onSubmit={handleUserUpdate}>
-              <div className="form-group">
-                <label>Nuovo Username:</label>
-                <input
-                  type="text"
-                  className="form-control"
-                  value={newUsername}
-                  onChange={(e) => setNewUsername(e.target.value)}
-                />
-              </div>
-              <div className="form-group">
-                <label>Nuova Password:</label>
-                <input
-                  type="password"
-                  className="form-control"
-                  value={newPassword}
-                  onChange={(e) => setNewPassword(e.target.value)}
-                />
-              </div>
-              <button type="submit" className="btn btn-primary mt-3">
-                Aggiorna Dati
-              </button>
-            </form>
+            <div className="input-container">
+              <form onSubmit={handleUserUpdate}>
+                <div className="form-group">
+                  <label className="text-form-group mb-2">Nuovo Username:</label>
+                  <input
+                    type="text"
+                    className="form-control"
+                    value={newUsername}
+                    onChange={(e) => setNewUsername(e.target.value)}
+                  />
+                </div>
+                <div className="form-group">
+                  <label className="text-form-group mb-2" >Nuova Password:</label>
+                  <input
+                    type="password"
+                    className="form-control"
+                    value={newPassword}
+                    onChange={(e) => setNewPassword(e.target.value)}
+                  />
+                </div>
+                <button type="submit" className="btn mt-4">
+                  Aggiorna Dati
+                </button>
+              </form>
+            </div>
 
             {message && <div className="alert mt-3">{message}</div>}
           </div>

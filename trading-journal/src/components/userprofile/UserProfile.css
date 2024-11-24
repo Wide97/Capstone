@@ -139,4 +139,57 @@ button:hover {
   }
 }
 
+/* Stili per gli input di cambio username e password */
+.input-container {
+  background-color: #4b0082;
+  padding: 20px;
+  border-radius: 10px;
+  margin-top: 20px;
+  box-shadow: none;
+}
+
+.input-container input {
+  width: 100%;
+  padding: 0.5rem;
+  margin-bottom: 10px;
+  background-color: white;
+  border: none;
+  border-radius: 5px;
+  font-size: 1rem;
+}
+
+.input-container input:focus {
+  outline: none;
+  border: 2px solid #ffa500;
+}
+
+.input-container button {
+  font-size: 1rem;
+  padding: 0.5rem 1.5rem;
+  background-color: #ffa500;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  width: 100%;
+}
+
+.input-container button:hover {
+  background-color: #c04717;
+}
+
+.text-form-group {
+  background: linear-gradient(90deg, #ff4500, #ffa500, #ffd700, #ff4500);
+  background-size: 200% 200%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: gradient-animation 5s ease infinite;
+  border: none; 
+  text-align: center;
+  font-size: 16px;
+  color: white; 
+  border-radius: 5px;
+  margin-top: 20px; 
+}
+
 
