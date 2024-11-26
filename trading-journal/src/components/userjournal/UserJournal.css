@@ -1,44 +1,99 @@
-/* Journal.css */
-.container {
-    max-width: 800px;
-    margin: 0 auto;
-  }
-  
-  form {
-    background: #f9f9f9;
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  }
-  
-  h2 {
-    color: #ff4500;
-    margin-bottom: 20px;
-  }
-  
-  label {
-    font-weight: bold;
-  }
-  
-  input, select {
-    margin-bottom: 10px;
-    border-radius: 5px;
-    border: 1px solid #ccc;
-    padding: 10px;
-    width: 100%;
-  }
-  
-  button {
-    background-color: #ff4500;
-    color: white;
-    padding: 10px 20px;
-    border: none;
-    border-radius: 5px;
-    width: 100%;
-    cursor: pointer;
-  }
-  
-  button:hover {
-    background-color: #ffa500;
-  }
-  
+
+.user-journal-container {
+  max-width: 600px;
+  margin: 30px auto;
+  padding: 20px;
+  background-color: #4b0082;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+
+ h2 {
+  font-weight: bold;
+  background: linear-gradient(90deg, #ff4500, #ffa500, #ffd700, #ff4500);
+  background-size: 200% 200%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: gradient-animation 5s ease infinite;
+}
+
+
+.user-journal-form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+
+.user-journal-form .form-group {
+  display: flex;
+  flex-direction: column;
+}
+
+.user-journal-form .form-group label {
+  font-size: 16px;
+  font-weight: bold;
+  background: linear-gradient(90deg, #ff4500, #ffa500, #ffd700, #ff4500);
+  background-size: 200% 200%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: gradient-animation 5s ease infinite;
+  margin-bottom: 5px;
+}
+
+.user-journal-form .form-group input,
+.user-journal-form .form-group select {
+  padding: 10px;
+  border-radius: 5px;
+  border: 1px solid #ddd;
+  font-size: 16px;
+  outline: none;
+}
+
+.user-journal-form .form-group input:focus,
+.user-journal-form .form-group select:focus {
+  border-color: #1abc9c;
+}
+
+
+.user-journal-form button {
+  padding: 12px;
+  background-color: #8b00ff;
+  border: none;
+  border-radius: 5px;
+  color: white;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.user-journal-form button:hover {
+  background-color: #ad52df;
+}
+
+.user-journal-form button:active {
+  background-color: #c776f3;
+}
+
+
+.error-message {
+  color: red;
+  font-size: 14px;
+  margin-top: 10px;
+}
+
+.success-message {
+  color: #ad52df;
+  font-size: 14px;
+  margin-top: 10px;
+}
+
+
+.user-journal-form .form-group select,
+.user-journal-form .form-group input {
+  background-color: white;
+}
+
+
