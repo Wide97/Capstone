@@ -1,10 +1,27 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { createTrade } from "../utils/apiJournal";
 import "./UserJournal.css";
 import FooterPage from "../footer/FooterPage";
 import UserNav from "../usernav/UserNav"; 
 
 const UserJournal = () => {
+  const [userData, setUserData] = useState({});
+
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+  
+    fetch("http://localhost:3001/api/auth/profile", {
+      method: "GET",
+      headers: {
+        "Authorization": `Bearer ${token}`,
+      },
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        setUserData(data.user);  
+      })
+      .catch((error) => console.error("Error fetching user data:", error));
+  }, []);
 
   const [purchaseDate, setPurchaseDate] = useState("");
   const [saleDate, setSaleDate] = useState("");
@@ -70,7 +87,7 @@ const UserJournal = () => {
 
   return (
     <>
-      <UserNav />
+      <UserNav userData={userData}/>
       <h2 className="text-center text-white mt-5">Creazione Trade</h2>
       <div className="user-journal-container">
         <form onSubmit={handleSubmit} className="user-journal-form">
