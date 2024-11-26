@@ -14,10 +14,9 @@ export const createTrade = async (tradeData) => {
       throw new Error("Errore nella creazione del trade");
     }
 
-    // Assicurati che la risposta sia in formato JSON
     const data = await response.json();
 
-    return data;  // La risposta JSON contiene ora i dati (message, tradeId, ecc.)
+    return data;  
   } catch (error) {
     console.error("Errore nella creazione del trade:", error);
     throw error;

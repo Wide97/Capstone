@@ -1,99 +1,71 @@
 
-.user-journal-container {
-  max-width: 600px;
-  margin: 30px auto;
-  padding: 20px;
-  background-color: #4b0082;
-  border-radius: 10px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-}
-
-
- h2 {
-  font-weight: bold;
-  background: linear-gradient(90deg, #ff4500, #ffa500, #ffd700, #ff4500);
-  background-size: 200% 200%;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  animation: gradient-animation 5s ease infinite;
-}
-
-
-.user-journal-form {
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-}
-
-
-.user-journal-form .form-group {
-  display: flex;
-  flex-direction: column;
-}
-
-.user-journal-form .form-group label {
-  font-size: 16px;
-  font-weight: bold;
-  background: linear-gradient(90deg, #ff4500, #ffa500, #ffd700, #ff4500);
-  background-size: 200% 200%;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  animation: gradient-animation 5s ease infinite;
-  margin-bottom: 5px;
-}
-
-.user-journal-form .form-group input,
-.user-journal-form .form-group select {
-  padding: 10px;
-  border-radius: 5px;
-  border: 1px solid #ddd;
-  font-size: 16px;
-  outline: none;
-}
-
-.user-journal-form .form-group input:focus,
-.user-journal-form .form-group select:focus {
-  border-color: #1abc9c;
-}
-
-
-.user-journal-form button {
-  padding: 12px;
-  background-color: #8b00ff;
+.button-journal {
+  background-color: #ffa500;
+  color: white;
   border: none;
   border-radius: 5px;
-  color: white;
+  padding: 12px 20px;
   font-size: 16px;
+  font-weight: bold;
   cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
-.user-journal-form button:hover {
-  background-color: #ad52df;
+.button-journal:hover {
+  background-color: #c04717;
+  transform: translateY(-2px); 
+  box-shadow: 0 6px 10px rgba(0, 0, 0, 0.2); 
 }
 
-.user-journal-form button:active {
-  background-color: #c776f3;
+.button-journal:active {
+  transform: translateY(1px); 
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+label {
+  font-size: 18px;
+  font-weight: bold;
+  background: linear-gradient(90deg, #ff4500, #ffa500, #ffd700, #ff4500);
+  background-size: 200% 200%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: gradient-animation 5s ease infinite;
+  margin-bottom: 10px;
+}
+
+h2{
+  font-size: 2rem;
+  font-weight: bold;
+  background: linear-gradient(90deg, #ff4500, #ffa500, #ffd700, #ff4500);
+  background-size: 200% 200%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: gradient-animation 10s ease infinite;
+  margin-bottom: 30px;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+h4 {
+  font-weight: bold;
+  background: linear-gradient(90deg, #d2f706, #a7b33b, #e0dd14, #e6e5e7);
+  background-size: 200% 200%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: gradient-animation 20s ease infinite;
+  text-transform: uppercase;
 }
 
 
-.error-message {
-  color: red;
-  font-size: 14px;
-  margin-top: 10px;
+.container-journal {
+  background-color: #4b0082;
+  border-radius: 10px;
+  padding: 30px;
+  max-width: 800px;
+  margin: 0 auto;
+  box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2);
 }
-
-.success-message {
-  color: #ad52df;
-  font-size: 14px;
-  margin-top: 10px;
-}
-
-
-.user-journal-form .form-group select,
-.user-journal-form .form-group input {
-  background-color: white;
-}
-
-
