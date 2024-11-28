@@ -11,19 +11,31 @@ const UserReport = () => {
 
   useEffect(() => {
     const token = localStorage.getItem("token");
+
+    if (!token) {
+      setError("Token non trovato, effettua il login.");
+      return;
+    }
+
     fetch("http://localhost:3001/api/auth/profile", {
       method: "GET",
       headers: {
         Authorization: `Bearer ${token}`,
       },
     })
-      .then((response) => response.json())
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error("Errore nel recupero del profilo utente.");
+        }
+        return response.json();
+      })
       .then((data) => {
         setUserData(data.user);
         loadTrades(data.user.id);
       })
       .catch((error) => {
         console.error("Errore nel recupero dei dati dell'utente:", error);
+        setError("Errore nel recupero del profilo utente.");
       });
   }, []);
 
@@ -32,21 +44,24 @@ const UserReport = () => {
       const trades = await getAllTrades(userId);
       setTrades(trades);
     } catch (error) {
-      setError("Errore nel recupero dei trade");
       console.error("Errore nel caricamento dei trade:", error);
+      setError("Errore nel recupero dei trade.");
     }
   };
 
-  // Funzione per eliminare un trade
   const handleDelete = async (tradeId) => {
     const userId = userData.id;
+
     try {
       await deleteTrade(tradeId, userId);
-      setTrades(trades.filter((trade) => trade.id !== tradeId));
-      alert("Trade eliminato con successo");
+
+      setTrades((prevTrades) => prevTrades.filter((trade) => trade.tradeId !== tradeId));
+
+      setError(""); 
+      alert("Trade eliminato con successo.");
     } catch (error) {
-      setError("Errore nell'eliminazione del trade");
       console.error("Errore nell'eliminazione del trade:", error);
+      setError("Errore nell'eliminazione del trade.");
     }
   };
 
@@ -74,30 +89,27 @@ const UserReport = () => {
             </tr>
           </thead>
           <tbody>
-            {trades.map((trade) => {
-              const key = `${trade.purchaseDate}-${trade.asset}`;
-              return (
-                <tr key={key}>
-                  <td>{trade.purchaseDate}</td>
-                  <td>{trade.saleDate}</td>
-                  <td>{trade.asset}</td>
-                  <td>{trade.positionSize}</td>
-                  <td>{trade.leverage}</td>
-                  <td>{trade.strategy}</td>
-                  <td>{trade.tradeType}</td>
-                  <td>{trade.result}</td>
-                  <td>{trade.profitLoss}</td>
-                  <td>
-                    <button
-                      onClick={() => handleDelete(trade.id)}
-                      className="btn btn-danger"
-                    >
-                      Elimina
-                    </button>
-                  </td>
-                </tr>
-              );
-            })}
+            {trades.map((trade) => (
+              <tr key={trade.tradeId}>
+                <td>{trade.purchaseDate}</td>
+                <td>{trade.saleDate}</td>
+                <td>{trade.asset}</td>
+                <td>{trade.positionSize}</td>
+                <td>{trade.leverage}</td>
+                <td>{trade.strategy}</td>
+                <td>{trade.tradeType}</td>
+                <td>{trade.result}</td>
+                <td>{trade.profitLoss}</td>
+                <td>
+                  <button
+                    onClick={() => handleDelete(trade.tradeId)}
+                    className="btn btn-danger"
+                  >
+                    Elimina
+                  </button>
+                </td>
+              </tr>
+            ))}
           </tbody>
         </table>
       </div>

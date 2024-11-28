@@ -23,8 +23,7 @@ export const getAllTrades = async (userId) => {
 };
 
 // Funzione per eliminare un trade
- export const deleteTrade = async (tradeId, userId) => {
-  console.log(`Eliminazione del trade con ID: ${tradeId} per l'utente con ID: ${userId}`);
+export const deleteTrade = async (tradeId, userId) => {
   try {
     const response = await fetch(`${API_URL}/trades/${tradeId}`, {
       method: "DELETE",
@@ -35,15 +34,19 @@ export const getAllTrades = async (userId) => {
     });
 
     if (!response.ok) {
+      console.log("Response error:", response); 
       throw new Error("Errore nell'eliminazione del trade");
     }
 
     return await response.json();
   } catch (error) {
-    console.error("Errore nella chiamata per eliminare il trade:", error);
+    console.error("Errore nella chiamata per eliminare il trade:", error); 
     throw error;
   }
 };
+
+
+
 
 
 
