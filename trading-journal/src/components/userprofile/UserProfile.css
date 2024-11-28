@@ -192,16 +192,15 @@ button:hover {
   margin-top: 20px; 
 }
 
-/* CSS per allineare correttamente il testo e l'immagine del profilo */
 .profile-dropdown .profile-icon {
   display: flex;
-  align-items: center; /* Allinea verticalmente il nome utente e l'immagine */
+  align-items: center; 
 }
 
 .profile-username {
-  margin-right: 10px; /* Distanza tra l'username e l'immagine */
-  font-size: 16px; /* Dimensione del testo dell'username */
-  font-weight: bold; /* Grassetto per l'username */
+  margin-right: 10px; 
+  font-size: 16px; 
+  font-weight: bold; 
 }
 
 .profile-img {
@@ -209,7 +208,7 @@ button:hover {
   height: 30px;
   border-radius: 50%;
   object-fit: cover;
-  margin-left: 5px; /* Distanza tra l'immagine e il nome utente */
+  margin-left: 5px; 
 }
 
 
