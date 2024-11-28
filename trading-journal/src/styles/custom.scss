@@ -20,4 +20,5 @@ $custom-colors: (
 ) !default;
 
 @import "bootstrap/scss/variables";
-$theme-colors:map-merge($theme-colors, $custom-colors )
+$theme-colors:map-merge($theme-colors, $custom-colors );
+// @import "bootstrap/scss/bootstrap.scss"
