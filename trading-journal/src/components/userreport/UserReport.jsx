@@ -46,6 +46,7 @@ const UserReport = () => {
         console.error("Errore nel recupero dei dati dell'utente:", error);
         setError("Errore nel recupero del profilo utente.");
       });
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const loadTrades = async (userId) => {

@@ -57,6 +57,7 @@ const UserAnalytics = () => {
         console.error("Errore nel recupero del profilo utente:", error);
         setError("Errore nel recupero del profilo utente.");
       });
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const loadAnalytics = async (userId) => {
