@@ -62,7 +62,7 @@ const UserNav = ({ userData }) => {
                     </span>
                     <img
                       src={
-                        userData.profileImageUrl || "/path/to/default-image.jpg"
+                        userData.profileImageUrl || "https://placedog.net/500"
                       }
                       alt="Profilo"
                       className="profile-img ms-2"
