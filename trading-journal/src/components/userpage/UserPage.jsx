@@ -3,6 +3,9 @@ import { Link } from "react-router-dom";
 import FooterPage from "../footer/FooterPage";
 import "./UserPage.scss";
 import UserNav from "../usernav/UserNav";
+import tutorialVideo1 from "./Video1_Navigazione.mp4";
+import tutorialVideo2 from "./Video2_ModificaDati.mp4";
+import tutorialVideo3 from "./Video3_Sezioni.mp4";
 
 const UserPage = () => {
   const [userData, setUserData] = useState({});
@@ -33,6 +36,47 @@ const UserPage = () => {
             Esplora le funzionalità del tuo Trading Journal. Traccia le tue
             operazioni, analizza i tuoi dati e accedi ai report dettagliati.
           </p>
+        </div>
+
+        {/* Video Tutorial Section */}
+        <div className="video-tutorials-section container my-5">
+          <div className="row justify-content-center align-items-center">
+            <div className="col-md-5 text-center mb-4">
+              <video className="responsive-iframe" controls>
+                <source src={tutorialVideo1} type="video/mp4" />
+                Your browser does not support the video tag.
+              </video>
+            </div>
+            <div className="col-md-5 mb-4">
+              <p className="video-description">
+                Video 1: Navigazione all'interno della dashboard – scopri come muoverti tra le varie sezioni, accedere al Journal, alle Analytics e ai Report.
+              </p>
+            </div>
+
+            <div className="col-md-5 text-center mb-4">
+              <video className="responsive-iframe" controls>
+                <source src={tutorialVideo2} type="video/mp4" />
+                Your browser does not support the video tag.
+              </video>
+            </div>
+            <div className="col-md-5 mb-4">
+              <p className="video-description">
+                Video 2: Come modificare i dati utente – impara a cambiare il tuo username, la password e a caricare una nuova immagine profilo per personalizzare il tuo account.
+              </p>
+            </div>
+
+            <div className="col-md-5 text-center mb-4">
+              <video className="responsive-iframe" controls>
+                <source src={tutorialVideo3} type="video/mp4" />
+                Your browser does not support the video tag.
+              </video>
+            </div>
+            <div className="col-md-5 mb-4">
+              <p className="video-description">
+                Video 3: Funzionamento delle varie sezioni – scopri come usare al meglio le sezioni Analytics, Report e Journal per tracciare e migliorare le tue performance di trading.
+              </p>
+            </div>
+          </div>
         </div>
 
         <div className="features-section container">
@@ -86,4 +130,3 @@ const UserPage = () => {
 };
 
 export default UserPage;
-
