@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from "react";
 import { getAllTrades } from "../utils/apiReport";
 import FooterPage from "../footer/FooterPage";
 import UserNav from "../usernav/UserNav";
-import Chart, { Colors, Ticks } from "chart.js/auto";
+import Chart from "chart.js/auto";
 import "./UserAnalytics.css";
 
 const UserAnalytics = () => {
@@ -10,7 +10,7 @@ const UserAnalytics = () => {
   const [performanceData, setPerformanceData] = useState(null);
   const [equityData, setEquityData] = useState(null);
   const [strategyData, setStrategyData] = useState(null);
-  const [tradeTypeData, setTradeTypeData] = useState(null); // Dati per il grafico a torta
+  const [tradeTypeData, setTradeTypeData] = useState(null); 
   const [tradePerformanceData, setTradePerformanceData] = useState(null);
   const [tradeSessionData, setTradeSessionData] = useState(null);
   const [error, setError] = useState("");
@@ -25,7 +25,7 @@ const UserAnalytics = () => {
   const chartInstancePerformance = useRef(null);
   const chartInstanceEquity = useRef(null);
   const chartInstanceStrategy = useRef(null);
-  const chartInstanceTradeType = useRef(null); // Istanza del grafico a torta
+  const chartInstanceTradeType = useRef(null); 
   const chartInstanceTradePerformance = useRef(null);
   const chartInstanceTradeSession = useRef(null);
 
