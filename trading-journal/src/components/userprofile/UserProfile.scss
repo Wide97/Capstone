@@ -1,0 +1,155 @@
+@import '../../styles/variables.scss';
+
+.profile-image-container {
+  width: 150px;
+  height: 150px;
+  margin: 0 auto;
+  overflow: hidden;
+}
+
+.profile-header h2 {
+  font-size: 2rem;
+  @include gradient-animation;
+}
+
+.profile-image {
+  object-fit: cover;
+  width: 100%;
+  height: 100%;
+}
+
+.profile-details {
+  background-color: $primary-color;
+  padding: 20px;
+  border: none;
+  box-shadow: none;
+  border-radius: 10px;
+}
+
+.user-profile-container {
+  padding: 20px;
+}
+
+.card-body {
+  background-color: $primary-color;
+}
+
+input[type="file"] {
+  display: none;
+  padding: 0.5rem;
+  margin-top: 10px;
+}
+
+.file-label {
+  @include gradient-animation;
+  padding: 10px 20px;
+  cursor: pointer;
+  font-size: 18px;
+  border: none;
+  border-radius: 5px;
+  text-align: center;
+  display: inline-block;
+  width: auto;
+  transition: all 0.3s ease;
+}
+
+.file-label:hover {
+  background-position: 100% 100%;
+}
+
+.card-body p {
+  @include gradient-animation;
+}
+
+button {
+  font-size: 1rem;
+  padding: 0.5rem 1.5rem;
+  background-color: $accent-color;
+  color: white;
+  border: none;
+  border-radius: 5px;
+}
+
+button:hover {
+  background-color: #c04717;
+}
+
+.alert {
+  @include gradient-animation;
+  border: none;
+  padding: 10px;
+  text-align: center;
+  font-size: 16px;
+  color: white;
+  border-radius: 5px;
+  margin-top: 20px;
+}
+
+.input-container {
+  background-color: $primary-color;
+  padding: 20px;
+  border-radius: 10px;
+  margin-top: 20px;
+  box-shadow: none;
+}
+
+.input-container input {
+  width: 100%;
+  padding: 0.5rem;
+  margin-bottom: 10px;
+  background-color: white;
+  border: none;
+  border-radius: 5px;
+  font-size: 1rem;
+}
+
+.input-container input:focus {
+  outline: none;
+  border: 2px solid $accent-color;
+}
+
+.input-container button {
+  font-size: 1rem;
+  padding: 0.5rem 1.5rem;
+  background-color: $accent-color;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  width: 100%;
+}
+
+.input-container button:hover {
+  background-color: #c04717;
+}
+
+.text-form-group {
+  @include gradient-animation;
+  border: none;
+  text-align: center;
+  font-size: 16px;
+  color: white;
+  border-radius: 5px;
+  margin-top: 20px;
+}
+
+.profile-dropdown .profile-icon {
+  display: flex;
+  align-items: center;
+}
+
+.profile-username {
+  margin-right: 10px;
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.profile-img {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-left: 5px;
+}
+
+
+

@@ -3,7 +3,7 @@ import FooterPage from "../footer/FooterPage";
 import UserNav from "../usernav/UserNav";
 import { uploadProfileImage } from "../utils/apiImage";
 import { updateUser } from "../utils/apiUpadate"; 
-import "./UserProfile.css";
+import "./UserProfile.scss";
 
 const UserProfile = () => {
   const [userData, setUserData] = useState({});

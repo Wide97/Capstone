@@ -1,0 +1,56 @@
+// Centralized Variables and Styles for the Project
+
+// Color Variables
+$primary-color: #4b0082;
+$secondary-color: #8b00ff;
+$accent-color: #ffa500;
+$gradient-colors: linear-gradient(90deg, #ff4500, #ffa500, #ffd700, #ff4500);
+$background-gradient: linear-gradient(-45deg, #4b0082, #8b00ff, #ad52df, #4b0082);
+
+// Font Variables
+$font-primary: 'Teko', sans-serif;
+
+// Button Styles
+@mixin button-style($bg-color, $hover-color) {
+  background-color: $bg-color;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  padding: 12px 20px;
+  font-size: 1rem;
+  font-weight: bold;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+  cursor: pointer;
+
+  &:hover {
+    background-color: $hover-color;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.2);
+  }
+
+  &:active {
+    transform: translateY(1px);
+  }
+}
+
+// Gradient Animation
+@mixin gradient-animation {
+  background: $gradient-colors;
+  background-size: 200% 200%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: gradient-animation 5s ease infinite;
+}
+
+@keyframes gradient-animation {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}

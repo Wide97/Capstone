@@ -1,6 +1,6 @@
 import React from "react";
 import NavbarPage from "../navbar/NavbarPage";
-import "./HomePage.css";
+import "./HomePage.scss";
 import { Container, Row, Col, Button } from "react-bootstrap";
 import FooterPage from "../footer/FooterPage";
 

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Navbar, Nav, Container, Dropdown } from "react-bootstrap";
-import "./UserNav.css";
+import "./UserNav.scss";
 
 const UserNav = ({ userData }) => {
   const [isVisible, setIsVisible] = useState(false);

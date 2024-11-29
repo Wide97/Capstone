@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
 import { getAllTrades, deleteTrade } from "../utils/apiReport";
-import "./UserReport.css"; 
+import "./UserReport.scss"; 
 import FooterPage from "../footer/FooterPage";
 import UserNav from "../usernav/UserNav";
 import Chart from "chart.js/auto";

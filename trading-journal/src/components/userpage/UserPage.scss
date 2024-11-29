@@ -1,4 +1,6 @@
 
+@import '../../styles/variables.scss';
+
 .userpage-container {
   font-size: 2rem;
   background-size: 400% 400%;
@@ -42,24 +44,17 @@
 .feature-card:hover {
   transform: scale(1.05);
   box-shadow: 0 15px 30px rgba(0, 0, 0, 0.5);
-  background: linear-gradient(
-    -45deg,
-    #8b00ff,
-    #ff4500,
-    #ff69b4,
-    rgba(75, 0, 130, 0.85)
-  );
+  background: linear-gradient(-45deg, $secondary-color, $accent-color, #ff69b4, rgba(75, 0, 130, 0.85));
   animation: gradient-animation 5s ease infinite;
-  
 }
 
-.feature-card:hover .feature-title  {
-  color: black; 
+.feature-card:hover .feature-title {
+  color: black;
   transition: color 0.3s ease;
 }
 
-.feature-card:hover .feature-description  {
-  color: black; 
+.feature-card:hover .feature-description {
+  color: black;
   transition: color 0.3s ease;
 }
 
@@ -67,7 +62,7 @@
   font-size: 1.8rem;
   font-weight: bold;
   margin-bottom: 15px;
-  color: #e96011;
+  color: $accent-color;
 }
 
 .feature-description {
@@ -77,7 +72,7 @@
 }
 
 .btn-feature {
-  background-color: #e96011;
+  background-color: $accent-color;
   border: none;
   padding: 10px 20px;
   border-radius: 20px;
@@ -89,21 +84,7 @@
 }
 
 .btn-feature:hover {
-  background-color: #ad52df;
+  background-color: $secondary-color;
   transform: translateY(-3px);
   box-shadow: 0 5px 10px rgba(173, 82, 223, 0.7);
 }
-
-@keyframes gradient-animation {
-  0% {
-    background-position: 0% 50%;
-  }
-  50% {
-    background-position: 100% 50%;
-  }
-  100% {
-    background-position: 0% 50%;
-  }
-}
-
-  

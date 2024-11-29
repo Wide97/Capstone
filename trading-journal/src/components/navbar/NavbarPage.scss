@@ -1,4 +1,6 @@
 
+@import '../../styles/variables.scss';
+
 body {
   padding-top: 70px;
 }
@@ -7,7 +9,7 @@ body {
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   position: sticky;
   top: 0;
-  z-index: 1030; 
+  z-index: 1030;
 }
 
 .navbar-animated {
@@ -25,12 +27,7 @@ body {
 .navbar-brand {
   font-size: 1.8rem;
   font-weight: bold;
-  background: linear-gradient(90deg, #ff4500, #ffa500, #ffd700, #ff4500);
-  background-size: 200% 200%;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  animation: gradient-animation 5s ease infinite;
+  @include gradient-animation;
   display: flex;
   align-items: center;
 }
@@ -38,12 +35,7 @@ body {
 .navbar-brand img {
   font-size: 1.8rem;
   font-weight: bold;
-  background: linear-gradient(90deg, #ff4500, #ffa500, #ffd700, #ff4500);
-  background-size: 200% 200%;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  animation: gradient-animation 5s ease infinite;
+  @include gradient-animation;
   display: flex;
   align-items: center;
 }
@@ -51,18 +43,6 @@ body {
 .navbar-brand:hover {
   transform: scale(1.1);
   transition: transform 0.3s ease;
-}
-
-@keyframes gradient-animation {
-  0% {
-    background-position: 0% 50%;
-  }
-  50% {
-    background-position: 100% 50%;
-  }
-  100% {
-    background-position: 0% 50%;
-  }
 }
 
 .nav-link {
@@ -74,7 +54,7 @@ body {
 }
 
 .nav-link:hover {
-  color: #ad52df !important;
+  color: $accent-color !important;
 }
 
 .nav-link::after {
@@ -84,7 +64,7 @@ body {
   bottom: -3px;
   width: 0;
   height: 2px;
-  background-color: #ad52df;
+  background-color: $accent-color;
   transition: width 0.3s ease;
 }
 
@@ -102,3 +82,4 @@ body {
     font-size: 1.5rem;
   }
 }
+

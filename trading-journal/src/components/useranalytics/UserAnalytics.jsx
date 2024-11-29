@@ -3,7 +3,7 @@ import { getAllTrades } from "../utils/apiReport";
 import FooterPage from "../footer/FooterPage";
 import UserNav from "../usernav/UserNav";
 import Chart from "chart.js/auto";
-import "./UserAnalytics.css";
+import "./UserAnalytics.scss";
 
 const UserAnalytics = () => {
   const [userData, setUserData] = useState({});

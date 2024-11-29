@@ -1,8 +1,6 @@
 import React from "react";
 import { Container, Row, Col } from "react-bootstrap";
-import "./FooterPage.css";
-
-
+import "./FooterPage.scss";
 
 const FooterPage = () => {
   return (

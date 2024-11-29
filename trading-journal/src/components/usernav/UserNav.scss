@@ -1,0 +1,79 @@
+
+@import '../../styles/variables.scss';
+
+body {
+  padding-top: 130px;
+}
+
+.navbar-brand {
+  font-size: 1.8rem;
+  font-weight: bold;
+  @include gradient-animation;
+  display: flex;
+  align-items: center;
+}
+
+/* Responsive animation */
+.navbar-animated {
+  background-color: rgba(75, 0, 130, 0.85);
+  transition: opacity 1s ease-out, transform 1s ease-out;
+  opacity: 0;
+  transform: translateY(-20px);
+}
+
+.navbar-animated.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Navbar links */
+.nav-link-custom {
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: #f8f9fa !important;
+  transition: color 0.3s ease, transform 0.2s ease;
+}
+
+.nav-link-custom:hover {
+  color: $accent-color !important;
+  transform: scale(1.1);
+}
+
+/* Dropdown styling */
+.profile-dropdown .profile-icon {
+  border: none;
+  background: none;
+  color: #fff;
+  font-size: 1.5rem;
+}
+
+.profile-dropdown .profile-icon:hover {
+  color: $accent-color;
+}
+
+.profile-dropdown .dropdown-menu {
+  background-color: rgba(75, 0, 130, 0.95);
+  border: none;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+}
+
+.profile-dropdown .dropdown-item {
+  color: #fff;
+  font-size: 1rem;
+  font-weight: bold;
+}
+
+.profile-dropdown .dropdown-item:hover {
+  background-color: $secondary-color;
+  color: #fff;
+}
+
+/* Toggle button */
+.navbar-toggler {
+  border: none;
+  background: rgba(75, 0, 130, 0.85);
+}
+
+.navbar-toggler-icon {
+  background-image: linear-gradient(90deg, $secondary-color, $accent-color);
+}

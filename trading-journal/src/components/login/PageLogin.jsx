@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { login } from "../utils/api"; 
-import "./PageLogin.css"; 
+import "./PageLogin.scss"; 
 import NavbarPage from "../navbar/NavbarPage";
 import FooterPage from "../footer/FooterPage";
 

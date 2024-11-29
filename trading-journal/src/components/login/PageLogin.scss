@@ -1,9 +1,11 @@
 
+@import '../../styles/variables.scss';
+
 body {
   margin: 0;
   padding: 0;
-  font-family: 'Teko', sans-serif;
-  background: linear-gradient(-45deg, #4b0082, #8b00ff, #ad52df, #4b0082);
+  font-family: $font-primary;
+  background: $background-gradient;
   background-size: 400% 400%;
   animation: gradient 10s ease infinite;
 }
@@ -53,7 +55,7 @@ h1 {
 
 .form-control {
   background-color: rgba(255, 255, 255, 0.9);
-  color: #4b0082;
+  color: $primary-color;
   border: none;
   border-radius: 15px;
   margin-bottom: 20px;
@@ -69,22 +71,13 @@ h1 {
 }
 
 .btn-primary {
-  background-color: #8b00ff;
-  border: none;
+  @include button-style($secondary-color, $accent-color);
   padding: 15px;
   border-radius: 20px;
   font-size: 1.2rem;
   font-weight: bold;
-  transition: background-color 0.3s ease, transform 0.3s ease;
   width: 100%;
-  color: white;
   text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
-}
-
-.btn-primary:hover {
-  background-color: #ad52df;
-  transform: translateY(-3px);
-  box-shadow: 0 8px 20px rgba(173, 82, 223, 0.7);
 }
 
 .btn-primary:active {
@@ -117,7 +110,7 @@ h1 {
 }
 
 .btn-login {
-  background-color: #bb95b9; 
+  background-color: #bb95b9;
   color: white;
   border: none;
   border-radius: 20px;
@@ -128,7 +121,7 @@ h1 {
 }
 
 .btn-login:hover {
-  background-color: #8b00ff; 
+  background-color: $secondary-color;
   transform: translateY(-3px);
   box-shadow: 0 8px 20px rgba(75, 0, 130, 0.7);
 }

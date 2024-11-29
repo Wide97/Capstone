@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import NavbarPage from "../navbar/NavbarPage";
-import "./RegisterPage.css";
+import "./RegisterPage.scss";
 import FooterPage from "../footer/FooterPage";
 
 const RegisterPage = () => {

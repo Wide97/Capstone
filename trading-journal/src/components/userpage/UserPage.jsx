@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import FooterPage from "../footer/FooterPage";
-import "./UserPage.css";
+import "./UserPage.scss";
 import UserNav from "../usernav/UserNav";
 
 const UserPage = () => {

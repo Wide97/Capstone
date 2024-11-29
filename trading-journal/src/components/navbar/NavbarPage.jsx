@@ -1,7 +1,7 @@
 
 import React, { useState, useEffect } from "react";
 import { Navbar, Nav, Container } from "react-bootstrap";
-import "./NavbarPage.css";
+import "./NavbarPage.scss";
 
 const NavbarPage = () => {
   const [isVisible, setIsVisible] = useState(false);

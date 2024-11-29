@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { createTrade } from "../utils/apiJournal";
-import "./UserJournal.css";
+import "./UserJournal.scss";
 import FooterPage from "../footer/FooterPage";
 import UserNav from "../usernav/UserNav";
 
