@@ -9,7 +9,7 @@ export const aggiornaValuta = async (userId, nuovaValuta, token) => {
         "Content-Type": "application/json",
         "Authorization": `Bearer ${token}`,
       },
-      body: JSON.stringify(nuovaValuta), // Invio la valuta come stringa
+      body: JSON.stringify(nuovaValuta), 
     });
 
     if (!response.ok) {
@@ -22,3 +22,25 @@ export const aggiornaValuta = async (userId, nuovaValuta, token) => {
     throw error;
   }
 };
+
+// Funzione per ottenere la valuta preferita dell'utente
+export const getValutaPreferita = async (userId, token) => {
+  try {
+    const response = await fetch(`${API_BASE_URL}/valuta/${userId}`, {
+      method: "GET",
+      headers: {
+        "Authorization": `Bearer ${token}`,
+      },
+    });
+
+    if (!response.ok) {
+      throw new Error("Errore durante il recupero della valuta preferita");
+    }
+
+    return await response.json();
+  } catch (error) {
+    console.error("Errore durante il recupero della valuta preferita:", error);
+    throw error;
+  }
+};
+

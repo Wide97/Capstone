@@ -25,7 +25,7 @@ const UserPage = () => {
       .then((response) => response.json())
       .then((data) => {
         setUserData(data.user);
-        setSelectedCurrency(data.user.valuta); // Imposta la valuta attuale come valore di default
+        setSelectedCurrency(data.user.valuta); 
       })
       .catch((error) => console.error("Error fetching user data:", error));
   }, []);
@@ -38,10 +38,8 @@ const UserPage = () => {
     const token = localStorage.getItem("token");
 
     try {
-      // Aggiorna la valuta nel backend
       await aggiornaValuta(userData.id, selectedCurrency, token);
 
-      // Aggiorna lo stato locale per riflettere la nuova valuta
       setUserData((prevUserData) => ({
         ...prevUserData,
         valuta: selectedCurrency,

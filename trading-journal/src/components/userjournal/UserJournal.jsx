@@ -3,10 +3,11 @@ import { createTrade } from "../utils/apiJournal";
 import "./UserJournal.scss";
 import FooterPage from "../footer/FooterPage";
 import UserNav from "../usernav/UserNav";
-
+import { getValutaPreferita } from "../utils/apiValuta"; // Importiamo la funzione per ottenere la valuta
 
 const UserJournal = () => {
   const [userData, setUserData] = useState({});
+  const [currencySymbol, setCurrencySymbol] = useState(""); // Stato per il simbolo della valuta
   const [formData, setFormData] = useState({
     purchaseDate: "",
     saleDate: "",
@@ -23,10 +24,11 @@ const UserJournal = () => {
     asset: "EUR_USD",
   });
 
-
-
   useEffect(() => {
     const token = localStorage.getItem("token");
+    const userId = localStorage.getItem("userId");
+
+    // Otteniamo i dati dell'utente per il profilo
     fetch("http://localhost:3001/api/auth/profile", {
       method: "GET",
       headers: {
@@ -38,7 +40,40 @@ const UserJournal = () => {
         setUserData(data.user);
       })
       .catch((error) => console.error("Error fetching user data:", error));
+
+    // Otteniamo la valuta preferita dell'utente
+    if (userId) {
+      getValutaPreferita(userId, token)
+        .then((valuta) => {
+          setCurrencySymbol(getCurrencySymbol(valuta)); // Settiamo il simbolo della valuta
+        })
+        .catch((error) => console.error("Errore nel recupero della valuta preferita:", error));
+    }
   }, []);
+
+  // Funzione per ottenere il simbolo della valuta
+  const getCurrencySymbol = (currency) => {
+    switch (currency) {
+      case "USD":
+        return "$";
+      case "EUR":
+        return "€";
+      case "GBP":
+        return "£";
+      case "JPY":
+        return "¥";
+      case "AUD":
+        return "A$";
+      case "CAD":
+        return "C$";
+      case "CHF":
+        return "CHF";
+      case "NZD":
+        return "NZ$";
+      default:
+        return "";
+    }
+  };
 
   const resetForm = () => {
     setFormData({
@@ -229,7 +264,7 @@ const UserJournal = () => {
             </select>
           </div>
           <div className="col-lg-3 col-md-6 col-sm-12">
-            <label>Ammontare del profitto/perdita</label>
+            <label>Ammontare del profitto/perdita ({currencySymbol})</label>
             <input
               type="number"
               name="profitLoss"
@@ -245,7 +280,7 @@ const UserJournal = () => {
             <h4>Costs</h4>
           </div>
           <div className="col-lg-3 col-md-6 col-sm-12">
-            <label>Costi di Apertura</label>
+            <label>Costi di Apertura ({currencySymbol})</label>
             <input
               type="number"
               name="openingCosts"
@@ -256,7 +291,7 @@ const UserJournal = () => {
             />
           </div>
           <div className="col-lg-3 col-md-6 col-sm-12">
-            <label>Costi di Chiusura</label>
+            <label>Costi di Chiusura ({currencySymbol})</label>
             <input
               type="number"
               name="closingCosts"
