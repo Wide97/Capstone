@@ -8,22 +8,26 @@ import UserAnalytics from "./components/useranalytics/UserAnalytics";
 import UserReport from "./components/userreport/UserReport";
 import UserJournal from "./components/userjournal/UserJournal";
 import UserProfile from "./components/userprofile/UserProfile"; 
+import { CurrencyProvider } from "./components/context/CurrencyContext"; 
 
 function App() {
   return (
-    <Router>
-      <Routes>
-        <Route path="/" element={<Homepage />} />
-        <Route path="/login" element={<PageLogin />} />
-        {<Route path="/register" element={<RegisterPage />} />}
-        <Route path="/user" element={<UserPage />} />
-        <Route path="/userjournal" element={<UserJournal />} />
-        <Route path="/useranalytics" element={<UserAnalytics />} />
-        <Route path="/userreport" element={<UserReport />} />
-        <Route path="/userprofile" element={<UserProfile />} />
-      </Routes>
-    </Router>
+    <CurrencyProvider>
+      <Router>
+        <Routes>
+          <Route path="/" element={<Homepage />} />
+          <Route path="/login" element={<PageLogin />} />
+          <Route path="/register" element={<RegisterPage />} />
+          <Route path="/user" element={<UserPage />} />
+          <Route path="/userjournal" element={<UserJournal />} />
+          <Route path="/useranalytics" element={<UserAnalytics />} />
+          <Route path="/userreport" element={<UserReport />} />
+          <Route path="/userprofile" element={<UserProfile />} />
+        </Routes>
+      </Router>
+    </CurrencyProvider>
   );
 }
 
 export default App;
+

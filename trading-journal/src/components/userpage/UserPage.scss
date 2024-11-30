@@ -1,6 +1,7 @@
 
 @import '../../styles/variables.scss';
 
+// User Page Container Styles
 .userpage-container {
   font-size: 2rem;
   background-size: 400% 400%;
@@ -9,6 +10,7 @@
   padding-bottom: 100px;
 }
 
+// Hero Section Styles
 .hero-section {
   padding: 60px 20px;
   color: white;
@@ -25,6 +27,29 @@
   color: #f8f9fa;
 }
 
+// Currency Selection Section
+.currency-selection {
+  .currency-label {
+    font-weight: bold;
+    color: $accent-color;
+  }
+
+  .currency-dropdown {
+    width: 100%;
+    padding: 10px;
+    border: 2px solid $accent-color;
+    border-radius: 5px;
+    margin-top: 5px;
+  }
+
+  .btn-currency-update {
+    @include button-style($accent-color, $secondary-color);
+    margin-top: 15px;
+    width: 100%;
+  }
+}
+
+// Features Section Styles
 .features-section {
   margin-top: 40px;
 }
@@ -39,56 +64,35 @@
   text-align: center;
   overflow: hidden;
   position: relative;
+  height: 100%; 
+
+  &:hover {
+    transform: scale(1.05);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.5);
+    background: $background-gradient;
+    animation: gradient-animation 5s ease infinite;
+  }
+
+  .feature-title {
+    font-size: 1.8rem;
+    font-weight: bold;
+    margin-bottom: 15px;
+    color: $accent-color;
+  }
+
+  .feature-description {
+    font-size: 1rem;
+    margin-bottom: 20px;
+    color: #f8f9fa;
+  }
+
+  .btn-feature {
+    @include button-style($accent-color, $secondary-color);
+    margin-top: 10px;
+  }
 }
 
-.feature-card:hover {
-  transform: scale(1.05);
-  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.5);
-  background: linear-gradient(-45deg, $secondary-color, $accent-color, #ff69b4, rgba(75, 0, 130, 0.85));
-  animation: gradient-animation 5s ease infinite;
-}
-
-.feature-card:hover .feature-title {
-  color: black;
-  transition: color 0.3s ease;
-}
-
-.feature-card:hover .feature-description {
-  color: black;
-  transition: color 0.3s ease;
-}
-
-.feature-title {
-  font-size: 1.8rem;
-  font-weight: bold;
-  margin-bottom: 15px;
-  color: $accent-color;
-}
-
-.feature-description {
-  font-size: 1rem;
-  margin-bottom: 20px;
-  color: #f8f9fa;
-}
-
-.btn-feature {
-  background-color: $accent-color;
-  border: none;
-  padding: 10px 20px;
-  border-radius: 20px;
-  font-size: 1rem;
-  font-weight: bold;
-  transition: background-color 0.3s ease, transform 0.3s ease;
-  color: white;
-  text-decoration: none;
-}
-
-.btn-feature:hover {
-  background-color: $secondary-color;
-  transform: translateY(-3px);
-  box-shadow: 0 5px 10px rgba(173, 82, 223, 0.7);
-}
-
+// Responsive Iframe for Videos
 .responsive-iframe {
   width: 100%;
   height: auto;
