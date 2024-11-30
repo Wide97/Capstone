@@ -4,6 +4,7 @@ import "./UserJournal.scss";
 import FooterPage from "../footer/FooterPage";
 import UserNav from "../usernav/UserNav";
 
+
 const UserJournal = () => {
   const [userData, setUserData] = useState({});
   const [formData, setFormData] = useState({
@@ -21,6 +22,8 @@ const UserJournal = () => {
     profitLoss: "",
     asset: "EUR_USD",
   });
+
+
 
   useEffect(() => {
     const token = localStorage.getItem("token");
@@ -206,42 +209,9 @@ const UserJournal = () => {
               <option value="USD_CNY">USD/CNY</option>
               <option value="BTC_USD">BTC/USD</option>
               <option value="ETH_USD">ETH/USD</option>
-              <option value="LTC_USD">LTC/USD</option>
-              <option value="XRP_USD">XRP/USD</option>
-              <option value="DOGE_USD">DOGE/USD</option>
-              <option value="ADA_USD">ADA/USD</option>
-              <option value="DOT_USD">DOT/USD</option>
-              <option value="SOL_USD">SOL/USD</option>
-              <option value="AVAX_USD">AVAX/USD</option>
-              <option value="MATIC_USD">MATIC/USD</option>
               <option value="SP500">SP500</option>
               <option value="NASDAQ">NASDAQ</option>
-              <option value="DOWJONES">DOWJONES</option>
-              <option value="FTSE100">FTSE100</option>
-              <option value="NIKKEI">NIKKEI</option>
-              <option value="HANGSENG">HANGSENG</option>
-              <option value="CAC40">CAC40</option>
-              <option value="DAX">DAX</option>
-              <option value="ASX200">ASX200</option>
-              <option value="SENSEX">SENSEX</option>
-              <option value="RTS">RTS</option>
               <option value="GOLD_USD">GOLD/USD</option>
-              <option value="SILVER_USD">SILVER/USD</option>
-              <option value="WTI_OIL">WTI OIL</option>
-              <option value="BRENT_OIL">BRENT OIL</option>
-              <option value="COPPER_USD">COPPER/USD</option>
-              <option value="PLATINUM_USD">PLATINUM/USD</option>
-              <option value="PALLADIUM_USD">PALLADIUM/USD</option>
-              <option value="COFFEE_USD">COFFEE/USD</option>
-              <option value="SUGAR_USD">SUGAR/USD</option>
-              <option value="COCOA_USD">COCOA/USD</option>
-              <option value="WHEAT_USD">WHEAT/USD</option>
-              <option value="CORN_USD">CORN/USD</option>
-              <option value="RICE_USD">RICE/USD</option>
-              <option value="SOYBEANS_USD">SOYBEANS/USD</option>
-              <option value="OAT_USD">OAT/USD</option>
-              <option value="SUGAR_CANE_USD">SUGAR CANE/USD</option>
-              <option value="LUMBER_USD">LUMBER/USD</option>
             </select>
           </div>
           <div className="col-lg-3 col-md-6 col-sm-12">
@@ -310,3 +280,4 @@ const UserJournal = () => {
 };
 
 export default UserJournal;
+

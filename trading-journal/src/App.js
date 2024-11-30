@@ -8,11 +8,10 @@ import UserAnalytics from "./components/useranalytics/UserAnalytics";
 import UserReport from "./components/userreport/UserReport";
 import UserJournal from "./components/userjournal/UserJournal";
 import UserProfile from "./components/userprofile/UserProfile"; 
-import { CurrencyProvider } from "./components/context/CurrencyContext"; 
+
 
 function App() {
   return (
-    <CurrencyProvider>
       <Router>
         <Routes>
           <Route path="/" element={<Homepage />} />
@@ -25,7 +24,6 @@ function App() {
           <Route path="/userprofile" element={<UserProfile />} />
         </Routes>
       </Router>
-    </CurrencyProvider>
   );
 }
 

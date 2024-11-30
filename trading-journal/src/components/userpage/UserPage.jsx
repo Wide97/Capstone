@@ -6,7 +6,7 @@ import UserNav from "../usernav/UserNav";
 import tutorialVideo1 from "./Video1_Navigazione.mp4";
 import tutorialVideo2 from "./Video2_ModificaDati.mp4";
 import tutorialVideo3 from "./Video3_Sezioni.mp4";
-import { aggiornaValuta } from "../utils/apiValuta"; 
+import { aggiornaValuta } from "../utils/apiValuta";
 
 const UserPage = () => {
   const [userData, setUserData] = useState({});
@@ -19,13 +19,13 @@ const UserPage = () => {
     fetch("http://localhost:3001/api/auth/profile", {
       method: "GET",
       headers: {
-        "Authorization": `Bearer ${token}`,
+        Authorization: `Bearer ${token}`,
       },
     })
       .then((response) => response.json())
       .then((data) => {
         setUserData(data.user);
-        setSelectedCurrency(data.user.valuta); // Impostiamo la valuta attuale come valore di default
+        setSelectedCurrency(data.user.valuta); // Imposta la valuta attuale come valore di default
       })
       .catch((error) => console.error("Error fetching user data:", error));
   }, []);
@@ -36,10 +36,22 @@ const UserPage = () => {
 
   const handleUpdateCurrency = async () => {
     const token = localStorage.getItem("token");
+
     try {
-      const updatedUser = await aggiornaValuta(userData.id, selectedCurrency, token);
-      setUserData(updatedUser);
+      // Aggiorna la valuta nel backend
+      await aggiornaValuta(userData.id, selectedCurrency, token);
+
+      // Aggiorna lo stato locale per riflettere la nuova valuta
+      setUserData((prevUserData) => ({
+        ...prevUserData,
+        valuta: selectedCurrency,
+      }));
+
       setMessage("Valuta aggiornata con successo!");
+
+      setTimeout(() => {
+        setMessage("");
+      }, 1000);
     } catch (error) {
       setMessage("Errore durante l'aggiornamento della valuta.");
     }
@@ -95,27 +107,29 @@ const UserPage = () => {
         {/* Video Tutorial Section */}
         <div className="video-tutorials-section container my-5">
           <div className="row justify-content-center align-items-center">
-            {[tutorialVideo1, tutorialVideo2, tutorialVideo3].map((video, index) => (
-              <React.Fragment key={index}>
-                <div className="col-md-5 text-center mb-4">
-                  <video className="responsive-iframe" controls>
-                    <source src={video} type="video/mp4" />
-                    Your browser does not support the video tag.
-                  </video>
-                </div>
-                <div className="col-md-5 mb-4">
-                  <p className="video-description">
-                    {`Video ${index + 1}: ${
-                      index === 0
-                        ? "Navigazione all'interno della dashboard – scopri come muoverti tra le varie sezioni, accedere al Journal, alle Analytics e ai Report."
-                        : index === 1
-                        ? "Come modificare i dati utente – impara a cambiare il tuo username, la password e a caricare una nuova immagine profilo per personalizzare il tuo account."
-                        : "Funzionamento delle varie sezioni – scopri come usare al meglio le sezioni Analytics, Report e Journal per tracciare e migliorare le tue performance di trading."
-                    }`}
-                  </p>
-                </div>
-              </React.Fragment>
-            ))}
+            {[tutorialVideo1, tutorialVideo2, tutorialVideo3].map(
+              (video, index) => (
+                <React.Fragment key={index}>
+                  <div className="col-md-5 text-center mb-4">
+                    <video className="responsive-iframe" controls>
+                      <source src={video} type="video/mp4" />
+                      Your browser does not support the video tag.
+                    </video>
+                  </div>
+                  <div className="col-md-5 mb-4">
+                    <p className="video-description">
+                      {`Video ${index + 1}: ${
+                        index === 0
+                          ? "Navigazione all'interno della dashboard – scopri come muoverti tra le varie sezioni, accedere al Journal, alle Analytics e ai Report."
+                          : index === 1
+                          ? "Come modificare i dati utente – impara a cambiare il tuo username, la password e a caricare una nuova immagine profilo per personalizzare il tuo account."
+                          : "Funzionamento delle varie sezioni – scopri come usare al meglio le sezioni Analytics, Report e Journal per tracciare e migliorare le tue performance di trading."
+                      }`}
+                    </p>
+                  </div>
+                </React.Fragment>
+              )
+            )}
           </div>
         </div>
 
@@ -170,5 +184,3 @@ const UserPage = () => {
 };
 
 export default UserPage;
-
-
