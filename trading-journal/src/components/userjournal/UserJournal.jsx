@@ -3,9 +3,11 @@ import { createTrade } from "../utils/apiJournal";
 import "./UserJournal.scss";
 import FooterPage from "../footer/FooterPage";
 import UserNav from "../usernav/UserNav";
+import { getValutaUtente } from "../utils/apiValuta";
 
 const UserJournal = () => {
   const [userData, setUserData] = useState({});
+  const [currencySymbol, setCurrencySymbol] = useState("");
   const [formData, setFormData] = useState({
     purchaseDate: "",
     saleDate: "",
@@ -24,6 +26,7 @@ const UserJournal = () => {
 
   useEffect(() => {
     const token = localStorage.getItem("token");
+    const userId = localStorage.getItem("userId");
 
     // Otteniamo i dati dell'utente per il profilo
     fetch("http://localhost:3001/api/auth/profile", {
@@ -35,6 +38,22 @@ const UserJournal = () => {
       .then((response) => response.json())
       .then((data) => {
         setUserData(data.user);
+        if (data.user.valuta && data.user.valuta.simbolo) {
+          setCurrencySymbol(data.user.valuta.simbolo);
+        } else {
+          if (userId) {
+            getValutaUtente(userId, token)
+              .then((valuta) => {
+                setCurrencySymbol(valuta.simbolo);
+              })
+              .catch((error) =>
+                console.error(
+                  "Errore nel recupero della valuta preferita:",
+                  error
+                )
+              );
+          }
+        }
       })
       .catch((error) => console.error("Error fetching user data:", error));
   }, []);
@@ -59,7 +78,9 @@ const UserJournal = () => {
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setFormData((prev) => ({ ...prev, [name]: value }));
+    // Rimuovi eventuali simboli di valuta presenti nel valore
+    const numericValue = value.replace(currencySymbol, "").trim();
+    setFormData((prev) => ({ ...prev, [name]: numericValue }));
   };
 
   const handleSubmit = async (e) => {
@@ -214,29 +235,20 @@ const UserJournal = () => {
             </select>
           </div>
           <div className="col-lg-3 col-md-6 col-sm-12">
-            <label>Esito del Trade</label>
-            <select
-              name="result"
-              value={formData.result}
-              onChange={handleChange}
-              className="form-control"
-              required
-            >
-              <option value="PROFIT">Profitto</option>
-              <option value="STOP_LOSS">Stop Loss</option>
-              <option value="BREAK_EVEN">Break Even</option>
-            </select>
-          </div>
-          <div className="col-lg-3 col-md-6 col-sm-12">
-            <label>Ammontare del profitto/perdita</label>
-            <input
-              type="number"
-              name="profitLoss"
-              value={formData.profitLoss}
-              onChange={handleChange}
-              className="form-control"
-              required
-            />
+            <label>Ammontare Profitto/Perdita</label>
+            <div className="input-group">
+              <input
+                type="number"
+                name="profitLoss"
+                value={formData.profitLoss}
+                onChange={handleChange}
+                className="form-control"
+                required
+              />
+              <div className="input-group-append">
+                <span className="input-group-text">{currencySymbol}</span>
+              </div>
+            </div>
           </div>
 
           {/* Costs Group */}
@@ -245,25 +257,35 @@ const UserJournal = () => {
           </div>
           <div className="col-lg-3 col-md-6 col-sm-12">
             <label>Costi di Apertura</label>
-            <input
-              type="number"
-              name="openingCosts"
-              value={formData.openingCosts}
-              onChange={handleChange}
-              className="form-control"
-              required
-            />
+            <div className="input-group">
+              <input
+                type="number"
+                name="openingCosts"
+                value={formData.openingCosts}
+                onChange={handleChange}
+                className="form-control"
+                required
+              />
+              <div className="input-group-append">
+                <span className="input-group-text">{currencySymbol}</span>
+              </div>
+            </div>
           </div>
           <div className="col-lg-3 col-md-6 col-sm-12">
             <label>Costi di Chiusura</label>
-            <input
-              type="number"
-              name="closingCosts"
-              value={formData.closingCosts}
-              onChange={handleChange}
-              className="form-control"
-              required
-            />
+            <div className="input-group">
+              <input
+                type="number"
+                name="closingCosts"
+                value={formData.closingCosts}
+                onChange={handleChange}
+                className="form-control"
+                required
+              />
+              <div className="input-group-append">
+                <span className="input-group-text">{currencySymbol}</span>
+              </div>
+            </div>
           </div>
 
           <div className="col-12 text-center mt-4">
