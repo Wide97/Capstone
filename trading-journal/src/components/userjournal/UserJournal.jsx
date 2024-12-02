@@ -235,6 +235,20 @@ const UserJournal = () => {
             </select>
           </div>
           <div className="col-lg-3 col-md-6 col-sm-12">
+            <label>Esito del Trade</label>
+            <select
+              name="result"
+              value={formData.result}
+              onChange={handleChange}
+              className="form-control"
+              required
+            >
+              <option value="PROFIT">Profitto</option>
+              <option value="STOP_LOSS">Stop Loss</option>
+              <option value="BREAK_EVEN">Break Even</option>
+            </select>
+          </div>
+          <div className="col-lg-3 col-md-6 col-sm-12">
             <label>Ammontare Profitto/Perdita</label>
             <div className="input-group">
               <input
@@ -301,3 +315,4 @@ const UserJournal = () => {
 };
 
 export default UserJournal;
+
