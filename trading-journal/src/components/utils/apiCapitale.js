@@ -45,25 +45,46 @@ export const setCapitaleIniziale = async (userId, capitaleIniziale, token) => {
 };
 
 // Funzione per aggiornare manualmente il capitale di un utente
-export const aggiornaCapitale = async (userId, capitaleAggiornato, token) => {
-    try {
-      const response = await fetch(`${API_BASE_URL}/capitale/utente/${userId}/aggiorna`, {
-        method: "PUT",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${token}`,
-        },
-        body: JSON.stringify({ capitaleAggiornato }),
-      });
-  
-      if (!response.ok) {
-        throw new Error("Errore durante l'aggiornamento del capitale");
-      }
-  
-      return await response.json();
-    } catch (error) {
-      console.error("Errore durante l'aggiornamento del capitale:", error);
-      throw error;
+export const aggiornaCapitaleManuale = async (userId, capitaleAggiornato, token) => {
+  try {
+    const response = await fetch(`${API_BASE_URL}/capitale/utente/${userId}/aggiorna`, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+      body: JSON.stringify({ capitaleAggiornato }),
+    });
+
+    if (!response.ok) {
+      throw new Error("Errore durante l'aggiornamento del capitale");
     }
-  };
-  
+
+    return await response.json();
+  } catch (error) {
+    console.error("Errore durante l'aggiornamento del capitale:", error);
+    throw error;
+  }
+};
+
+// Funzione per ricalcolare il capitale attuale in base ai trade dell'utente
+export const ricalcolaCapitale = async (userId, token) => {
+  try {
+    const response = await fetch(`${API_BASE_URL}/capitale/utente/${userId}/ricalcola`, {
+      method: "PUT",
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+
+    if (!response.ok) {
+      throw new Error("Errore durante il ricalcolo del capitale");
+    }
+
+    return await response.json();
+  } catch (error) {
+    console.error("Errore durante il ricalcolo del capitale:", error);
+    throw error;
+  }
+};
+
