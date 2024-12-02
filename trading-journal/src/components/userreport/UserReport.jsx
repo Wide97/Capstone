@@ -7,6 +7,7 @@ import Chart from "chart.js/auto";
 
 const UserReport = () => {
   const [userData, setUserData] = useState({});
+  const [currencySymbol, setCurrencySymbol] = useState("");
   const [trades, setTrades] = useState([]);
   const [error, setError] = useState("");
   const [filters, setFilters] = useState({
@@ -40,6 +41,9 @@ const UserReport = () => {
       })
       .then((data) => {
         setUserData(data.user);
+        if (data.user.valuta && data.user.valuta.simbolo) {
+          setCurrencySymbol(data.user.valuta.simbolo);
+        }
         loadTrades(data.user.id);
       })
       .catch((error) => {
@@ -166,12 +170,12 @@ const UserReport = () => {
             </p>
           </div>
           <div className="col-md-4 profile-details-h5">
-            <h5>Profitto Netto</h5>
+            <h5>Profitto Netto ({currencySymbol})</h5>
             <p>
               {trades.reduce(
                 (acc, trade) => acc + parseFloat(trade.profitLoss),
                 0
-              )}
+              ).toFixed(2)}
             </p>
           </div>
         </div>
@@ -227,7 +231,7 @@ const UserReport = () => {
                 <th>Strategia</th>
                 <th>Tipo di Trade</th>
                 <th>Esito</th>
-                <th>Profitto/Perdita</th>
+                <th>Profitto/Perdita ({currencySymbol})</th>
                 <th>Azioni</th>
               </tr>
             </thead>
@@ -242,7 +246,7 @@ const UserReport = () => {
                   <td>{trade.strategy}</td>
                   <td>{trade.tradeType}</td>
                   <td>{trade.result}</td>
-                  <td>{trade.profitLoss}</td>
+                  <td>{`${trade.profitLoss} ${currencySymbol}`}</td>
                   <td>
                     <button
                       onClick={() => handleDelete(trade.tradeId)}
@@ -270,3 +274,4 @@ const UserReport = () => {
 };
 
 export default UserReport;
+
