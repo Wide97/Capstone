@@ -204,7 +204,7 @@ const UserAnalytics = () => {
         labels: data.dates,
         datasets: [
           {
-            label: "Profit/Loss (€)",
+            label: "Profit/Loss",
             data: data.profitLoss,
             borderColor: "#FFC200",
             backgroundColor: "rgba(75, 0, 130, 0.2)",
@@ -224,7 +224,7 @@ const UserAnalytics = () => {
              ticks: {color: "#FFC200"},
              },
           y: { 
-            title: { display: true, text: "Profit/Loss (€)", color: "#FFC200" }, 
+            title: { display: true, text: "Profit/Loss", color: "#FFC200" }, 
             ticks: {color: "#FFC200"},
            },
         },
@@ -252,7 +252,7 @@ const UserAnalytics = () => {
           labels: data.dates,
           datasets: [
             {
-              label: "Equity (€)",
+              label: "Equity",
               data: data.equity,
               borderColor: "#28a745",
               backgroundColor: "rgba(40, 167, 69, 0.2)",
@@ -274,7 +274,7 @@ const UserAnalytics = () => {
               ticks: { color: "#FFC200" },
             },
             y: {
-              title: { display: true, text: "Equity (€)", color: "#FFC200" },
+              title: { display: true, text: "Equity", color: "#FFC200" },
               ticks: { color: "#FFC200" },
             },
           },
@@ -303,7 +303,7 @@ const UserAnalytics = () => {
           labels: data.strategies,
           datasets: [
             {
-              label: "Profit/Loss (€)",
+              label: "Profit/Loss",
               data: data.profitLoss,
               backgroundColor: data.profitLoss.map((value) =>
                 value >= 0 ? "rgba(40, 167, 69, 0.6)" : "rgba(220, 53, 69, 0.6)"
@@ -329,7 +329,7 @@ const UserAnalytics = () => {
             y: {
               title: {
                 display: true,
-                text: "Profit/Loss (€)",
+                text: "Profit/Loss ",
                 color: "#FFC200",
               },
               ticks: { color: "#FFC200" },
