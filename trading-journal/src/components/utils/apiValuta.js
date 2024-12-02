@@ -7,9 +7,9 @@ export const aggiornaValuta = async (userId, nuovaValuta, token) => {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
-        "Authorization": `Bearer ${token}`,
+        Authorization: `Bearer ${token}`,
       },
-      body: JSON.stringify(nuovaValuta), 
+      body: JSON.stringify({ valuta: nuovaValuta }), 
     });
 
     if (!response.ok) {
@@ -22,6 +22,7 @@ export const aggiornaValuta = async (userId, nuovaValuta, token) => {
     throw error;
   }
 };
+
 
 // Funzione per ottenere la valuta preferita dell'utente
 export const getValutaPreferita = async (userId, token) => {
