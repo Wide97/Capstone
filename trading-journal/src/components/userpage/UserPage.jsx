@@ -6,16 +6,18 @@ import UserNav from "../usernav/UserNav";
 import tutorialVideo1 from "./Video1_Navigazione.mp4";
 import tutorialVideo2 from "./Video2_ModificaDati.mp4";
 import tutorialVideo3 from "./Video3_Sezioni.mp4";
-import { aggiornaValuta } from "../utils/apiValuta";
+import { aggiornaValuta, getAllValute } from "../utils/apiValuta";
 
 const UserPage = () => {
   const [userData, setUserData] = useState({});
   const [selectedCurrency, setSelectedCurrency] = useState("");
   const [message, setMessage] = useState("");
+  const [valute, setValute] = useState([]);
 
   useEffect(() => {
     const token = localStorage.getItem("token");
 
+    // Fetch user profile
     fetch("http://localhost:3001/api/auth/profile", {
       method: "GET",
       headers: {
@@ -25,9 +27,16 @@ const UserPage = () => {
       .then((response) => response.json())
       .then((data) => {
         setUserData(data.user);
-        setSelectedCurrency(data.user.valuta);
+        setSelectedCurrency(data.user.valuta?.id); // Assumiamo che valuta sia un oggetto che ha un ID
       })
       .catch((error) => console.error("Error fetching user data:", error));
+
+    // Fetch all available currencies
+    getAllValute()
+      .then((data) => {
+        setValute(data);
+      })
+      .catch((error) => console.error("Errore durante il recupero delle valute:", error));
   }, []);
 
   const handleCurrencyChange = (e) => {
@@ -88,14 +97,11 @@ const UserPage = () => {
                     onChange={handleCurrencyChange}
                     className="form-select mt-2"
                   >
-                    <option value="USD">USD - Dollaro Statunitense</option>
-                    <option value="EUR">EUR - Euro</option>
-                    <option value="GBP">GBP - Sterlina Inglese</option>
-                    <option value="JPY">JPY - Yen Giapponese</option>
-                    <option value="AUD">AUD - Dollaro Australiano</option>
-                    <option value="CAD">CAD - Dollaro Canadese</option>
-                    <option value="CHF">CHF - Franco Svizzero</option>
-                    <option value="NZD">NZD - Dollaro Neozelandese</option>
+                    {valute.map((valuta) => (
+                      <option key={valuta.id} value={valuta.id}>
+                        {valuta.codice} - {valuta.nome}
+                      </option>
+                    ))}
                   </select>
                 </div>
                 <button
@@ -190,3 +196,5 @@ const UserPage = () => {
 };
 
 export default UserPage;
+
+
