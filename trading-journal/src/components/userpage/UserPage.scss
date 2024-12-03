@@ -49,6 +49,34 @@
   }
 }
 
+// Capitale Section
+
+  .capitale-label {
+    font-weight: bold;
+    color: $accent-color;
+    font-size: 1.5rem;
+  }
+
+  .capitale-input {
+    width: 100%;
+    margin-top: 10px;
+  }
+
+  .btn-currency-update {
+    @include button-style($accent-color, $secondary-color);
+    margin-top: 15px;
+    width: 100%;
+  }
+
+  .capitale-value {
+    font-size: 3rem; 
+    font-weight: bold;
+    color: $accent-color;
+    text-align: center;
+    margin-top: 20px;
+  }
+
+
 // Features Section Styles
 .features-section {
   margin-top: 40px;
@@ -105,3 +133,4 @@
   font-size: 1rem;
   text-align: left;
 }
+

@@ -7,17 +7,19 @@ import tutorialVideo1 from "./Video1_Navigazione.mp4";
 import tutorialVideo2 from "./Video2_ModificaDati.mp4";
 import tutorialVideo3 from "./Video3_Sezioni.mp4";
 import { aggiornaValuta, getAllValute } from "../utils/apiValuta";
+import { getCapitaleByUserId, setCapitaleIniziale } from "../utils/apiCapitale";
 
 const UserPage = () => {
   const [userData, setUserData] = useState({});
   const [selectedCurrency, setSelectedCurrency] = useState("");
   const [message, setMessage] = useState("");
   const [valute, setValute] = useState([]);
+  const [capitaleIniziale, setCapitaleInizialeValue] = useState(""); 
+  const [newCapitaleIniziale, setNewCapitaleIniziale] = useState(""); 
 
   useEffect(() => {
     const token = localStorage.getItem("token");
 
-    // Fetch user profile
     fetch("http://localhost:3001/api/auth/profile", {
       method: "GET",
       headers: {
@@ -27,16 +29,25 @@ const UserPage = () => {
       .then((response) => response.json())
       .then((data) => {
         setUserData(data.user);
-        setSelectedCurrency(data.user.valuta?.id); // Assumiamo che valuta sia un oggetto che ha un ID
+        setSelectedCurrency(data.user.valuta?.id);
+
+        getCapitaleByUserId(data.user.id, token)
+          .then((capitale) => {
+            setCapitaleInizialeValue(capitale.capitaleIniziale);
+          })
+          .catch((error) =>
+            console.error("Errore durante il recupero del capitale:", error)
+          );
       })
       .catch((error) => console.error("Error fetching user data:", error));
 
-    // Fetch all available currencies
     getAllValute()
       .then((data) => {
         setValute(data);
       })
-      .catch((error) => console.error("Errore durante il recupero delle valute:", error));
+      .catch((error) =>
+        console.error("Errore durante il recupero delle valute:", error)
+      );
   }, []);
 
   const handleCurrencyChange = (e) => {
@@ -47,10 +58,8 @@ const UserPage = () => {
     const token = localStorage.getItem("token");
 
     try {
-      // Aggiorna la valuta preferita dell'utente
       await aggiornaValuta(userData.id, selectedCurrency, token);
 
-      // Ricarica il profilo utente per ottenere la valuta aggiornata
       fetch("http://localhost:3001/api/auth/profile", {
         method: "GET",
         headers: {
@@ -69,6 +78,25 @@ const UserPage = () => {
       }, 1000);
     } catch (error) {
       setMessage("Errore durante l'aggiornamento della valuta.");
+    }
+  };
+
+  const handleSetCapitaleIniziale = async () => {
+    const token = localStorage.getItem("token");
+
+    try {
+      await setCapitaleIniziale(userData.id, newCapitaleIniziale, token);
+
+      setCapitaleInizialeValue(newCapitaleIniziale);
+      setNewCapitaleIniziale(""); 
+
+      setMessage("Capitale iniziale impostato con successo!");
+
+      setTimeout(() => {
+        setMessage("");
+      }, 1000);
+    } catch (error) {
+      setMessage("Errore durante l'impostazione del capitale iniziale.");
     }
   };
 
@@ -111,6 +139,47 @@ const UserPage = () => {
                   Aggiorna Valuta
                 </button>
                 {message && <p className="currency-message mt-2">{message}</p>}
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Sezione per impostare e visualizzare il capitale iniziale */}
+        <div className="capitale-section container mt-5">
+          <div className="row justify-content-center align-items-center">
+            {/* Sezione per impostare il capitale iniziale */}
+            <div className="col-md-6 mb-4">
+              <div className="form-group">
+                <label htmlFor="capitaleIniziale" className="capitale-label">
+                  Imposta Capitale Iniziale:
+                </label>
+                <input
+                  type="number"
+                  id="capitaleIniziale"
+                  value={newCapitaleIniziale}
+                  onChange={(e) => setNewCapitaleIniziale(e.target.value)}
+                  className="form-control mt-2"
+                />
+              </div>
+              <button
+                className="btn-currency-update btn-lg mt-3 w-100"
+                onClick={handleSetCapitaleIniziale}
+              >
+                Imposta Capitale Iniziale
+              </button>
+            </div>
+
+            {/* Sezione per visualizzare il capitale iniziale */}
+            <div className="col-md-6 mb-4">
+              <div className="form-group text-center">
+                <label className="capitale-label">
+                  Capitale Iniziale Attuale:
+                </label>
+                <div className="capitale-value mt-2">
+                  {capitaleIniziale
+                    ? `${capitaleIniziale} ${userData?.valuta?.simbolo || ""}`
+                    : "-"}
+                </div>
               </div>
             </div>
           </div>
@@ -196,4 +265,6 @@ const UserPage = () => {
 };
 
 export default UserPage;
+
+
 
