@@ -40,6 +40,9 @@ const UserNav = ({ userData }) => {
         <Navbar.Toggle aria-controls="navbar-nav" />
         <Navbar.Collapse id="navbar-nav">
           <Nav className="ms-auto">
+            <Nav.Link href="/user" className="nav-link-custom">
+              Home Page
+            </Nav.Link>
             <Nav.Link href="/userjournal" className="nav-link-custom">
               Journal
             </Nav.Link>
@@ -86,3 +89,4 @@ const UserNav = ({ userData }) => {
 };
 
 export default UserNav;
+
