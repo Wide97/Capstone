@@ -65,3 +65,48 @@ export const ricalcolaCapitale = async (userId, token) => {
   }
 };
 
+// Funzione per ottenere il capitale attuale dell'utente
+export const getCapitaleAttuale = async (userId, token) => {
+  try {
+    const response = await fetch(`${API_BASE_URL}/capitale/utente/${userId}/attuale`, {
+      method: "GET",
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+
+    if (!response.ok) {
+      throw new Error("Errore durante il recupero del capitale attuale dell'utente");
+    }
+
+    return await response.json();
+  } catch (error) {
+    console.error("Errore durante il recupero del capitale attuale dell'utente:", error);
+    throw error;
+  }
+};
+
+// Funzione per ottenere il capitale iniziale dell'utente
+export const getCapitaleIniziale = async (userId, token) => {
+  try {
+    const response = await fetch(`${API_BASE_URL}/capitale/utente/${userId}/iniziale`, {
+      method: "GET",
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+
+    if (!response.ok) {
+      throw new Error("Errore durante il recupero del capitale iniziale dell'utente");
+    }
+
+    return await response.json();
+  } catch (error) {
+    console.error("Errore durante il recupero del capitale iniziale dell'utente:", error);
+    throw error;
+  }
+};
+
+
+
+

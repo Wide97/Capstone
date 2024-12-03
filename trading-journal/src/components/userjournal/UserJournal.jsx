@@ -4,6 +4,7 @@ import "./UserJournal.scss";
 import FooterPage from "../footer/FooterPage";
 import UserNav from "../usernav/UserNav";
 import { getValutaUtente } from "../utils/apiValuta";
+import { ricalcolaCapitale } from "../utils/apiCapitale";
 
 const UserJournal = () => {
   const [userData, setUserData] = useState({});
@@ -85,12 +86,17 @@ const UserJournal = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    const token = localStorage.getItem("token");
+    const userId = userData.id;
 
     try {
       const response = await createTrade(formData);
       if (response.message) {
         alert(response.message);
         resetForm();
+
+        await ricalcolaCapitale(userId, token);
+        alert("Capitale attuale aggiornato con successo.");
       }
     } catch (error) {
       alert("Errore nella creazione del trade");
@@ -315,4 +321,5 @@ const UserJournal = () => {
 };
 
 export default UserJournal;
+
 

@@ -4,16 +4,18 @@ import FooterPage from "../footer/FooterPage";
 import UserNav from "../usernav/UserNav";
 import Chart from "chart.js/auto";
 import "./UserAnalytics.scss";
+import { getCapitaleIniziale } from "../utils/apiCapitale";
 
 const UserAnalytics = () => {
   const [userData, setUserData] = useState({});
   const [performanceData, setPerformanceData] = useState(null);
   const [equityData, setEquityData] = useState(null);
   const [strategyData, setStrategyData] = useState(null);
-  const [tradeTypeData, setTradeTypeData] = useState(null); 
+  const [tradeTypeData, setTradeTypeData] = useState(null);
   const [tradePerformanceData, setTradePerformanceData] = useState(null);
   const [tradeSessionData, setTradeSessionData] = useState(null);
   const [error, setError] = useState("");
+  const [capitalTrendData, setCapitalTrendData] = useState(null);
 
   const chartRefPerformance = useRef(null);
   const chartRefEquity = useRef(null);
@@ -21,19 +23,21 @@ const UserAnalytics = () => {
   const chartRefTradeType = useRef(null);
   const chartRefTradePerformance = useRef(null);
   const chartRefTradeSession = useRef(null);
+  const chartRefCapitalTrend = useRef(null);
 
   const chartInstancePerformance = useRef(null);
   const chartInstanceEquity = useRef(null);
   const chartInstanceStrategy = useRef(null);
-  const chartInstanceTradeType = useRef(null); 
+  const chartInstanceTradeType = useRef(null);
   const chartInstanceTradePerformance = useRef(null);
   const chartInstanceTradeSession = useRef(null);
+  const chartInstanceCapitalTrend = useRef(null);
 
   useEffect(() => {
     const token = localStorage.getItem("token");
 
-    if (!token) {
-      setError("Token non trovato, effettua il login.");
+    if (!token || token === "null" || token === "undefined") {
+      setError("Token non valido, effettua il login.");
       return;
     }
 
@@ -51,16 +55,23 @@ const UserAnalytics = () => {
       })
       .then((data) => {
         setUserData(data.user);
-        loadAnalytics(data.user.id);
+        loadAnalytics(data.user.id, token);
       })
       .catch((error) => {
         console.error("Errore nel recupero del profilo utente:", error);
         setError("Errore nel recupero del profilo utente.");
       });
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  const loadAnalytics = async (userId) => {
+  useEffect(() => {
+    // Crea il grafico del trend del capitale una volta che i dati sono disponibili
+    if (capitalTrendData && chartRefCapitalTrend.current) {
+      createCapitalTrendChart(capitalTrendData);
+    }
+  }, [capitalTrendData]);
+
+  const loadAnalytics = async (userId, token) => {
     try {
       const trades = await getAllTrades(userId);
       const performance = processTradePerformance(trades);
@@ -70,6 +81,7 @@ const UserAnalytics = () => {
       const tradePerformanceDistribution =
         processTradePerformanceDistribution(trades);
       const tradeSessionDistribution = processTradesBySession(trades);
+      const capitalTrend = await getCapitalTrend(userId, token);
 
       setPerformanceData(performance);
       setEquityData(equity);
@@ -77,6 +89,7 @@ const UserAnalytics = () => {
       setTradeTypeData(tradeTypeDistribution);
       setTradePerformanceData(tradePerformanceDistribution);
       setTradeSessionData(tradeSessionDistribution);
+      setCapitalTrendData(capitalTrend);
 
       createPerformanceChart(performance);
       createEquityChart(equity);
@@ -88,6 +101,101 @@ const UserAnalytics = () => {
       console.error("Errore nel caricamento dei dati analitici:", error);
       setError("Errore nel recupero dei dati analitici.");
     }
+  };
+
+  const getCapitalTrend = async (userId, token) => {
+    try {
+      // Recupera il capitale iniziale
+      const capitaleIniziale = await getCapitaleIniziale(userId, token);
+
+      // Verifica che il capitale iniziale sia un numero valido
+      if (!capitaleIniziale || isNaN(parseFloat(capitaleIniziale))) {
+        throw new Error(
+          "Il capitale iniziale non è stato restituito correttamente dal backend."
+        );
+      }
+
+      let cumulativeCapital = parseFloat(capitaleIniziale);
+      const trades = await getAllTrades(userId);
+
+      const capitalData = [{ date: "Iniziale", capital: cumulativeCapital }];
+
+      trades.forEach((trade) => {
+        let profitLoss = parseFloat(trade.profitLoss);
+        if (isNaN(profitLoss)) {
+          console.error(
+            "Errore: il profit/loss del trade non è un numero valido.",
+            trade.profitLoss
+          );
+          profitLoss = 0;
+        }
+        cumulativeCapital += profitLoss;
+        capitalData.push({
+          date: trade.saleDate,
+          capital: cumulativeCapital,
+        });
+      });
+
+      const dates = capitalData.map((data) => data.date);
+      const capitalValues = capitalData.map((data) => data.capital);
+
+      return { dates, capitalValues };
+    } catch (error) {
+      console.error(
+        "Errore durante il recupero del trend del capitale:",
+        error
+      );
+      throw error;
+    }
+  };
+
+  const createCapitalTrendChart = (data) => {
+    if (chartInstanceCapitalTrend.current) {
+      chartInstanceCapitalTrend.current.destroy();
+    }
+
+    if (!chartRefCapitalTrend.current) {
+      console.error("Canvas per il grafico Trend Capitale non disponibile.");
+      return;
+    }
+
+    const ctx = chartRefCapitalTrend.current.getContext("2d");
+    chartInstanceCapitalTrend.current = new Chart(ctx, {
+      type: "line",
+      data: {
+        labels: data.dates,
+        datasets: [
+          {
+            label: "Capitale Attuale",
+            data: data.capitalValues,
+            borderColor: "#007bff",
+            backgroundColor: "rgba(0, 123, 255, 0.2)",
+            borderWidth: 2,
+          },
+        ],
+      },
+      options: {
+        responsive: true,
+        plugins: {
+          legend: { position: "top" },
+          title: {
+            display: true,
+            text: "Andamento del Capitale Attuale",
+            color: "#FFC200",
+          },
+        },
+        scales: {
+          x: {
+            title: { display: true, text: "Date", color: "#FFC200" },
+            ticks: { color: "#FFC200" },
+          },
+          y: {
+            title: { display: true, text: "Capitale", color: "#FFC200" },
+            ticks: { color: "#FFC200" },
+          },
+        },
+      },
+    });
   };
 
   const processTradePerformance = (trades) => {
@@ -216,17 +324,21 @@ const UserAnalytics = () => {
         responsive: true,
         plugins: {
           legend: { position: "top" },
-          title: { display: true, text: "Performance dei Trade nel Tempo",color: "#FFC200" },
+          title: {
+            display: true,
+            text: "Performance dei Trade nel Tempo",
+            color: "#FFC200",
+          },
         },
         scales: {
           x: {
-             title: { display: true, text: "Date", color: "#FFC200" },
-             ticks: {color: "#FFC200"},
-             },
-          y: { 
-            title: { display: true, text: "Profit/Loss", color: "#FFC200" }, 
-            ticks: {color: "#FFC200"},
-           },
+            title: { display: true, text: "Date", color: "#FFC200" },
+            ticks: { color: "#FFC200" },
+          },
+          y: {
+            title: { display: true, text: "Profit/Loss", color: "#FFC200" },
+            ticks: { color: "#FFC200" },
+          },
         },
       },
     });
@@ -318,8 +430,12 @@ const UserAnalytics = () => {
         options: {
           responsive: true,
           plugins: {
-            legend: { position: "top"},
-            title: { display: true, text: "Strategy Performance", color: "#FFC200" },
+            legend: { position: "top" },
+            title: {
+              display: true,
+              text: "Strategy Performance",
+              color: "#FFC200",
+            },
           },
           scales: {
             x: {
@@ -371,7 +487,11 @@ const UserAnalytics = () => {
           responsive: true,
           plugins: {
             legend: { position: "top" },
-            title: { display: true, text: "Distribuzione Trade LONG/SHORT", color: "#FFC200" },
+            title: {
+              display: true,
+              text: "Distribuzione Trade LONG/SHORT",
+              color: "#FFC200",
+            },
           },
         },
       });
@@ -409,7 +529,11 @@ const UserAnalytics = () => {
           responsive: true,
           plugins: {
             legend: { position: "top" },
-            title: { display: true, text: "Distribuzione Trade Performance", color: "#FFC200" },
+            title: {
+              display: true,
+              text: "Distribuzione Trade Performance",
+              color: "#FFC200",
+            },
           },
         },
       });
@@ -448,17 +572,29 @@ const UserAnalytics = () => {
           responsive: true,
           plugins: {
             legend: { position: "top" },
-            title: { display: true, text: "Trade per Sessione di Trading", color: "#FFC200"  },
+            title: {
+              display: true,
+              text: "Trade per Sessione di Trading",
+              color: "#FFC200",
+            },
           },
           scales: {
             x: {
-               title: { display: true, text: "Sessioni di Trading", color: "#FFC200" } ,
-               ticks: { color: "#FFC200"},
+              title: {
+                display: true,
+                text: "Sessioni di Trading",
+                color: "#FFC200",
               },
+              ticks: { color: "#FFC200" },
+            },
             y: {
-               title: { display: true, text: "Numero di Trade", color: "#FFC200" } ,
-               ticks: {color: "#FFC200"},},
-               
+              title: {
+                display: true,
+                text: "Numero di Trade",
+                color: "#FFC200",
+              },
+              ticks: { color: "#FFC200" },
+            },
           },
         },
       });
@@ -597,6 +733,21 @@ const UserAnalytics = () => {
                 <canvas
                   id="tradePerformancePieChart"
                   ref={chartRefTradePerformance}
+                  style={{ maxWidth: "100%", height: "100%" }}
+                />
+              </div>
+            </div>
+          )}
+
+          {capitalTrendData && (
+            <div className="col-12 col-md-12 col-xl-12 mb-5">
+              <div
+                className="d-flex justify-content-center align-items-center animated-background pb-3"
+                style={{ height: "500px" }}
+              >
+                <canvas
+                  id="capitalTrendChart"
+                  ref={chartRefCapitalTrend}
                   style={{ maxWidth: "100%", height: "100%" }}
                 />
               </div>

@@ -1,14 +1,16 @@
 import React, { useState, useEffect, useRef } from "react";
 import { getAllTrades, deleteTrade } from "../utils/apiReport";
-import "./UserReport.scss"; 
+import { getCapitaleAttuale } from "../utils/apiCapitale"; // Importa la funzione per ottenere il capitale attuale
+import "./UserReport.scss";
 import FooterPage from "../footer/FooterPage";
 import UserNav from "../usernav/UserNav";
 import Chart from "chart.js/auto";
 
 const UserReport = () => {
   const [userData, setUserData] = useState({});
-  const [currencySymbol, setCurrencySymbol] = useState("");
   const [trades, setTrades] = useState([]);
+  const [currencySymbol, setCurrencySymbol] = useState("");
+  const [capital, setCapital] = useState(null); // Stato per il capitale attuale
   const [error, setError] = useState("");
   const [filters, setFilters] = useState({
     asset: "",
@@ -45,12 +47,13 @@ const UserReport = () => {
           setCurrencySymbol(data.user.valuta.simbolo);
         }
         loadTrades(data.user.id);
+        loadCapital(data.user.id, token); // Carica il capitale attuale
       })
       .catch((error) => {
         console.error("Errore nel recupero dei dati dell'utente:", error);
         setError("Errore nel recupero del profilo utente.");
       });
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const loadTrades = async (userId) => {
@@ -64,6 +67,17 @@ const UserReport = () => {
     }
   };
 
+  // Funzione per caricare il capitale attuale
+  const loadCapital = async (userId, token) => {
+    try {
+      const capitaleAttuale = await getCapitaleAttuale(userId, token);
+      setCapital(capitaleAttuale);
+    } catch (error) {
+      console.error("Errore nel caricamento del capitale attuale:", error);
+      setError("Errore nel recupero del capitale attuale.");
+    }
+  };
+
   const handleDelete = async (tradeId) => {
     const userId = userData.id;
 
@@ -74,6 +88,8 @@ const UserReport = () => {
       updateChart(updatedTrades);
       setError("");
       alert("Trade eliminato con successo.");
+      // Ricarica il capitale attuale dopo aver eliminato un trade
+      loadCapital(userId, localStorage.getItem("token"));
     } catch (error) {
       console.error("Errore nell'eliminazione del trade:", error);
       setError("Errore nell'eliminazione del trade.");
@@ -152,6 +168,16 @@ const UserReport = () => {
 
         {error && <div className="alert">{error}</div>}
 
+        {/* Capitale Attuale */}
+        <div className="text-center mb-4 profile-details">
+          <h4>
+            Capitale Attuale:{" "}
+            {capital !== null
+              ? `${capital} ${currencySymbol}`
+              : "Caricamento..."}
+          </h4>
+        </div>
+
         {/* Statistiche Responsive */}
         <div className="row text-center mb-4 profile-details">
           <div className="col-md-4 profile-details-h5">
@@ -172,10 +198,9 @@ const UserReport = () => {
           <div className="col-md-4 profile-details-h5">
             <h5>Profitto Netto ({currencySymbol})</h5>
             <p>
-              {trades.reduce(
-                (acc, trade) => acc + parseFloat(trade.profitLoss),
-                0
-              ).toFixed(2)}
+              {trades
+                .reduce((acc, trade) => acc + parseFloat(trade.profitLoss), 0)
+                .toFixed(2)}
             </p>
           </div>
         </div>
@@ -274,4 +299,3 @@ const UserReport = () => {
 };
 
 export default UserReport;
-
