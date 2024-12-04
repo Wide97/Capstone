@@ -1,0 +1,33 @@
+
+  .table {
+    text-align: center;
+    font-size: 1rem;
+  }
+  
+  thead {
+    background-color: #343a40;
+    color: white;
+  }
+  
+  .chart-container {
+    width: 100%;
+    height: 400px;
+    margin-top: 30px;
+  }
+  
+  .btn-danger {
+    font-size: 0.9rem;
+    padding: 0.4rem 0.7rem;
+    margin-left: 5px;
+  }
+  
+  @media (max-width: 768px) {
+    .table {
+      font-size: 0.8rem;
+    }
+  
+    .chart-container {
+      height: 300px;
+    }
+  }
+  
