@@ -52,6 +52,9 @@ const UserNav = ({ userData }) => {
             <Nav.Link href="/userreport" className="nav-link-custom">
               Report
             </Nav.Link>
+            <Nav.Link href="/userstorico" className="nav-link-custom">
+              Storico
+            </Nav.Link>
             <Dropdown align="end" className="profile-dropdown">
               <Dropdown.Toggle
                 variant="custom"

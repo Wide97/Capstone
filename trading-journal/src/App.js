@@ -8,6 +8,7 @@ import UserAnalytics from "./components/useranalytics/UserAnalytics";
 import UserReport from "./components/userreport/UserReport";
 import UserJournal from "./components/userjournal/UserJournal";
 import UserProfile from "./components/userprofile/UserProfile"; 
+import UserStorico from "./components/userstorico/UserStorico";
 
 
 function App() {
@@ -22,6 +23,7 @@ function App() {
           <Route path="/useranalytics" element={<UserAnalytics />} />
           <Route path="/userreport" element={<UserReport />} />
           <Route path="/userprofile" element={<UserProfile />} />
+          <Route path="/userstorico" element={<UserStorico />} /> 
         </Routes>
       </Router>
   );
