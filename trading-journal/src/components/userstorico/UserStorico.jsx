@@ -1,31 +1,14 @@
-import React, { useEffect, useState } from "react";
+import React, { useState, useEffect } from "react";
+import { Button, Container, Spinner, Table, Alert } from "react-bootstrap";
+import { Line } from "react-chartjs-2";
+import UserNav from "../usernav/UserNav";
+import FooterPage from "../footer/FooterPage";
 import {
   getReportMensiliByUserId,
   generaReportMensile,
   deleteReportMensile,
 } from "../utils/apiStorico";
-import UserNav from "../usernav/UserNav";
-import FooterPage from "../footer/FooterPage";
-import { Line } from "react-chartjs-2";
-import {
-  Chart as ChartJS,
-  LineElement,
-  CategoryScale,
-  LinearScale,
-  PointElement,
-  Tooltip,
-  Legend,
-} from "chart.js";
 import "./UserStorico.scss";
-
-ChartJS.register(
-  LineElement,
-  CategoryScale,
-  LinearScale,
-  PointElement,
-  Tooltip,
-  Legend
-);
 
 const UserStorico = () => {
   const [userData, setUserData] = useState(null);
@@ -79,12 +62,12 @@ const UserStorico = () => {
       const token = localStorage.getItem("token");
       await generaReportMensile(userData.id, token);
       alert("Report mensile generato con successo.");
-      fetchReports(userData.id, token); 
+      fetchReports(userData.id, token);
     } catch (err) {
-      if (err.message === "Report già generato.") {
-        alert("Il report per questo mese è già stato generato.");
+      if (err.message.includes("già generato")) {
+        alert("Report mensile già generato per il mese precedente.");
       } else {
-        alert("Errore nella generazione del report mensile.");
+        setError("Errore nella generazione del report mensile.");
       }
     } finally {
       setLoading(false);
@@ -150,72 +133,84 @@ const UserStorico = () => {
   };
 
   return (
-    <div>
-      {userData && <UserNav userData={userData} />}
+    <>
+      <div className="user-storico-container">
+        {userData && <UserNav userData={userData} />}
+        <Container className="mt-5 content-wrapper">
+          <h1 className="text-center">Storico Report Mensili</h1>
+          {loading && (
+            <Spinner animation="border" className="d-block mx-auto my-3" />
+          )}
+          {error && <Alert variant="danger">{error}</Alert>}
 
-      <div className="container mt-5">
-        <h1 className="text-center">Storico Report Mensili</h1>
-        {loading && <p className="text-center">Caricamento in corso...</p>}
-        {error && <p className="text-danger text-center">{error}</p>}
+          {userData && (
+            <Button
+              className="btn-genera mb-4"
+              onClick={handleGeneraReport}
+              disabled={loading}
+            >
+              Genera Report Mensile
+            </Button>
+          )}
 
-        {userData && (
-          <button
-            className="btn btn-primary mb-4"
-            onClick={handleGeneraReport}
-            disabled={loading}
-          >
-            Genera Report Mensile
-          </button>
-        )}
-
-        {reportMensili.length > 0 ? (
-          <>
-            <div className="table-responsive">
-              <table className="table table-bordered table-hover">
-                <thead className="thead-dark">
-                  <tr>
-                    <th>Mese</th>
-                    <th>Profitto ({userData?.valuta?.simbolo || "€"})</th>
-                    <th>Perdita ({userData?.valuta?.simbolo || "€"})</th>
-                    <th>
-                      Capitale Finale ({userData?.valuta?.simbolo || "€"})
-                    </th>
-                    <th>Azioni</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {reportMensili.map((report) => (
-                    <tr key={report.id}>
-                      <td>{`${report.mese} ${report.anno}`}</td>
-                      <td>{report.profitto.toFixed(2)}</td>
-                      <td>{report.perdita.toFixed(2)}</td>
-                      <td>{report.capitaleFinale.toFixed(2)}</td>
-                      <td>
-                        <button
-                          className="btn btn-danger btn-sm"
-                          onClick={() => handleDeleteReport(report.id)}
-                          disabled={loading}
-                        >
-                          Elimina
-                        </button>
-                      </td>
+          {reportMensili.length > 0 ? (
+            <>
+              <div className="table-container">
+                <Table bordered hover responsive>
+                  <thead className="thead-dark">
+                    <tr>
+                      <th>Mese</th>
+                      <th>Profitto ({userData?.valuta?.simbolo || "€"})</th>
+                      <th>Perdita ({userData?.valuta?.simbolo || "€"})</th>
+                      <th>
+                        Capitale Finale ({userData?.valuta?.simbolo || "€"})
+                      </th>
+                      <th>Azioni</th>
                     </tr>
-                  ))}
-                </tbody>
-              </table>
-            </div>
-
-            <div className="chart-container">
-              <Line data={chartData} options={chartOptions} />
-            </div>
-          </>
-        ) : (
-          <p className="text-center">Nessun report mensile disponibile.</p>
-        )}
+                  </thead>
+                  <tbody>
+                    {reportMensili.map((report) => (
+                      <tr key={report.id}>
+                        <td>{`${report.mese} ${report.anno}`}</td>
+                        <td>
+                          {report.profitto
+                            ? report.profitto.toFixed(2)
+                            : "0.00"}
+                        </td>
+                        <td>
+                          {report.perdita ? report.perdita.toFixed(2) : "0.00"}
+                        </td>
+                        <td>
+                          {report.capitaleFinale
+                            ? report.capitaleFinale.toFixed(2)
+                            : "0.00"}
+                        </td>
+                        <td>
+                          <Button
+                            variant="danger"
+                            size="sm"
+                            onClick={() => handleDeleteReport(report.id)}
+                            disabled={loading}
+                          >
+                            Elimina
+                          </Button>
+                        </td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </Table>
+              </div>
+              <div className="chart-container">
+                <Line data={chartData} options={chartOptions} />
+              </div>
+            </>
+          ) : (
+            <p className="text-center">Nessun report mensile disponibile.</p>
+          )}
+        </Container>
       </div>
-
       <FooterPage />
-    </div>
+    </>
   );
 };
 
