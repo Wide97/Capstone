@@ -1,6 +1,6 @@
 const API_BASE_URL = "http://localhost:3001/api/report";
 
-// Recupera tutti i report mensili di un utente
+// Funzione per ottenere tutti i report mensili di un utente
 export const getReportMensiliByUserId = async (userId, token) => {
   try {
     const response = await fetch(`${API_BASE_URL}/user/${userId}`, {
@@ -12,7 +12,7 @@ export const getReportMensiliByUserId = async (userId, token) => {
     });
 
     if (!response.ok) {
-      throw new Error("Errore durante il recupero dei report mensili.");
+      throw new Error("Errore nel recupero dei report mensili.");
     }
 
     return await response.json();
@@ -22,7 +22,6 @@ export const getReportMensiliByUserId = async (userId, token) => {
   }
 };
 
-// Genera il report mensile per un utente
 export const generaReportMensile = async (userId, token) => {
   try {
     const response = await fetch(`${API_BASE_URL}/genera/${userId}`, {
@@ -34,34 +33,46 @@ export const generaReportMensile = async (userId, token) => {
     });
 
     if (!response.ok) {
-      throw new Error("Errore durante la generazione del report mensile.");
+      if (response.status === 409) {
+        const errorData = await response.json();
+        throw new Error(errorData.message || "Report già generato.");
+      }
+
+      const errorDetails = await response.text();
+      console.error("Errore dettagliato:", errorDetails);
+      throw new Error("Errore nella generazione del report mensile.");
     }
 
-    return await response.text();
+    const responseData = await response.json();
+    return responseData;
   } catch (error) {
     console.error("Errore durante la generazione del report mensile:", error);
     throw error;
   }
 };
 
-// Elimina un report mensile
+
 export const deleteReportMensile = async (reportId, token) => {
-    try {
-      const response = await fetch(`${API_BASE_URL}/${reportId}`, {
-        method: "DELETE",
-        headers: {
-          Authorization: `Bearer ${token}`,
-          "Content-Type": "application/json",
-        },
-      });
-  
-      if (!response.ok) {
-        throw new Error("Errore durante l'eliminazione del report mensile.");
-      }
-  
-      return await response.text();
-    } catch (error) {
-      console.error("Errore durante l'eliminazione del report mensile:", error);
-      throw error;
+  try {
+    const response = await fetch(`${API_BASE_URL}/${reportId}`, {
+      method: "DELETE",
+      headers: {
+        Authorization: `Bearer ${token}`,
+        "Content-Type": "application/json",
+      },
+    });
+
+    if (!response.ok) {
+      const errorDetails = await response.text();
+      console.error("Errore dettagliato:", errorDetails);
+      throw new Error("Errore durante l'eliminazione del report mensile.");
     }
-  };
+
+    return await response.json();
+  } catch (error) {
+    console.error("Errore durante l'eliminazione del report mensile:", error);
+    throw error;
+  }
+};
+
+

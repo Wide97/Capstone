@@ -1,5 +1,9 @@
 import React, { useEffect, useState } from "react";
-import { getReportMensiliByUserId, generaReportMensile, deleteReportMensile } from "../utils/apiStorico";
+import {
+  getReportMensiliByUserId,
+  generaReportMensile,
+  deleteReportMensile,
+} from "../utils/apiStorico";
 import UserNav from "../usernav/UserNav";
 import FooterPage from "../footer/FooterPage";
 import { Line } from "react-chartjs-2";
@@ -14,41 +18,49 @@ import {
 } from "chart.js";
 import "./UserStorico.scss";
 
-ChartJS.register(LineElement, CategoryScale, LinearScale, PointElement, Tooltip, Legend);
+ChartJS.register(
+  LineElement,
+  CategoryScale,
+  LinearScale,
+  PointElement,
+  Tooltip,
+  Legend
+);
 
 const UserStorico = () => {
-  const [userData, setUserData] = useState(null); 
+  const [userData, setUserData] = useState(null);
   const [reportMensili, setReportMensili] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
 
-  // Recupera il profilo utente al caricamento della pagina
   useEffect(() => {
-    const token = localStorage.getItem("token");
+    const fetchUserData = async () => {
+      const token = localStorage.getItem("token");
 
-    fetch("http://localhost:3001/api/auth/profile", {
-      method: "GET",
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    })
-      .then((response) => {
+      try {
+        const response = await fetch("http://localhost:3001/api/auth/profile", {
+          method: "GET",
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        });
+
         if (!response.ok) {
           throw new Error("Errore durante il recupero del profilo utente.");
         }
-        return response.json();
-      })
-      .then((data) => {
-        setUserData(data.user); 
-        fetchReports(data.user.id, token); 
-      })
-      .catch((error) => {
-        console.error("Error fetching user data:", error);
+
+        const data = await response.json();
+        setUserData(data.user);
+        fetchReports(data.user.id, token);
+      } catch (error) {
+        console.error("Errore nel recupero dei dati utente:", error);
         setError("Errore nel recupero del profilo utente.");
-      });
+      }
+    };
+
+    fetchUserData();
   }, []);
 
-  // Recupera i report mensili di un utente
   const fetchReports = async (userId, token) => {
     try {
       setLoading(true);
@@ -61,25 +73,28 @@ const UserStorico = () => {
     }
   };
 
-  // Funzione per generare un nuovo report mensile
   const handleGeneraReport = async () => {
     try {
       setLoading(true);
       const token = localStorage.getItem("token");
       await generaReportMensile(userData.id, token);
       alert("Report mensile generato con successo.");
-      // Aggiorna i report dopo la generazione
-      fetchReports(userData.id, token);
+      fetchReports(userData.id, token); 
     } catch (err) {
-      setError("Errore nella generazione del report mensile.");
+      if (err.message === "Report già generato.") {
+        alert("Il report per questo mese è già stato generato.");
+      } else {
+        alert("Errore nella generazione del report mensile.");
+      }
     } finally {
       setLoading(false);
     }
   };
 
-  // Funzione per eliminare un report mensile
   const handleDeleteReport = async (reportId) => {
-    const confirmDelete = window.confirm("Sei sicuro di voler eliminare questo report?");
+    const confirmDelete = window.confirm(
+      "Sei sicuro di voler eliminare questo report?"
+    );
     if (!confirmDelete) return;
 
     try {
@@ -87,7 +102,6 @@ const UserStorico = () => {
       const token = localStorage.getItem("token");
       await deleteReportMensile(reportId, token);
       alert("Report eliminato con successo.");
-      // Aggiorna i report dopo l'eliminazione
       fetchReports(userData.id, token);
     } catch (err) {
       setError("Errore nell'eliminazione del report mensile.");
@@ -96,13 +110,12 @@ const UserStorico = () => {
     }
   };
 
-  // Dati per il grafico
   const chartData = {
-    labels: reportMensili.map((report) => report.mese), 
+    labels: reportMensili.map((report) => `${report.mese} ${report.anno}`),
     datasets: [
       {
         label: `Capitale Finale (${userData?.valuta?.simbolo || "€"})`,
-        data: reportMensili.map((report) => report.capitaleFinale), 
+        data: reportMensili.map((report) => report.capitaleFinale),
         borderColor: "rgba(75, 192, 192, 1)",
         backgroundColor: "rgba(75, 192, 192, 0.2)",
         fill: true,
@@ -138,10 +151,8 @@ const UserStorico = () => {
 
   return (
     <div>
-      {/* Navbar */}
       {userData && <UserNav userData={userData} />}
 
-      {/* Contenuto della pagina */}
       <div className="container mt-5">
         <h1 className="text-center">Storico Report Mensili</h1>
         {loading && <p className="text-center">Caricamento in corso...</p>}
@@ -166,14 +177,16 @@ const UserStorico = () => {
                     <th>Mese</th>
                     <th>Profitto ({userData?.valuta?.simbolo || "€"})</th>
                     <th>Perdita ({userData?.valuta?.simbolo || "€"})</th>
-                    <th>Capitale Finale ({userData?.valuta?.simbolo || "€"})</th>
+                    <th>
+                      Capitale Finale ({userData?.valuta?.simbolo || "€"})
+                    </th>
                     <th>Azioni</th>
                   </tr>
                 </thead>
                 <tbody>
                   {reportMensili.map((report) => (
                     <tr key={report.id}>
-                      <td>{report.mese}</td>
+                      <td>{`${report.mese} ${report.anno}`}</td>
                       <td>{report.profitto.toFixed(2)}</td>
                       <td>{report.perdita.toFixed(2)}</td>
                       <td>{report.capitaleFinale.toFixed(2)}</td>
@@ -192,7 +205,6 @@ const UserStorico = () => {
               </table>
             </div>
 
-            {/* Grafico */}
             <div className="chart-container">
               <Line data={chartData} options={chartOptions} />
             </div>
@@ -202,14 +214,9 @@ const UserStorico = () => {
         )}
       </div>
 
-      {/* Footer */}
       <FooterPage />
     </div>
   );
 };
 
 export default UserStorico;
-
-
-
-
