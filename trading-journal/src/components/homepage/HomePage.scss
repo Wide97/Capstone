@@ -1,69 +1,107 @@
-@import '../../styles/variables.scss';
+@import "../../styles/variables.scss";
 
 /* Hero Section */
 .hero-section {
-    background: $background-body;
-    color: $title-color;
-    text-align: center;
-    padding: $spacing-large;
-    padding-top: 200px;
-  
-    .hero-content {
-      padding-bottom: $spacing-large;
-    }
-  
-    .hero-title .highlight {
-        color: $button-color; // Usa il colore arancione definito nelle variabili
-        text-decoration: underline; // Opzionale: aggiungi un'ulteriore enfasi
-        text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.6); // Migliora la leggibilità su sfondi complessi
-      }
-      
-  
-    .hero-description {
-      font-size: $font-size-small;
-      margin-top: $spacing-small;
-    }
-  
-    .cta-button {
-      @include button-style($button-color, darken($button-color, 10%));
-      margin-top: $spacing-medium;
-    }
+  background: $background-body;
+  color: $title-color;
+  text-align: center;
+  padding: $spacing-large;
+  padding-top: 200px;
+
+  .hero-content {
+    padding-bottom: $spacing-large;
   }
 
- /* Why Choose Us Section */
+  .hero-title .highlight {
+    color: $button-color; 
+    text-decoration: underline; 
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.6); 
+  }
+
+  .hero-description {
+    font-size: $font-size-small;
+    margin-top: $spacing-small;
+  }
+  /* Contenitore dei pulsanti */
+  .cta-buttons-container {
+    display: flex;
+    justify-content: center;
+    gap: $spacing-medium; 
+    margin-top: $spacing-medium;
+
+    .cta-button,
+    .cta-button-demo {
+      flex: 1; 
+      max-width: 200px; 
+      text-align: center;
+      font-size: $font-size-body; 
+      padding: $spacing-small $spacing-medium;
+      border-radius: $spacing-small;
+      border: none;
+      transition: all 0.3s ease;
+
+      &:hover {
+        transform: scale(1.05);
+        box-shadow: $box-shadow-light; 
+      }
+
+      i {
+        margin-right: $spacing-small; 
+      }
+    }
+
+    /* Stile del primo pulsante */
+    .cta-button {
+      background-color: $button-color;
+      color: $title-color;
+
+      &:hover {
+        background-color: lighten($button-color, 10%);
+      }
+    }
+
+    /* Stile del secondo pulsante */
+    .cta-button-demo {
+      background-color: $button-color;
+      color: $text-paragraph;
+    }
+  }
+}
+
+/* Why Choose Us Section */
 .why-choose-section {
-    .section-title {
-      color: $button-color;
-      margin-bottom: $spacing-medium;
-    }
-  
-    .feature-icon {
-      font-size: 3rem;
-      color: $button-color;
-      margin-bottom: $spacing-small;
-    }
-  
-    .feature-heading {
-      font-size: $font-size-h5;
-      margin-bottom: $spacing-small;
-    }
-  
-    .feature-text {
-      font-size: $font-size-small;
-    }
+  .section-title {
+    color: $button-color;
+    margin-bottom: $spacing-medium;
   }
-  
-  /* Animazioni */
-  @keyframes fade-in {
-    from {
-      opacity: 0;
-      transform: translateY(20px);
-    }
-    to {
-      opacity: 1;
-      transform: translateY(0);
-    }
+
+  .feature-icon {
+    font-size: 3rem;
+    color: $button-color;
+    margin-bottom: $spacing-small;
   }
+
+  .feature-heading {
+    font-size: $font-size-h5;
+    margin-bottom: $spacing-small;
+  }
+
+  .feature-text {
+    font-size: $font-size-small;
+  }
+}
+
+/* Animazioni */
+@keyframes fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
 
 /* Features Section */
 .features-section {
@@ -149,4 +187,3 @@
     font-size: 2rem;
   }
 }
-

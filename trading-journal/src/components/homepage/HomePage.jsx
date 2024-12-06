@@ -24,19 +24,25 @@ const HomePage = () => {
               </h1>
               <p className="hero-description">
                 Il tuo strumento definitivo per monitorare, analizzare e
-                migliorare le tue performance di trading. Scopri come il potere
-                del journaling può trasformare il tuo approccio ai mercati
-                finanziari.
+                migliorare le tue performance di trading.
               </p>
-              <Button href="/register" className="cta-button">
-                <i className="fas fa-rocket"></i> Inizia Subito
-              </Button>
+              {/* Contenitore dei pulsanti */}
+              <div className="cta-buttons-container">
+                <Button href="/register" className="cta-button">
+                  <i className="fas fa-rocket"></i> Inizia Subito
+                </Button>
+                <Button href="/demo" className="cta-button-demo">
+                  <i className="fas fa-play-circle"></i> Guarda la Demo
+                </Button>
+              </div>
             </Col>
           </Row>
 
           {/* Why Choose Us Section */}
           <Row className="text-center why-choose-section mt-5">
-            <h2 className="section-title text-center">Perché scegliere il nostro Trading Journal?</h2>
+            <h2 className="section-title text-center">
+              Perché scegliere il nostro Trading Journal?
+            </h2>
             <Col md={4}>
               <i className="fas fa-chart-line feature-icon"></i>
               <h3 className="feature-heading">Analisi Dettagliata</h3>
@@ -144,4 +150,3 @@ const HomePage = () => {
 };
 
 export default HomePage;
-
