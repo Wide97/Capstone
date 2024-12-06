@@ -1,0 +1,95 @@
+@import "../../styles/variables.scss";
+
+/* Contenitore principale della pagina */
+.container-login {
+  background-color: $background-body;
+  color: $text-paragraph;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  width: 100%;
+  padding: $spacing-large;
+}
+
+/* Contenitore del form di login */
+.login-container {
+  background-color: $div-primary;
+  color: $title-color;
+  padding: $spacing-large;
+  border-radius: 10px;
+  box-shadow: $box-shadow-light;
+  width: 100%;
+  max-width: 400px;
+
+  h1 {
+    font-family: $font-primary;
+    font-size: $font-size-h2;
+    color: $button-color;
+    text-align: center;
+  }
+
+  .alert {
+    padding: $spacing-small;
+    border-radius: 5px;
+    font-size: $font-size-small;
+    text-align: center;
+
+    &.alert-danger {
+      background-color: $alert-color;
+      color: #fff;
+    }
+
+    &.alert-success {
+      background-color: $button-color;
+      color: $title-color;
+    }
+  }
+
+  .toggle-password {
+    cursor: pointer;
+    color: $title-color; 
+    background-color: $div-secondary; 
+    border: none;
+    transition: transform 0.3s ease, color 0.3s ease;
+  
+    i {
+      font-size: $font-size-h5; 
+    }
+  
+    &:hover {
+      transform: scale(1.1);
+      color: lighten($title-color, 20%); 
+    }
+  }
+
+ /* Input Group */
+.input-group {
+    .form-control {
+      border: none;
+      border-radius: 0;
+      box-shadow: none;
+    }
+  
+    .input-group-text {
+      background-color: $div-secondary; 
+      color: $title-color; 
+      border: none;
+  
+      &:last-child {
+        border-top-right-radius: 5px; 
+        border-bottom-right-radius: 5px;
+      }
+    }
+  }
+
+  .btn-login {
+    @include button-style($button-color, $button-hover-color);
+    width: 100%;
+    margin-top: $spacing-medium;
+  }
+}
+
+
+
+

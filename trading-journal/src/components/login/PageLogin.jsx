@@ -1,16 +1,17 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { login } from "../utils/api"; 
-import "./PageLogin.scss"; 
+import { login } from "../utils/api";
+import "./PageLogin.scss";
 import NavbarPage from "../navbar/NavbarPage";
 import FooterPage from "../footer/FooterPage";
 
 const PageLogin = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const [showPassword, setShowPassword] = useState(false);
   const [error, setError] = useState("");
   const [success, setSuccess] = useState("");
-  const navigate = useNavigate(); 
+  const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -21,9 +22,7 @@ const PageLogin = () => {
       const token = await login(username, password);
       setSuccess("Login effettuato con successo!");
       localStorage.setItem("token", token);
-
-      
-      setTimeout(() => navigate("/user"), 1500); 
+      setTimeout(() => navigate("/user"), 1500);
     } catch (err) {
       setError(err.message || "Errore durante il login.");
     }
@@ -32,21 +31,24 @@ const PageLogin = () => {
   return (
     <>
       <NavbarPage />
-      <div className="container d-flex justify-content-center align-items-center vh-100">
+      <div className="container-login d-flex justify-content-center align-items-center vh-100">
         <div className="login-container">
           <h1 className="text-center mb-5">Login</h1>
           {error && (
-            <p className="alert">
+            <p className="alert alert-danger">
               <i className="bi bi-exclamation-circle"></i> {error}
             </p>
           )}
           {success && (
-            <p className="alert">
+            <p className="alert alert-success">
               <i className="bi bi-check-circle"></i> {success}
             </p>
           )}
           <form onSubmit={handleSubmit}>
-            <div className="mb-3">
+            <div className="input-group mb-4">
+              <span className="input-group-text">
+                <i className="bi bi-person"></i>
+              </span>
               <input
                 type="text"
                 placeholder="Username"
@@ -56,16 +58,29 @@ const PageLogin = () => {
                 required
               />
             </div>
-            <div className="mb-3">
+            <div className="input-group mb-4">
+              <span className="input-group-text">
+                <i className="bi bi-lock"></i>
+              </span>
               <input
-                type="password"
+                type={showPassword ? "text" : "password"} // Cambia il tipo di input
                 placeholder="Password"
                 className="form-control"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 required
               />
+              <span
+                className="input-group-text toggle-password"
+                onClick={() => setShowPassword(!showPassword)} // Cambia lo stato
+              >
+                <i
+                  className={`bi ${showPassword ? "bi-eye-slash" : "bi-eye"}`}
+                ></i>{" "}
+                {/* Icona occhio */}
+              </span>
             </div>
+
             <button type="submit" className="btn-login">
               Accedi
             </button>
@@ -78,5 +93,3 @@ const PageLogin = () => {
 };
 
 export default PageLogin;
-
-
