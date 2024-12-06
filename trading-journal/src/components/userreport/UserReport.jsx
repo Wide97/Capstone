@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
 import { getAllTrades, deleteTrade } from "../utils/apiReport";
-import { getCapitaleAttuale } from "../utils/apiCapitale"; // Importa la funzione per ottenere il capitale attuale
+import { getCapitaleAttuale } from "../utils/apiCapitale"; 
 import "./UserReport.scss";
 import FooterPage from "../footer/FooterPage";
 import UserNav from "../usernav/UserNav";
@@ -10,7 +10,7 @@ const UserReport = () => {
   const [userData, setUserData] = useState({});
   const [trades, setTrades] = useState([]);
   const [currencySymbol, setCurrencySymbol] = useState("");
-  const [capital, setCapital] = useState(null); // Stato per il capitale attuale
+  const [capital, setCapital] = useState(null); 
   const [error, setError] = useState("");
   const [filters, setFilters] = useState({
     asset: "",

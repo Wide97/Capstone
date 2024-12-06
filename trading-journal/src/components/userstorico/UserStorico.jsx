@@ -37,11 +37,12 @@ const UserStorico = () => {
         fetchReports(data.user.id, token);
       } catch (error) {
         console.error("Errore nel recupero dei dati utente:", error);
-        setError("Errore nel recupero del profilo utente.");
+        showError("Errore nel recupero del profilo utente.");
       }
     };
 
     fetchUserData();
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const fetchReports = async (userId, token) => {
@@ -50,7 +51,7 @@ const UserStorico = () => {
       const reports = await getReportMensiliByUserId(userId, token);
       setReportMensili(reports);
     } catch (err) {
-      setError("Errore nel recupero dei report mensili.");
+      showError("Errore nel recupero dei report mensili.");
     } finally {
       setLoading(false);
     }
@@ -67,7 +68,7 @@ const UserStorico = () => {
       if (err.message.includes("già generato")) {
         alert("Report mensile già generato per il mese precedente.");
       } else {
-        setError("Errore nella generazione del report mensile.");
+        showError("Errore nella generazione del report mensile.");
       }
     } finally {
       setLoading(false);
@@ -87,10 +88,17 @@ const UserStorico = () => {
       alert("Report eliminato con successo.");
       fetchReports(userData.id, token);
     } catch (err) {
-      setError("Errore nell'eliminazione del report mensile.");
+      showError("Errore nell'eliminazione del report mensile.");
     } finally {
       setLoading(false);
     }
+  };
+
+  const showError = (message) => {
+    setError(message);
+    setTimeout(() => {
+      setError("");
+    }, 2000); // L'errore scompare dopo 2 secondi
   };
 
   const chartData = {
