@@ -628,7 +628,7 @@ const UserAnalytics = () => {
     <>
       <UserNav userData={userData} />
       <div className="container-fluid mt-5 me-5">
-        <h2 className="text-center mb-4">Analytics</h2>
+        <h2 className="text-center mb-4 journal-title">Analytics</h2>
         {error && <div className="alert alert-danger">{error}</div>}
         {!performanceData && !error && (
           <p className="text-center">Caricamento in corso...</p>
@@ -636,11 +636,8 @@ const UserAnalytics = () => {
 
         <div className="row gy-4 mt-5">
           {/* Grafico Trade Performance */}
-          <div className="col-12 col-md-6 col-xl-4">
-            <div
-              className="d-flex justify-content-center align-items-center  animated-background pb-3"
-              style={{ height: "400px" }}
-            >
+          <div className="col-12 col-md-6 col-lg-6">
+            <div className="d-flex justify-content-center align-items-center animated-background p-5">
               <canvas
                 id="tradePerformanceChart"
                 ref={chartRefPerformance}
@@ -651,11 +648,8 @@ const UserAnalytics = () => {
 
           {/* Grafico Equity Curve */}
           {equityData && (
-            <div className="col-12 col-md-6 col-xl-4">
-              <div
-                className="d-flex justify-content-center align-items-center animated-background pb-3"
-                style={{ height: "400px" }}
-              >
+            <div className="col-12 col-md-6 col-lg-6">
+              <div className="d-flex justify-content-center align-items-center animated-background p-5">
                 <canvas
                   id="equityCurveChart"
                   ref={chartRefEquity}
@@ -667,11 +661,8 @@ const UserAnalytics = () => {
 
           {/* Grafico Strategy Performance */}
           {strategyData && (
-            <div className="col-12 col-md-6 col-xl-4 ">
-              <div
-                className="d-flex justify-content-center align-items-center animated-background pb-3"
-                style={{ height: "400px" }}
-              >
+            <div className="col-12 col-md-6 col-lg-6">
+              <div className="d-flex justify-content-center align-items-center animated-background p-5">
                 <canvas
                   id="strategyPerformanceChart"
                   ref={chartRefStrategy}
@@ -683,11 +674,8 @@ const UserAnalytics = () => {
 
           {/* Grafico Trade per Sessione */}
           {tradeSessionData && (
-            <div className="col-12 col-md-6 col-xl-4  mb-5">
-              <div
-                className="d-flex justify-content-center align-items-center animated-background pb-3"
-                style={{ height: "400px" }}
-              >
+            <div className="col-12 col-md-6 col-lg-6 mb-5">
+              <div className="d-flex justify-content-center align-items-center animated-background p-5">
                 <canvas
                   id="tradeSessionChart"
                   ref={chartRefTradeSession}
@@ -699,16 +687,8 @@ const UserAnalytics = () => {
 
           {/* Grafico Trade LONG/SHORT */}
           {tradeTypeData && (
-            <div className="col-12 col-md-6 col-xl-4 ">
-              <div
-                className="d-flex justify-content-center align-items-center animated-background pb-3"
-                style={{
-                  height: "400px",
-                  maxHeight: "400px",
-                  maxWidth: "400px",
-                  margin: "auto",
-                }}
-              >
+            <div className="col-12 col-md-6 col-lg-6">
+              <div className="d-flex justify-content-center align-items-center animated-background p-5">
                 <canvas
                   id="tradeTypeChart"
                   ref={chartRefTradeType}
@@ -720,16 +700,8 @@ const UserAnalytics = () => {
 
           {/* Grafico Trade Performance */}
           {tradePerformanceData && (
-            <div className="col-12 col-md-6 col-xl-4 ">
-              <div
-                className="d-flex justify-content-center align-items-center animated-background pb-3"
-                style={{
-                  height: "400px",
-                  maxHeight: "400px",
-                  maxWidth: "400px",
-                  margin: "auto",
-                }}
-              >
+            <div className="col-12 col-md-6 col-lg-6">
+              <div className="d-flex justify-content-center align-items-center animated-background p-5">
                 <canvas
                   id="tradePerformancePieChart"
                   ref={chartRefTradePerformance}
@@ -740,11 +712,8 @@ const UserAnalytics = () => {
           )}
 
           {capitalTrendData && (
-            <div className="col-12 col-md-12 col-xl-12 mb-5">
-              <div
-                className="d-flex justify-content-center align-items-center animated-background pb-3"
-                style={{ height: "500px" }}
-              >
+            <div className="col-12 col-md-6 col-lg-6 mb-5">
+              <div className="d-flex justify-content-center align-items-center animated-background p-5">
                 <canvas
                   id="capitalTrendChart"
                   ref={chartRefCapitalTrend}

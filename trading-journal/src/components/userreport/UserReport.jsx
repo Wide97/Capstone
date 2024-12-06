@@ -158,13 +158,13 @@ const UserReport = () => {
     <>
       <UserNav userData={userData} />
       <div className="user-profile-container">
-        <div className="profile-header text-center">
+        <div className="profile-header text-center journal-title">
           <h2>Benvenuto, {userData.username}</h2>
         </div>
       </div>
 
       <div className="container mt-5">
-        <h2 className="text-center mb-4">I Tuoi Trade</h2>
+        <h2 className="text-center mb-4 journal-title">I Tuoi Trade</h2>
 
         {error && <div className="alert">{error}</div>}
 

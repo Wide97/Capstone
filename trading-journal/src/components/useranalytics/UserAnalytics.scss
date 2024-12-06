@@ -1,0 +1,122 @@
+@import "../../styles/variables.scss";
+
+/* Contenitore principale */
+.container-fluid {
+  background-color: $background-body;
+  color: $text-paragraph;
+  padding: $spacing-large;
+
+  h2 {
+    font-family: $font-primary;
+    font-size: $font-size-h2;
+    color: $button-color;
+    text-align: center;
+    margin-bottom: $spacing-large;
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.6);
+  }
+
+  .alert {
+    font-family: $font-secondary;
+    font-size: $font-size-body;
+    padding: $spacing-small;
+    border-radius: 5px;
+    text-align: center;
+
+    &.alert-danger {
+      background-color: $alert-color;
+      color: $title-color;
+    }
+  }
+
+  p {
+    font-size: $font-size-body;
+    text-align: center;
+    margin-top: $spacing-medium;
+    color: $text-muted;
+  }
+}
+
+/* Sezione dei grafici */
+.row {
+  margin-top: $spacing-large;
+
+  .col-12,
+  .col-md-6,
+  .col-xl-4 {
+    .animated-background {
+      background-color: $div-primary; 
+      border-radius: 10px;
+      box-shadow: $box-shadow-light;
+      position: relative;
+      padding: $spacing-medium;
+
+      &:hover {
+        box-shadow: $box-shadow-heavy;
+      }
+
+      canvas {
+        background-color: transparent; 
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        max-width: 95%; 
+        max-height: 300px; 
+      }
+    }
+
+    &.mb-5 {
+      margin-bottom: $spacing-xlarge;
+    }
+  }
+
+  /* Stile specifico per i grafici a torta */
+  .col-xl-4:nth-child(n+4):nth-child(-n+6) .animated-background {
+    canvas {
+      max-height: 250px; 
+      max-width: 250px;  
+      margin: auto;      
+    }
+  }
+}
+
+/* Responsività */
+@media (max-width: $breakpoint-lg) {
+  .col-xl-4 {
+    margin-bottom: $spacing-large;
+  }
+
+  .col-xl-12 {
+    .animated-background {
+      height: 400px;
+    }
+  }
+}
+
+@media (max-width: $breakpoint-md) {
+  h2 {
+    font-size: $font-size-h3;
+  }
+
+  p {
+    font-size: $font-size-small;
+  }
+
+  .animated-background canvas {
+    max-height: 300px; 
+    max-width: 200px;
+  }
+}
+
+@media (max-width: $breakpoint-sm) {
+  .animated-background {
+    height: 300px !important;
+  }
+
+  .animated-background canvas {
+    max-height: 180px; 
+    max-width: 180px;
+  }
+
+  h2 {
+    font-size: $font-size-h4;
+  }
+}
