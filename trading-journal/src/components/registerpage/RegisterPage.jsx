@@ -17,6 +17,7 @@ const RegisterPage = () => {
 
   const [error, setError] = useState("");
   const [success, setSuccess] = useState("");
+  const [showPassword, setShowPassword] = useState(false);
 
   const validateForm = () => {
     if (!formData.email.includes("@")) {
@@ -62,7 +63,7 @@ const RegisterPage = () => {
       }
 
       setSuccess("Registrazione completata con successo!");
-      setTimeout(() => navigate("/login"), 2000); 
+      setTimeout(() => navigate("/login"), 2000);
     } catch (err) {
       setError(err.message);
     }
@@ -71,11 +72,11 @@ const RegisterPage = () => {
   return (
     <>
       <NavbarPage />
-      <div className="container d-flex justify-content-center align-items-center vh-100">
+      <div className="container-register d-flex justify-content-center align-items-center vh-100">
         <div className="form-container">
-          <h1 className="mb-5">Registrazione</h1>
-          {error && <div className="alert">{error}</div>}
-          {success && <div className="alert">{success}</div>}
+          <h1 className="text-center mb-4">Registrazione</h1>
+          {error && <div className="alert alert-danger">{error}</div>}
+          {success && <div className="alert alert-success">{success}</div>}
           <form onSubmit={handleSubmit}>
             <input
               type="text"
@@ -113,16 +114,28 @@ const RegisterPage = () => {
               onChange={handleChange}
               required
             />
-            <input
-              type="password"
-              name="password"
-              placeholder="Password"
-              className="form-control"
-              value={formData.password}
-              onChange={handleChange}
-              required
-            />
-            <button type="submit" className="btn btn-primary">
+            <div className="input-group mb-4">
+              <input
+                type={showPassword ? "text" : "password"}
+                name="password"
+                placeholder="Password"
+                className="form-control"
+                value={formData.password}
+                onChange={handleChange}
+                required
+              />
+              <button
+                type="button"
+                className="btn toggle-password mb-3"
+                onClick={() => setShowPassword(!showPassword)}
+              >
+                <i
+                  className={`bi ${showPassword ? "bi-eye-slash" : "bi-eye"}`}
+                ></i>
+              </button>
+            </div>
+
+            <button type="submit" className="btn-register">
               Registrati
             </button>
           </form>
