@@ -4,6 +4,15 @@ body{
     background-color: $background-body !important;
 }
 
+.journal-title {
+    padding-top: 70px;
+    font-family: $font-primary;
+    font-size: $font-size-h2;
+    color: $button-color;
+    text-align: center;
+    margin-bottom: $spacing-medium;
+}
+
 /* Container principale */
 .container-journal {
   background-color: $background-body;
@@ -12,16 +21,7 @@ body{
   border-radius: 10px;
   box-shadow: $box-shadow-light;
   margin-bottom: $spacing-large;
-  padding-top: 50px;
-
-  h2 {
-    font-family: $font-primary;
-    font-size: $font-size-h2;
-    color: $button-color;
-    text-align: center;
-    margin-bottom: $spacing-medium;
-  }
-
+ 
   h4 {
     font-family: $font-primary;
     font-size: $font-size-h4;

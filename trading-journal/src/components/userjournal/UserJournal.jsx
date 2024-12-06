@@ -107,7 +107,7 @@ const UserJournal = () => {
   return (
     <>
       <UserNav userData={userData} />
-      <h2 className="text-center mb-4">Creazione Trade</h2>
+      <h2 className="text-center mt-5 journal-title">Creazione Trade</h2>
       <div className="container container-journal mt-5">
         <form onSubmit={handleSubmit} className="row gy-3">
           {/* Time Group */}
