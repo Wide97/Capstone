@@ -1,10 +1,10 @@
 
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 import { Navbar, Nav, Container } from "react-bootstrap";
 import "./NavbarPage.scss";
 
 const NavbarPage = () => {
-  const [isVisible, setIsVisible] = useState(false);
+  const [isVisible, setIsVisible] = React.useState(true);
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -13,16 +13,35 @@ const NavbarPage = () => {
     return () => clearTimeout(timer);
   }, []);
 
+  React.useEffect(() => {
+    let lastScrollY = window.scrollY;
+
+    const handleScroll = () => {
+      if (window.scrollY > lastScrollY) {
+        setIsVisible(false); 
+      } else {
+        setIsVisible(true); 
+      }
+      lastScrollY = window.scrollY;
+    };
+
+    window.addEventListener("scroll", handleScroll);
+
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  
+
   return (
     <Navbar
       expand="lg"
-      className={`navbar-animated shadow fixed-top ${isVisible ? "visible" : ""}`}
+      className={`navbar-animated shadow fixed-top ${isVisible ? "visible" : "hidden"}`}
       variant="dark"
     >
       <Container>
         <Navbar.Brand href="/" className="navbar-brand">
           <img
-            src="/img/t-removebg-preview.png" 
+            src="/img/t-removebg-preview.png"
             alt="Logo"
             style={{ width: "100px", marginRight: "10px" }}
           />

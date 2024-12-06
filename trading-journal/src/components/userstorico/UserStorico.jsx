@@ -98,7 +98,7 @@ const UserStorico = () => {
     setError(message);
     setTimeout(() => {
       setError("");
-    }, 2000); // L'errore scompare dopo 2 secondi
+    }, 2000); 
   };
 
   const chartData = {

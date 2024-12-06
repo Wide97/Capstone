@@ -1,85 +1,83 @@
-
-@import '../../styles/variables.scss';
-
-body {
-  padding-top: 70px;
-}
-
-.navbar {
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  position: sticky;
-  top: 0;
-  z-index: 1030;
-}
+@import '../../styles/variables.scss'; // Import delle variabili centralizzate
 
 .navbar-animated {
-  background-color: rgba(75, 0, 130, 0.85);
-  transition: opacity 1s ease-out, transform 1s ease-out;
-  opacity: 0;
-  transform: translateY(-20px);
+  background-color: $background-body; // Sfondo scuro per la navbar
+  transition: transform 0.3s ease, background-color 0.3s ease;
+  padding: $spacing-small $spacing-medium;
+
+  &.visible {
+    transform: translateY(0);
+  }
+
+  &.hidden {
+    transform: translateY(-100%);
+  }
+
+  // Ombra per maggiore profondità
+  box-shadow: $box-shadow-light;
 }
 
-.navbar-animated.visible {
-  opacity: 1;
-  transform: translateY(0);
-}
-
+// Branding
 .navbar-brand {
-  font-size: 1.8rem;
-  font-weight: bold;
-  @include gradient-animation;
+  font-family: $font-primary;
+  font-size: $font-size-h3;
+  color: $title-color;
   display: flex;
   align-items: center;
+
+  img {
+    margin-right: $spacing-small;
+  }
+
+  &:hover {
+    text-decoration: none;
+    @include hover-scale;
+  }
 }
 
-.navbar-brand img {
-  font-size: 1.8rem;
-  font-weight: bold;
-  @include gradient-animation;
-  display: flex;
-  align-items: center;
-}
-
-.navbar-brand:hover {
-  transform: scale(1.1);
-  transition: transform 0.3s ease;
-}
-
+// Link di navigazione
 .nav-link {
-  font-size: 1.1rem;
-  font-weight: bold;
-  color: #f8f9fa !important;
-  transition: color 0.3s ease;
-  position: relative;
+  font-family: $font-secondary;
+  font-size: $font-size-body;
+  color: $text-paragraph;
+  padding: $spacing-small $spacing-medium;
+  transition: color 0.3s ease, transform 0.3s ease;
+
+  &:hover {
+    color: $button-color; // Cambia colore all'arancione
+    transform: scale(1.1);
+  }
+
+  &:active {
+    transform: scale(1);
+  }
 }
 
-.nav-link:hover {
-  color: $accent-color !important;
+// Bottone di toggle per schermi piccoli
+.navbar-toggler {
+  border: none;
+  background-color: $button-color;
+
+  &:focus {
+    outline: none;
+  }
+
+  span {
+    background-color: $title-color;
+  }
 }
 
-.nav-link::after {
-  content: "";
-  position: absolute;
-  left: 0;
-  bottom: -3px;
-  width: 0;
-  height: 2px;
-  background-color: $accent-color;
-  transition: width 0.3s ease;
-}
+// Responsive - Riduzione spazi per schermi piccoli
+@media (max-width: $breakpoint-md) {
+  .navbar-animated {
+    padding: $spacing-small;
+  }
 
-.nav-link:hover::after {
-  width: 100%;
-}
-
-@media (max-width: 768px) {
   .nav-link {
-    font-size: 1rem;
-    margin-right: 10px;
+    font-size: $font-size-small;
   }
 
   .navbar-brand {
-    font-size: 1.5rem;
+    font-size: $font-size-h4;
   }
 }
-
