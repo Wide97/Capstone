@@ -1,4 +1,5 @@
 
+
 import React, { useEffect } from "react";
 import { Navbar, Nav, Container } from "react-bootstrap";
 import "./NavbarPage.scss";
@@ -68,6 +69,10 @@ const NavbarPage = () => {
 };
 
 export default NavbarPage;
+
+
+
+
 
 
 
