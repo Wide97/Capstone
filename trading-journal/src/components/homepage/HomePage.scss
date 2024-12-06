@@ -1,0 +1,152 @@
+@import '../../styles/variables.scss';
+
+/* Hero Section */
+.hero-section {
+    background: $background-body;
+    color: $title-color;
+    text-align: center;
+    padding: $spacing-large;
+    padding-top: 200px;
+  
+    .hero-content {
+      padding-bottom: $spacing-large;
+    }
+  
+    .hero-title .highlight {
+        color: $button-color; // Usa il colore arancione definito nelle variabili
+        text-decoration: underline; // Opzionale: aggiungi un'ulteriore enfasi
+        text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.6); // Migliora la leggibilità su sfondi complessi
+      }
+      
+  
+    .hero-description {
+      font-size: $font-size-small;
+      margin-top: $spacing-small;
+    }
+  
+    .cta-button {
+      @include button-style($button-color, darken($button-color, 10%));
+      margin-top: $spacing-medium;
+    }
+  }
+
+ /* Why Choose Us Section */
+.why-choose-section {
+    .section-title {
+      color: $button-color;
+      margin-bottom: $spacing-medium;
+    }
+  
+    .feature-icon {
+      font-size: 3rem;
+      color: $button-color;
+      margin-bottom: $spacing-small;
+    }
+  
+    .feature-heading {
+      font-size: $font-size-h5;
+      margin-bottom: $spacing-small;
+    }
+  
+    .feature-text {
+      font-size: $font-size-small;
+    }
+  }
+  
+  /* Animazioni */
+  @keyframes fade-in {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+/* Features Section */
+.features-section {
+  background-color: $background-body;
+  color: $text-paragraph;
+  padding: $spacing-xlarge 0;
+
+  .feature-row {
+    margin-bottom: $spacing-large;
+
+    &:nth-child(even) {
+      flex-direction: row-reverse;
+    }
+
+    .feature-icon-large {
+      font-size: 3rem;
+      color: $button-color;
+      margin-bottom: $spacing-medium;
+    }
+
+    .feature-title {
+      font-size: $font-size-h4;
+      color: $button-color;
+      border-bottom: 3px solid $button-color;
+      display: inline-block;
+      margin-bottom: $spacing-small;
+    }
+
+    .feature-description {
+      font-size: $font-size-small;
+      line-height: 1.4;
+    }
+
+    .video-tutorials video {
+      border-radius: 10px;
+      box-shadow: $box-shadow-light;
+
+      &:hover {
+        transform: scale(1.05);
+        box-shadow: $box-shadow-heavy;
+      }
+    }
+  }
+
+  .feature-divider {
+    height: 2px;
+    background: $gradient-colors;
+    margin: $spacing-medium 0;
+  }
+}
+
+/* Animazioni */
+@keyframes fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Responsività */
+@media (max-width: $breakpoint-md) {
+  .hero-title {
+    font-size: $font-size-h4;
+  }
+
+  .hero-description {
+    font-size: $font-size-small;
+  }
+
+  .feature-title {
+    font-size: $font-size-h5;
+  }
+
+  .feature-description {
+    font-size: 0.8rem;
+  }
+
+  .feature-icon-large {
+    font-size: 2rem;
+  }
+}
+

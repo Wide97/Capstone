@@ -1,13 +1,32 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { Container, Row, Col } from "react-bootstrap";
 import "./FooterPage.scss";
 
 const FooterPage = () => {
+  const [showButton, setShowButton] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY > 300) {
+        setShowButton(true);
+      } else {
+        setShowButton(false);
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  const scrollToTop = () => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  };
+
   return (
     <footer className="footer-container">
       <Container>
         <Row className="text-center">
-          <Col md={6} className="mb-3">
+          <Col md={4} className="mb-3">
             <h2 className="footer-brand">Trading Journal</h2>
             <p className="footer-p">
               Trading Journal ti aiuta a tracciare le tue operazioni, analizzare
@@ -15,7 +34,21 @@ const FooterPage = () => {
               journaling e delle analytics.
             </p>
           </Col>
-          <Col md={6}>
+          <Col md={4} className="mb-3">
+            <h2 className="footer-brand">Link Utili</h2>
+            <ul className="quick-links">
+              <li>
+                <a href="/faq">FAQ</a>
+              </li>
+              <li>
+                <a href="/contact">Contattaci</a>
+              </li>
+              <li>
+                <a href="/terms">Termini e Condizioni</a>
+              </li>
+            </ul>
+          </Col>
+          <Col md={4}>
             <h2 className="footer-brand">Seguici sui Social</h2>
             <div className="social-icons">
               <a
@@ -52,6 +85,11 @@ const FooterPage = () => {
             </p>
           </Col>
         </Row>
+        {showButton && (
+          <button className="scroll-to-top" onClick={scrollToTop}>
+            ↑
+          </button>
+        )}
       </Container>
     </footer>
   );

@@ -1,7 +1,7 @@
-@import '../../styles/variables.scss'; // Import delle variabili centralizzate
+@import '../../styles/variables.scss';
 
 .navbar-animated {
-  background-color: $background-body; // Sfondo scuro per la navbar
+  background-color: $div-primary; 
   transition: transform 0.3s ease, background-color 0.3s ease;
   padding: $spacing-small $spacing-medium;
 
@@ -13,11 +13,10 @@
     transform: translateY(-100%);
   }
 
-  // Ombra per maggiore profondità
   box-shadow: $box-shadow-light;
 }
 
-// Branding
+
 .navbar-brand {
   font-family: $font-primary;
   font-size: $font-size-h3;
@@ -35,7 +34,7 @@
   }
 }
 
-// Link di navigazione
+
 .nav-link {
   font-family: $font-secondary;
   font-size: $font-size-body;
@@ -44,7 +43,7 @@
   transition: color 0.3s ease, transform 0.3s ease;
 
   &:hover {
-    color: $button-color; // Cambia colore all'arancione
+    color: $button-color; 
     transform: scale(1.1);
   }
 
@@ -53,21 +52,54 @@
   }
 }
 
-// Bottone di toggle per schermi piccoli
-.navbar-toggler {
-  border: none;
-  background-color: $button-color;
 
-  &:focus {
-    outline: none;
-  }
+.navbar-toggler {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 35px; 
+  height: 25px;
+  cursor: pointer;
+  border: none;
+  background: transparent;
 
   span {
-    background-color: $title-color;
+    display: block;
+    height: 4px; // Spessore maggiore
+    background-color: $button-color; 
+    border-radius: 2px;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3); 
+
+    &:nth-child(1) {
+      transform-origin: top left;
+    }
+
+    &:nth-child(3) {
+      transform-origin: bottom left;
+    }
+  }
+
+  &.toggled {
+    span:nth-child(1) {
+      transform: rotate(45deg);
+    }
+
+    span:nth-child(2) {
+      opacity: 0;
+    }
+
+    span:nth-child(3) {
+      transform: rotate(-45deg);
+    }
+  }
+
+  &:hover span {
+    background-color: lighten($button-color, 10%); 
   }
 }
 
-// Responsive - Riduzione spazi per schermi piccoli
+
 @media (max-width: $breakpoint-md) {
   .navbar-animated {
     padding: $spacing-small;

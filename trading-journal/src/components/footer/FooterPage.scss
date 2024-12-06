@@ -1,0 +1,117 @@
+@import '../../styles/variables.scss'; // Import delle variabili centralizzate
+
+.footer-container {
+  background-color: $div-primary; // Sfondo viola scuro
+  color: $text-paragraph; // Testo chiaro
+  padding: $spacing-large 0;
+
+  h2.footer-brand {
+    font-family: $font-primary;
+    font-size: $font-size-h4;
+    color: $button-color; // Titoli arancioni per contrasto
+    margin-bottom: $spacing-medium;
+    text-transform: uppercase; // Testo in maiuscolo
+    letter-spacing: 1px; // Miglioramento visivo del testo
+    border-bottom: 2px solid $button-color; // Sottolineatura decorativa
+    display: inline-block;
+
+    @include hover-scale(1.05); // Effetto hover per ingrandimento
+  }
+
+  p.footer-p {
+    font-family: $font-secondary;
+    font-size: $font-size-body;
+    line-height: 1.6;
+    margin-bottom: $spacing-medium;
+  }
+
+  .quick-links {
+    list-style: none;
+    padding: 0;
+
+    li {
+      margin-bottom: $spacing-small;
+
+      a {
+        font-family: $font-secondary;
+        color: lighten($text-paragraph, 15%); // Testo più chiaro per maggiore leggibilità
+        text-decoration: none;
+        transition: color 0.3s ease;
+
+        &:hover {
+          color: $button-color;
+          text-decoration: underline;
+        }
+      }
+    }
+  }
+
+  .social-icons {
+    display: flex;
+    justify-content: center;
+    gap: $spacing-medium;
+
+    .social-link {
+      color: lighten($button-color, 10%); // Colore arancione chiaro per maggiore contrasto
+      font-size: 1.5rem; // Dimensioni delle icone
+      transition: all 0.3s ease;
+
+      &:hover {
+        color: $button-color; // Diventa arancione più scuro all'hover
+        transform: rotate(10deg) scale(1.2);
+        box-shadow: 0 4px 8px rgba(255, 165, 0, 0.5);
+      }
+    }
+  }
+
+  .footer-credit {
+    font-family: $font-secondary;
+    font-size: $font-size-small;
+    color: lighten($text-paragraph, 20%); // Colore più chiaro per testo meno importante
+    margin-top: $spacing-medium;
+  }
+
+  .scroll-to-top {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background-color: $button-color;
+    color: $title-color;
+    border: none;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    font-size: 1.5rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    box-shadow: $box-shadow-light;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+
+    &:hover {
+      transform: scale(1.2);
+      box-shadow: $box-shadow-heavy;
+    }
+  }
+}
+
+
+@media (max-width: $breakpoint-md) {
+  .footer-container {
+    text-align: center;
+
+    h2.footer-brand {
+      font-size: $font-size-h5;
+    }
+
+    .social-icons {
+      gap: $spacing-small;
+    }
+
+    .footer-p {
+      font-size: $font-size-small;
+    }
+  }
+}
+

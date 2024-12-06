@@ -5,6 +5,7 @@ import "./NavbarPage.scss";
 
 const NavbarPage = () => {
   const [isVisible, setIsVisible] = React.useState(true);
+  const [isToggled, setIsToggled] = React.useState(false);
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -47,8 +48,15 @@ const NavbarPage = () => {
           />
           Trading Journal
         </Navbar.Brand>
-        <Navbar.Toggle aria-controls="navbar-nav" />
-        <Navbar.Collapse id="navbar-nav">
+        <div
+          className={`navbar-toggler ${isToggled ? "toggled" : ""}`}
+          onClick={() => setIsToggled(!isToggled)}
+        >
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+        <Navbar.Collapse className={isToggled ? "show" : ""}>
           <Nav className="ms-auto">
             <Nav.Link href="/login">Login</Nav.Link>
             <Nav.Link href="/register">Registrazione</Nav.Link>

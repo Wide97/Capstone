@@ -14,22 +14,52 @@ const HomePage = () => {
       <NavbarPage />
 
       {/* Hero Section */}
-      <div className="hero-section d-flex flex-column justify-content-center align-items-center">
+      <div className="hero-section">
         <Container>
-          <Row className="text-center">
+          {/* Hero Content */}
+          <Row className="text-center hero-content">
             <Col>
               <h1 className="hero-title">
-                The Only <span className="highlight">Tool You Need</span> to
-                Become <span className="highlight">Profitable</span>
+                Welcome to <span className="highlight">Trading Journal</span>
               </h1>
               <p className="hero-description">
-                Trading Journal ti aiuta a scoprire i tuoi punti di forza e
-                debolezza per diventare un trader di successo grazie al potere
-                del journaling e dell'analisi.
+                Il tuo strumento definitivo per monitorare, analizzare e
+                migliorare le tue performance di trading. Scopri come il potere
+                del journaling può trasformare il tuo approccio ai mercati
+                finanziari.
               </p>
               <Button href="/register" className="cta-button">
-                Get Started Now
+                <i className="fas fa-rocket"></i> Inizia Subito
               </Button>
+            </Col>
+          </Row>
+
+          {/* Why Choose Us Section */}
+          <Row className="text-center why-choose-section mt-5">
+            <h2 className="section-title text-center">Perché scegliere il nostro Trading Journal?</h2>
+            <Col md={4}>
+              <i className="fas fa-chart-line feature-icon"></i>
+              <h3 className="feature-heading">Analisi Dettagliata</h3>
+              <p className="feature-text">
+                Ottieni grafici chiari e dettagliati che ti aiutano a capire
+                dove migliorare e come ottimizzare le tue operazioni di trading.
+              </p>
+            </Col>
+            <Col md={4}>
+              <i className="fas fa-book feature-icon"></i>
+              <h3 className="feature-heading">Journaling Semplificato</h3>
+              <p className="feature-text">
+                Registra ogni operazione con pochi clic e tieni traccia di tutti
+                i dettagli, incluse strategie e risultati.
+              </p>
+            </Col>
+            <Col md={4}>
+              <i className="fas fa-user-check feature-icon"></i>
+              <h3 className="feature-heading">Personalizzato per Te</h3>
+              <p className="feature-text">
+                Personalizza il tuo trading journal in base alle tue esigenze,
+                scegliendo la valuta e i parametri che contano di più.
+              </p>
             </Col>
           </Row>
         </Container>
@@ -42,38 +72,19 @@ const HomePage = () => {
           <Row className="text-center align-items-center feature-row">
             <Col md={6} className="text-center">
               <div className="feature-icon-large">
-                📓
-                <p>
-                  {" "}
-                  Video Tutorial: Journal – Inserimento delle Operazioni In
-                  questo video tutorial, ti mostriamo come utilizzare la sezione
-                  Journal del nostro Trading Journal per inserire e tracciare le
-                  tue operazioni di trading. Cosa vedrai nel video: Come
-                  accedere alla sezione Journal tramite il menu di navigazione.
-                  Come iniziare una nuova registrazione di trade cliccando sul
-                  pulsante "Aggiungi Operazione". Un esempio di inserimento di
-                  una nuova operazione, dove ti mostreremo come compilare i
-                  campi per la data di acquisto, l'asset utilizzato, la
-                  quantità, il prezzo di ingresso e di uscita, e altri dettagli
-                  importanti. Come specificare ulteriori informazioni come la
-                  leva, la strategia di trading utilizzata, e il risultato
-                  dell'operazione (profitto o perdita). 
-                </p>
+                <i className="fas fa-book-open"></i>
               </div>
+              <p className="feature-description">
+                Registra le tue operazioni di trading con semplicità. Ogni
+                dettaglio è salvato per analisi future, rendendo il tuo processo
+                di trading più strutturato ed efficiente.
+              </p>
             </Col>
             <Col md={6}>
               <h2 className="feature-title">Journal</h2>
-              <p className="feature-description text-light">
-                Obiettivo del video: Il video ha l'obiettivo di renderti
-                familiare con il processo di journaling delle tue operazioni,
-                aiutandoti a mantenere un registro accurato delle tue attività.
-                Questo ti aiuterà a identificare i tuoi punti di forza e
-                debolezza e a migliorare la tua strategia di trading nel tempo.
-              </p>
               <div className="video-tutorials mt-4">
                 <video width="100%" height="auto" controls>
                   <source src={JournalVideo} type="video/mp4" />
-                  Your browser does not support the video tag.
                 </video>
               </div>
             </Col>
@@ -84,41 +95,19 @@ const HomePage = () => {
           <Row className="text-center align-items-center feature-row">
             <Col md={6} className="text-center order-md-2">
               <div className="feature-icon-large">
-                📊
-                <p>
-                  Video Tutorial: Analytics – Analisi dei Tuoi Trade In questo
-                  video tutorial, ti mostriamo come utilizzare la sezione
-                  Analytics del nostro Trading Journal per analizzare le tue
-                  operazioni di trading e ottenere statistiche utili. Cosa
-                  vedrai nel video: Come accedere alla sezione Analytics tramite
-                  il menu di navigazione. Un tour delle diverse funzionalità di
-                  analisi, inclusi i grafici e le statistiche principali che
-                  vengono generati in base alle tue operazioni registrate. Come
-                  visualizzare i grafici dei tuoi guadagni e perdite nel tempo,
-                  e come identificare i periodi di performance migliori e
-                  peggiori. Come utilizzare i vari filtri per approfondire
-                  specifici tipi di operazioni, come le operazioni long o short,
-                  o per filtrare in base agli asset utilizzati. Una panoramica
-                  su come interpretare le metriche chiave come il rapporto
-                  rischio/ricompensa, il tasso di successo, e l'andamento
-                  mensile, per avere un quadro completo delle tue prestazioni.
-                </p>
+                <i className="fas fa-chart-line"></i>
               </div>
+              <p className="feature-description">
+                Analizza i tuoi successi e fallimenti con grafici dettagliati,
+                statistiche e metriche chiave per prendere decisioni più
+                informate.
+              </p>
             </Col>
             <Col md={6} className="order-md-1">
               <h2 className="feature-title">Analytics</h2>
-              <p className="feature-description text-light">
-                Obiettivo del video: Il video ha l'obiettivo di mostrarti come
-                usare gli strumenti analitici per comprendere meglio le tue
-                abitudini di trading. Le Analytics ti aiutano a identificare
-                cosa funziona e cosa no, consentendoti di migliorare
-                continuamente la tua strategia e diventare un trader più
-                efficace.
-              </p>
               <div className="video-tutorials mt-4">
                 <video width="100%" height="auto" controls>
                   <source src={AnalyticsVideo} type="video/mp4" />
-                  Your browser does not support the video tag.
                 </video>
               </div>
             </Col>
@@ -129,50 +118,30 @@ const HomePage = () => {
           <Row className="text-center align-items-center feature-row">
             <Col md={6} className="text-center">
               <div className="feature-icon-large">
-                📑
-                <p>
-                  Video Tutorial: Reporting – Visualizzazione delle Operazioni
-                  In questo video tutorial, ti mostriamo come utilizzare la
-                  sezione Reporting del nostro Trading Journal per visualizzare
-                  e analizzare tutte le operazioni di trading che hai
-                  registrato. Cosa vedrai nel video: Come accedere alla sezione
-                  Reporting tramite il menu di navigazione. Una panoramica su
-                  come visualizzare tutte le tue operazioni di trading in un
-                  formato chiaro e dettagliato. Come utilizzare le opzioni di
-                  filtro per trovare operazioni specifiche basate su criteri
-                  come la data, l'asset, la tipologia di trade (long/short) e
-                  l'esito dell'operazione (profitto, perdita, break-even). Come
-                  ordinare i dati per identificare i trade migliori e peggiori,
-                  e comprendere meglio le tue performance. Una dimostrazione di
-                  come esportare i dati in formati compatibili (ad esempio CSV)
-                  per ulteriori analisi o per condividere le tue performance con
-                  altri. Come eliminare un trade passato.
-                </p>
+                <i className="fas fa-file-alt"></i>
               </div>
+              <p className="feature-description">
+                Genera report dettagliati per analizzare le tue performance e
+                individuare aree di miglioramento.
+              </p>
             </Col>
             <Col md={6}>
               <h2 className="feature-title">Reporting</h2>
-              <p className="feature-description text-light">
-                Obiettivo del video: Il video ha l'obiettivo di insegnarti come
-                utilizzare al meglio la sezione Reporting per avere una
-                panoramica dettagliata e strutturata delle tue operazioni.
-                Questa sezione ti permette di ottenere un quadro completo delle
-                tue attività di trading, aiutandoti a prendere decisioni più
-                informate e migliorare le tue performance nel tempo.
-              </p>
               <div className="video-tutorials mt-4">
                 <video width="100%" height="auto" controls>
                   <source src={ReportVideo} type="video/mp4" />
-                  Your browser does not support the video tag.
                 </video>
               </div>
             </Col>
           </Row>
         </Container>
       </div>
+
+      {/* Footer */}
       <FooterPage />
     </>
   );
 };
 
 export default HomePage;
+

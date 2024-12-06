@@ -140,3 +140,7 @@ $breakpoint-lg: 992px;
 @mixin box-shadow($color: rgba(0, 0, 0, 0.1)) {
   box-shadow: 0 4px 6px $color;
 }
+
+// Variables.scss
+$gradient-colors: linear-gradient(90deg, $div-primary, $div-secondary, $button-color);
+
