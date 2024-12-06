@@ -1,0 +1,150 @@
+@import "../../styles/variables.scss";
+
+/* Navbar */
+.navbar-animated {
+  background-color: $div-primary; // Sfondo scuro
+  padding: $spacing-small $spacing-medium;
+  transition: transform 0.3s ease, background-color 0.3s ease;
+
+  &.visible {
+    transform: translateY(0);
+  }
+
+  &.hidden {
+    transform: translateY(-100%);
+  }
+
+  box-shadow: $box-shadow-light; // Ombra per maggiore profondità
+}
+
+/* Branding */
+.navbar-brand {
+  font-family: $font-primary;
+  font-size: $font-size-h5;
+  color: $title-color;
+  display: flex;
+  align-items: center;
+
+  img {
+    margin-right: $spacing-small;
+    width: 40px;
+    height: 40px;
+  }
+
+  &:hover {
+    text-decoration: none;
+    color: lighten($title-color, 10%);
+  }
+}
+
+/* Navbar Links */
+.nav-link-custom {
+  font-family: $font-secondary;
+  font-size: $font-size-small;
+  color: $text-paragraph;
+  margin-right: $spacing-medium;
+  padding: $spacing-small $spacing-medium;
+  border-radius: 5px;
+  transition: color 0.3s ease, background-color 0.3s ease;
+
+  &:hover {
+    color: $button-color;
+    background-color: rgba($button-color, 0.1); // Sfondo leggermente colorato
+  }
+
+  &:focus {
+    color: $button-color;
+    outline: none;
+  }
+}
+
+/* Profile Dropdown */
+.profile-dropdown {
+  .profile-icon {
+    display: flex;
+    align-items: center;
+    font-family: $font-secondary;
+    font-size: $font-size-small;
+    color: $text-paragraph;
+    background-color: transparent;
+    border: none;
+    padding: $spacing-small;
+    cursor: pointer;
+
+    .profile-username {
+      margin-right: $spacing-small;
+    }
+
+    .profile-img {
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      object-fit: cover;
+    }
+
+    &:hover {
+      color: $button-color;
+    }
+  }
+
+  .dropdown-menu {
+    background-color: $div-primary;
+    border: 1px solid $div-primary;
+    border-radius: 5px;
+    padding: $spacing-small;
+
+    .dropdown-item {
+      color: $text-paragraph;
+      font-size: $font-size-small;
+
+      &:hover {
+        background-color: $div-secondary;
+        color: $title-color;
+      }
+    }
+  }
+}
+
+/* Responsive Design */
+@media (max-width: $breakpoint-md) {
+  .navbar-brand {
+    font-size: $font-size-h6;
+
+    img {
+      width: 30px;
+      height: 30px;
+    }
+  }
+
+  .nav-link-custom {
+    font-size: $font-size-small;
+    margin-right: $spacing-small;
+  }
+
+  .profile-icon {
+    .profile-username {
+      display: none; // Nascondi il nome utente su schermi piccoli
+    }
+
+    .profile-img {
+      width: 25px;
+      height: 25px;
+    }
+  }
+}
+
+@media (max-width: $breakpoint-sm) {
+  .navbar {
+    padding: $spacing-small;
+
+    .nav-link-custom {
+      font-size: 0.8rem;
+      padding: $spacing-small;
+    }
+  }
+
+  .profile-img {
+    width: 20px;
+    height: 20px;
+  }
+}

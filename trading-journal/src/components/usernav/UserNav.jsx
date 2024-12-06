@@ -4,6 +4,7 @@ import "./UserNav.scss";
 
 const UserNav = ({ userData }) => {
   const [isVisible, setIsVisible] = useState(false);
+  const [isToggled, setIsToggled] = React.useState(false);
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -17,11 +18,35 @@ const UserNav = ({ userData }) => {
     window.location.href = "/";
   };
 
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setIsVisible(true);
+    }, 1000);
+    return () => clearTimeout(timer);
+  }, []);
+
+  React.useEffect(() => {
+    let lastScrollY = window.scrollY;
+
+    const handleScroll = () => {
+      if (window.scrollY > lastScrollY) {
+        setIsVisible(false);
+      } else {
+        setIsVisible(true);
+      }
+      lastScrollY = window.scrollY;
+    };
+
+    window.addEventListener("scroll", handleScroll);
+
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
   return (
     <Navbar
       expand="lg"
       className={`navbar-animated shadow fixed-top ${
-        isVisible ? "visible" : ""
+        isVisible ? "visible" : "hidden"
       }`}
       variant="dark"
     >
@@ -37,7 +62,18 @@ const UserNav = ({ userData }) => {
           />
           Trading Journal
         </Navbar.Brand>
-        <Navbar.Toggle aria-controls="navbar-nav" />
+        <div
+          className={`navbar-toggler ${isToggled ? "toggled" : ""}`}
+          onClick={() => setIsToggled(!isToggled)}
+        >
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+        <Navbar.Toggle aria-controls="navbar-nav">
+          <i className="bi bi-list"></i> {/* Usa l'icona di una lista */}
+        </Navbar.Toggle>
+
         <Navbar.Collapse id="navbar-nav">
           <Nav className="ms-auto">
             <Nav.Link href="/user" className="nav-link-custom">
@@ -92,4 +128,3 @@ const UserNav = ({ userData }) => {
 };
 
 export default UserNav;
-
