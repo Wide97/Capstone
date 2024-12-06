@@ -1,0 +1,208 @@
+@import "../../styles/variables.scss";
+
+/* Container principale della UserPage */
+.userpage-container {
+  background-color: $background-body;
+  color: $text-paragraph;
+  min-height: 100vh;
+}
+
+/* Hero Section */
+.hero-section {
+  background-color: $div-primary;
+  color: $title-color;
+  padding: $spacing-xlarge $spacing-medium;
+  text-align: center;
+  padding-top: 120px;
+
+  .hero-title {
+    font-family: $font-primary;
+    font-size: $font-size-h2;
+    color: $button-color;
+    margin-bottom: $spacing-medium;
+  }
+
+  .hero-description {
+    font-family: $font-secondary;
+    font-size: $font-size-body;
+    margin-bottom: $spacing-medium;
+  }
+}
+
+/* Currency Selection Section */
+.currency-selection {
+  .currency-label {
+    font-size: $font-size-h5;
+    color: $title-color;
+    font-weight: bold;
+  }
+
+  .form-select {
+    background-color: $div-secondary;
+    color: $title-color;
+    border: none;
+    border-radius: 5px;
+    font-size: $font-size-body;
+    padding: $spacing-small;
+
+    &:focus {
+      outline: none;
+      box-shadow: $box-shadow-light;
+    }
+  }
+
+  .btn-currency-update {
+    @include button-style($button-color, $button-hover-color);
+    font-size: $font-size-body;
+  }
+
+  .currency-message {
+    color: lighten($title-color, 20%);
+    font-size: $font-size-small;
+    font-style: italic;
+  }
+}
+
+/* Capitale Section */
+.capitale-section {
+  .capitale-label {
+    font-size: $font-size-h5;
+    color: $title-color;
+    font-weight: bold;
+  }
+
+  .form-control {
+    background-color: $div-secondary;
+    color: $title-color;
+    border: none;
+    border-radius: 5px;
+    font-size: $font-size-body;
+    padding: $spacing-small;
+
+    &:focus {
+      outline: none;
+      box-shadow: $box-shadow-light;
+    }
+
+    &::placeholder {
+      color: lighten($title-color, 20%);
+    }
+  }
+
+  .capitale-value {
+    font-size: $font-size-h3;
+    font-weight: bold;
+    color: $button-color;
+  }
+
+  /* Bottone per impostare il capitale iniziale */
+  .btn-set-capitale {
+    @include button-style($button-color, $button-hover-color);
+    font-size: $font-size-body;
+    width: 100%; 
+    margin-top: $spacing-small;
+    padding: $spacing-small $spacing-medium;
+    border-radius: 5px;
+  }
+}
+
+/* Video Tutorials Section */
+.video-tutorials-section {
+  .responsive-iframe {
+    width: 100%;
+    height: auto;
+    border-radius: 10px;
+    box-shadow: $box-shadow-light;
+    margin-bottom: $spacing-medium;
+
+    &:hover {
+      transform: scale(1.02);
+      box-shadow: $box-shadow-heavy;
+    }
+  }
+
+  .video-description {
+    font-size: $font-size-body;
+    color: $text-paragraph;
+    margin-top: $spacing-small;
+  }
+}
+
+/* Features Section */
+.features-section {
+  .feature-card {
+    background-color: $div-primary;
+    color: $title-color;
+    padding: $spacing-medium;
+    border-radius: 10px;
+    box-shadow: $box-shadow-light;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+
+    &:hover {
+      transform: translateY(-5px);
+      box-shadow: $box-shadow-heavy;
+    }
+
+    .feature-title {
+      font-family: $font-primary;
+      font-size: $font-size-h4;
+      color: $button-color;
+      margin-bottom: $spacing-small;
+    }
+
+    .feature-description {
+      font-family: $font-secondary;
+      font-size: $font-size-small;
+      margin-bottom: $spacing-medium;
+      color: lighten($title-color, 10%);
+    }
+
+    .btn-feature {
+      @include button-style($button-color, $button-hover-color);
+      font-size: $font-size-small;
+      padding: $spacing-small $spacing-medium;
+      text-transform: uppercase;
+      text-align: center;
+      display: block;
+      margin-top: $spacing-small;
+    }
+  }
+}
+
+/* Responsività */
+@media (max-width: $breakpoint-md) {
+  .hero-title {
+    font-size: $font-size-h3;
+  }
+
+  .hero-description {
+    font-size: $font-size-small;
+  }
+
+  .currency-label,
+  .capitale-label {
+    font-size: $font-size-body;
+  }
+
+  .capitale-value {
+    font-size: $font-size-h4;
+  }
+
+  .video-description {
+    font-size: 0.875rem;
+  }
+}
+
+@media (max-width: $breakpoint-sm) {
+  .hero-title {
+    font-size: $font-size-h4;
+  }
+
+  .hero-description {
+    font-size: 0.75rem;
+  }
+
+  .capitale-value {
+    font-size: $font-size-h5;
+  }
+}

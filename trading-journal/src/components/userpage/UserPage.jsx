@@ -162,7 +162,7 @@ const UserPage = () => {
                 />
               </div>
               <button
-                className="btn-currency-update btn-lg mt-3 w-100"
+                className="btn-set-capitale btn-lg mt-3 w-100"
                 onClick={handleSetCapitaleIniziale}
               >
                 Imposta Capitale Iniziale
