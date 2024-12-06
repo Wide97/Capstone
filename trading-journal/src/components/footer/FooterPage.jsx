@@ -25,7 +25,7 @@ const FooterPage = () => {
   return (
     <footer className="footer-container">
       <Container>
-        <Row className="text-center">
+        <Row className="text-center pt-5">
           <Col md={4} className="mb-3">
             <h2 className="footer-brand">Trading Journal</h2>
             <p className="footer-p">

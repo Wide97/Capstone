@@ -1,0 +1,144 @@
+@import "../../styles/variables.scss";
+
+body{
+    background-color: $background-body !important;
+}
+
+/* Container principale */
+.container-journal {
+  background-color: $background-body;
+  color: $text-paragraph;
+  padding: $spacing-large;
+  border-radius: 10px;
+  box-shadow: $box-shadow-light;
+  margin-bottom: $spacing-large;
+  padding-top: 50px;
+
+  h2 {
+    font-family: $font-primary;
+    font-size: $font-size-h2;
+    color: $button-color;
+    text-align: center;
+    margin-bottom: $spacing-medium;
+  }
+
+  h4 {
+    font-family: $font-primary;
+    font-size: $font-size-h4;
+    color: $button-color;
+    margin-bottom: $spacing-small;
+  }
+}
+
+/* Sezione Time */
+.time-section {
+  background-color: $div-secondary;
+  color: $title-color;
+  padding: $spacing-large;
+  border-radius: 10px;
+  margin-bottom: $spacing-medium;
+
+  p {
+    font-family: $font-secondary;
+    font-size: $font-size-body;
+    margin-bottom: $spacing-small;
+  }
+}
+
+/* Sezione Lots & Leverage */
+.lots-leverage-section {
+  background-color: $div-primary;
+  color: $text-paragraph;
+  padding: $spacing-large;
+  border-radius: 10px;
+  margin-bottom: $spacing-medium;
+
+  p {
+    font-family: $font-secondary;
+    font-size: $font-size-body;
+    margin-bottom: $spacing-small;
+  }
+}
+
+/* Sezione Trade */
+.trade-section {
+  background-color: $div-secondary;
+  color: $title-color;
+  padding: $spacing-large;
+  border-radius: 10px;
+  margin-bottom: $spacing-medium;
+
+  p {
+    font-family: $font-secondary;
+    font-size: $font-size-body;
+    margin-bottom: $spacing-small;
+  }
+}
+
+/* Sezione Costs */
+.costs-section {
+  background-color: $div-primary;
+  color: $title-color;
+  padding: $spacing-large;
+  border-radius: 10px;
+  margin-bottom: $spacing-medium;
+
+  p {
+    font-family: $font-secondary;
+    font-size: $font-size-body;
+    margin-bottom: $spacing-small;
+  }
+}
+
+/* Input e select */
+.form-control {
+  background-color: $div-secondary;
+  color: $title-color;
+  border: none;
+  border-radius: 5px;
+  font-size: $font-size-body;
+  padding: $spacing-small;
+  margin-bottom: $spacing-small;
+
+  &:focus {
+    outline: none;
+    box-shadow: $box-shadow-light;
+  }
+
+  &::placeholder {
+    color: lighten($title-color, 20%);
+  }
+}
+
+/* Input con unità di misura */
+.input-group {
+  .form-control {
+    border-radius: 5px 0 0 5px;
+  }
+
+  .input-group-text {
+    background-color: $div-primary;
+    color: $title-color;
+    border-radius: 0 5px 5px 0;
+  }
+}
+
+/* Bottone */
+.button-journal {
+  @include button-style($button-color, $button-hover-color);
+  width: 100%;
+  font-size: $font-size-body;
+  padding: $spacing-small;
+  text-transform: uppercase;
+}
+
+/* Responsività */
+@media (max-width: $breakpoint-md) {
+  .form-control {
+    font-size: $font-size-small;
+  }
+
+  .button-journal {
+    font-size: $font-size-small;
+  }
+}
