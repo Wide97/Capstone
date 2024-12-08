@@ -4,7 +4,6 @@ import "./UserNav.scss";
 
 const UserNav = ({ userData }) => {
   const [isVisible, setIsVisible] = useState(false);
-  const [isToggled, setIsToggled] = React.useState(false);
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -62,16 +61,11 @@ const UserNav = ({ userData }) => {
           />
           Trading Journal
         </Navbar.Brand>
-        <div
-          className={`navbar-toggler ${isToggled ? "toggled" : ""}`}
-          onClick={() => setIsToggled(!isToggled)}
-        >
+
+        <Navbar.Toggle>
           <span></span>
           <span></span>
           <span></span>
-        </div>
-        <Navbar.Toggle aria-controls="navbar-nav">
-          <i className="bi bi-list"></i> {/* Usa l'icona di una lista */}
         </Navbar.Toggle>
 
         <Navbar.Collapse id="navbar-nav">
