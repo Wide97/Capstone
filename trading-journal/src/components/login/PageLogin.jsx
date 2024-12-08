@@ -63,7 +63,7 @@ const PageLogin = () => {
                 <i className="bi bi-lock"></i>
               </span>
               <input
-                type={showPassword ? "text" : "password"} // Cambia il tipo di input
+                type={showPassword ? "text" : "password"} 
                 placeholder="Password"
                 className="form-control"
                 value={password}
@@ -72,7 +72,7 @@ const PageLogin = () => {
               />
               <span
                 className="input-group-text toggle-password"
-                onClick={() => setShowPassword(!showPassword)} // Cambia lo stato
+                onClick={() => setShowPassword(!showPassword)} 
               >
                 <i
                   className={`bi ${showPassword ? "bi-eye-slash" : "bi-eye"}`}

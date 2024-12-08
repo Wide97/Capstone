@@ -26,6 +26,10 @@
 
   img {
     margin-right: $spacing-small;
+    width: auto; 
+    height: 50px; 
+    object-fit: contain;
+    max-width: 100%; 
   }
 
   &:hover {
@@ -33,6 +37,7 @@
     @include hover-scale;
   }
 }
+
 
 
 .nav-link {
