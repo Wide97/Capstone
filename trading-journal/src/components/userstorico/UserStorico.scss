@@ -6,6 +6,7 @@
     background-color: $background-body;
     color: $text-paragraph;
     padding: $spacing-xxlarge;
+    min-height: 100vh;
   
     .content-wrapper-us {
       margin: auto;
@@ -42,6 +43,7 @@
       margin: $spacing-large auto;
       width: 100%;
       max-width: 250px; 
+      margin-top: $spacing-xxlarge;
   
       @include respond-to(md) {
         max-width: 200px;
