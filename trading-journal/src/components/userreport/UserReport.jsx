@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
 import { getAllTrades, deleteTrade } from "../utils/apiReport";
-import { getCapitaleAttuale } from "../utils/apiCapitale"; 
+import { getCapitaleAttuale } from "../utils/apiCapitale";
 import "./UserReport.scss";
 import FooterPage from "../footer/FooterPage";
 import UserNav from "../usernav/UserNav";
@@ -10,7 +10,7 @@ const UserReport = () => {
   const [userData, setUserData] = useState({});
   const [trades, setTrades] = useState([]);
   const [currencySymbol, setCurrencySymbol] = useState("");
-  const [capital, setCapital] = useState(null); 
+  const [capital, setCapital] = useState(null);
   const [error, setError] = useState("");
   const [filters, setFilters] = useState({
     asset: "",
@@ -157,34 +157,31 @@ const UserReport = () => {
   return (
     <>
       <UserNav userData={userData} />
-      <div className="user-profile-container">
-        <div className="profile-header text-center journal-title">
-          <h2>Benvenuto, {userData.username}</h2>
+      <div className="user-report-container-ur">
+        {/* Header Profilo */}
+        <div className="profile-header-ur text-center">
+          <h2 className="title-ur">Benvenuto, {userData.username}</h2>
         </div>
-      </div>
-
-      <div className="container mt-5">
-        <h2 className="text-center mb-4 journal-title">I Tuoi Trade</h2>
-
-        {error && <div className="alert">{error}</div>}
 
         {/* Capitale Attuale */}
-        <div className="text-center mb-4 profile-details">
+        <div className="capital-container-ur text-center">
           <h4>
             Capitale Attuale:{" "}
             {capital !== null
               ? `${capital} ${currencySymbol}`
               : "Caricamento..."}
           </h4>
+
+          {error && <div className="alert">{error}</div>}
         </div>
 
-        {/* Statistiche Responsive */}
-        <div className="row text-center mb-4 profile-details">
-          <div className="col-md-4 profile-details-h5">
+        {/* Statistiche */}
+        <div className="stats-container-ur row text-center">
+          <div className="col-md-4 stat-box-ur">
             <h5>Numero di Trade</h5>
             <p>{trades.length}</p>
           </div>
-          <div className="col-md-4 profile-details-h5">
+          <div className="col-md-4 stat-box-ur">
             <h5>Successo (%)</h5>
             <p>
               {(
@@ -195,7 +192,7 @@ const UserReport = () => {
               %
             </p>
           </div>
-          <div className="col-md-4 profile-details-h5">
+          <div className="col-md-4 stat-box-ur">
             <h5>Profitto Netto ({currencySymbol})</h5>
             <p>
               {trades
@@ -205,32 +202,32 @@ const UserReport = () => {
           </div>
         </div>
 
-        {/* Filtri Responsive */}
-        <div className="row mb-4 input-container">
+        {/* Filtri */}
+        <div className="filters-container-ur row">
           <div className="col-md-4">
-            <label className="text-form-group">Asset</label>
+            <label className="filter-label-ur">Asset</label>
             <input
               type="text"
-              className="form-control"
+              className="form-control-ur"
               name="asset"
               value={filters.asset}
               onChange={handleFilterChange}
             />
           </div>
           <div className="col-md-4">
-            <label className="text-form-group">Strategia</label>
+            <label className="filter-label-ur">Strategia</label>
             <input
               type="text"
-              className="form-control"
+              className="form-control-ur"
               name="strategy"
               value={filters.strategy}
               onChange={handleFilterChange}
             />
           </div>
           <div className="col-md-4">
-            <label className="text-form-group">Esito</label>
+            <label className="filter-label-ur">Esito</label>
             <select
-              className="form-control"
+              className="form-control-ur"
               name="result"
               value={filters.result}
               onChange={handleFilterChange}
@@ -243,9 +240,9 @@ const UserReport = () => {
           </div>
         </div>
 
-        {/* Tabella Responsive */}
-        <div className="table-responsive">
-          <table className="table table-striped">
+        {/* Tabella */}
+        <div className="table-container-ur table-responsive-ur">
+          <table className="table-ur">
             <thead>
               <tr>
                 <th>Data di Acquisto</th>
@@ -275,7 +272,7 @@ const UserReport = () => {
                   <td>
                     <button
                       onClick={() => handleDelete(trade.tradeId)}
-                      className="btn btn-danger"
+                      className="btn-delete-ur"
                     >
                       Elimina
                     </button>
@@ -286,11 +283,9 @@ const UserReport = () => {
           </table>
         </div>
 
-        {/* Grafico Responsive */}
-        <div className="mt-5 d-flex justify-content-center">
-          <div style={{ maxWidth: "600px", width: "100%" }}>
-            <canvas id="tradeChart" ref={chartRef} />
-          </div>
+        {/* Grafico */}
+        <div className="chart-container-ur">
+          <canvas id="tradeChart" ref={chartRef} />
         </div>
       </div>
       <FooterPage />

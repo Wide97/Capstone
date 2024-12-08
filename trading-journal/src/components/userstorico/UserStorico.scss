@@ -1,0 +1,129 @@
+
+@import "../../styles/variables.scss";
+
+
+.user-storico-container-us {
+    background-color: $background-body;
+    color: $text-paragraph;
+    padding: $spacing-xxlarge;
+  
+    .content-wrapper-us {
+      margin: auto;
+      max-width: 1200px; 
+      padding: $spacing-medium;
+  
+      @include respond-to(md) {
+        padding: $spacing-small;
+      }
+  
+      @include respond-to(sm) {
+        padding: $spacing-small;
+      }
+    }
+  
+    .titolo-storico-us {
+      font-family: $font-primary;
+      font-size: $font-size-h2;
+      color: $button-color;
+      margin-bottom: $spacing-large;
+  
+      @include respond-to(md) {
+        font-size: $font-size-h3;
+      }
+  
+      @include respond-to(sm) {
+        font-size: $font-size-h4;
+      }
+    }
+  
+    .btn-generale-us {
+      @include button-style($button-color, $button-hover-color);
+      display: block;
+      margin: $spacing-large auto;
+      width: 100%;
+      max-width: 250px; 
+  
+      @include respond-to(md) {
+        max-width: 200px;
+        padding: $spacing-small $spacing-medium;
+      }
+  
+      @include respond-to(sm) {
+        max-width: 150px;
+        font-size: $font-size-small;
+      }
+    }
+  
+    .table-container-us {
+        margin-bottom: $spacing-large;
+        margin-top: $spacing-xxlarge;
+    
+        .table-us {
+          width: 100%;
+          border-collapse: collapse;
+    
+          th,
+          td {
+            padding: $spacing-small;
+            text-align: center;
+            border-bottom: 1px solid $text-muted;
+          }
+    
+          th {
+            background-color: $div-primary;
+            color: $title-color;
+            font-family: $font-secondary;
+            font-size: $font-size-small;
+          }
+    
+          td {
+            background-color: $div-secondary;
+            color: $text-paragraph;
+          }
+    
+          .btn-delete-us {
+            @include button-style($alert-color, darken($alert-color, 10%));
+          }
+        }
+      }
+  
+    .chart-container-us {
+      margin-top: $spacing-xxlarge;
+      height: 400px;
+      width: 100%;
+      background-color: $div-primary;
+      padding: 20px;
+      border-radius: 5px;
+
+  
+      canvas {
+        width: 100%;
+        height: auto;
+      }
+    }
+  
+    .testo-nessun-report-us {
+      font-size: $font-size-body;
+      color: $text-muted;
+      margin-top: $spacing-large;
+  
+      @include respond-to(md) {
+        font-size: $font-size-small;
+      }
+  
+      @include respond-to(sm) {
+        font-size: $font-size-small;
+        text-align: center;
+      }
+    }
+  
+    .btn-elimina-us {
+      font-size: $font-size-small;
+  
+      @include respond-to(sm) {
+        font-size: $font-size-small;
+        padding: $spacing-small $spacing-medium;
+      }
+    }
+  }
+  

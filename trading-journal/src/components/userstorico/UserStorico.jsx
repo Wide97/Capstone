@@ -42,7 +42,7 @@ const UserStorico = () => {
     };
 
     fetchUserData();
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const fetchReports = async (userId, token) => {
@@ -98,7 +98,7 @@ const UserStorico = () => {
     setError(message);
     setTimeout(() => {
       setError("");
-    }, 2000); 
+    }, 2000);
   };
 
   const chartData = {
@@ -121,6 +121,7 @@ const UserStorico = () => {
       legend: {
         display: true,
         position: "top",
+        title: { display: true, text: "Capitale", color: "#FFC200" },
       },
     },
     scales: {
@@ -128,13 +129,17 @@ const UserStorico = () => {
         title: {
           display: true,
           text: "Mese",
+          color: "#FFC200",
         },
+        ticks: { color: "#FFC200" },
       },
       y: {
         title: {
           display: true,
           text: `Capitale Finale (${userData?.valuta?.simbolo || "€"})`,
+          color: "#FFC200",
         },
+        ticks: { color: "#FFC200" },
         beginAtZero: true,
       },
     },
@@ -142,18 +147,27 @@ const UserStorico = () => {
 
   return (
     <>
-      <div className="user-storico-container">
+      <div className="user-storico-container-us">
         {userData && <UserNav userData={userData} />}
-        <Container className="mt-5 content-wrapper">
-          <h1 className="text-center">Storico Report Mensili</h1>
+        <Container className="mt-5 content-wrapper-us">
+          <h1 className="text-center titolo-storico-us">
+            Storico Report Mensili
+          </h1>
           {loading && (
-            <Spinner animation="border" className="d-block mx-auto my-3" />
+            <Spinner
+              animation="border"
+              className="d-block mx-auto my-3 spinner-us"
+            />
           )}
-          {error && <Alert variant="danger">{error}</Alert>}
+          {error && (
+            <Alert variant="danger" className="alert-us">
+              {error}
+            </Alert>
+          )}
 
           {userData && (
             <Button
-              className="btn-genera mb-4"
+              className="btn-generale-us"
               onClick={handleGeneraReport}
               disabled={loading}
             >
@@ -163,9 +177,9 @@ const UserStorico = () => {
 
           {reportMensili.length > 0 ? (
             <>
-              <div className="table-container">
-                <Table bordered hover responsive>
-                  <thead className="thead-dark">
+              <div className="table-container-us">
+                <Table bordered hover responsive className="table-us">
+                  <thead className="thead-dark-us">
                     <tr>
                       <th>Mese</th>
                       <th>Profitto ({userData?.valuta?.simbolo || "€"})</th>
@@ -199,6 +213,7 @@ const UserStorico = () => {
                             size="sm"
                             onClick={() => handleDeleteReport(report.id)}
                             disabled={loading}
+                            className="btn-elimina-us"
                           >
                             Elimina
                           </Button>
@@ -208,12 +223,14 @@ const UserStorico = () => {
                   </tbody>
                 </Table>
               </div>
-              <div className="chart-container">
+              <div className="chart-container-us">
                 <Line data={chartData} options={chartOptions} />
               </div>
             </>
           ) : (
-            <p className="text-center">Nessun report mensile disponibile.</p>
+            <p className="text-center testo-nessun-report-us">
+              Nessun report mensile disponibile.
+            </p>
           )}
         </Container>
       </div>
