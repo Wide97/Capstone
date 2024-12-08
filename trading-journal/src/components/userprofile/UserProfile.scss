@@ -1,0 +1,147 @@
+@import "../../styles/variables.scss";
+
+.user-profile-container-pp {
+  background-color: $background-body;
+  color: $text-paragraph;
+  padding: $spacing-large;
+  min-height: 90vh;
+  margin-top: 100px;
+
+  .profile-header-pp {
+    background-color: $div-primary;
+    padding: $spacing-medium;
+    border-radius: 10px;
+    box-shadow: $box-shadow-light;
+    margin-bottom:80px;
+
+    .title-pp {
+      font-family: $font-primary;
+      font-size: $font-size-h2;
+      color: $button-color;
+      text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.6);
+    }
+  }
+
+  .profile-content-pp {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: flex-start;
+    margin-top: $spacing-large;
+
+    .profile-image-section-pp {
+      flex: 1 1 300px;
+      text-align: center;
+
+      .profile-image-container-pp {
+        margin: 0 auto;
+        width: 150px;
+        height: 150px;
+        overflow: hidden;
+
+        .profile-image-pp {
+          width: 100%;
+          height: 100%;
+          border-radius: 50%;
+          object-fit: cover;
+          box-shadow: $box-shadow-heavy;
+        }
+      }
+
+      .image-upload-form-pp {
+        margin-top: $spacing-medium;
+
+        .file-label-pp {
+          display: block;
+          font-size: $font-size-small;
+          font-weight: bold;
+          color: $button-color;
+          cursor: pointer;
+          margin-bottom: $spacing-small;
+        }
+
+        .file-input-pp {
+          display: none;
+        }
+
+        .btn-upload-pp {
+          @include button-style($button-color, $button-hover-color);
+        }
+      }
+    }
+
+    .profile-details-section-pp {
+      flex: 2 1 600px;
+      background-color: $div-secondary;
+      padding: $spacing-medium;
+      border-radius: 10px;
+      box-shadow: $box-shadow-light;
+
+      .details-card-pp {
+        background-color: $div-primary;
+        padding: $spacing-medium;
+        border-radius: 10px;
+        color: $title-color;
+        margin-bottom: $spacing-large;
+
+        p {
+          font-size: $font-size-body;
+          margin-bottom: $spacing-small;
+        }
+      }
+
+      .update-form-pp {
+        .form-group-pp {
+          margin-bottom: $spacing-medium;
+
+          .form-label-pp {
+            font-size: $font-size-small;
+            color: $text-muted;
+            display: block;
+            margin-bottom: $spacing-small;
+          }
+
+          .form-control-pp {
+            width: 100%;
+            padding: $spacing-small;
+            border: none;
+            border-radius: 5px;
+            box-shadow: $box-shadow-light;
+
+            &:focus {
+              outline: none;
+              border: 1px solid $button-color;
+            }
+          }
+        }
+
+        .btn-update-pp {
+          @include button-style($button-color, $button-hover-color);
+          width: 100%;
+        }
+      }
+
+      .alert-pp {
+        font-size: $font-size-small;
+        padding: $spacing-small;
+        border-radius: 5px;
+
+        &.mt-3 {
+          margin-top: $spacing-medium;
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: $breakpoint-md) {
+  .profile-content-pp {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .profile-details-section-pp {
+    flex: none;
+    width: 100%;
+  }
+}

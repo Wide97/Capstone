@@ -92,45 +92,39 @@ const UserProfile = () => {
 
   return (
     <>
-      <UserNav userData={userData}/>
-      <div className="container user-profile-container">
-        <div className="profile-header text-center mb-4">
-          <h2 className="text-light">Profilo Utente</h2>
+      <UserNav userData={userData} />
+      <div className="user-profile-container-pp">
+        <div className="profile-header-pp text-center">
+          <h2 className="title-pp">Profilo Utente</h2>
         </div>
-        <div className="row justify-content-center">
-          <div className="col-md-4 col-sm-12 text-center mb-4">
-            <div className="profile-image-container rounded-circle">
+        <div className="profile-content-pp">
+          <div className="profile-image-section-pp">
+            <div className="profile-image-container-pp">
               <img
-                className="profile-image rounded-circle shadow-lg"
+                className="profile-image-pp shadow-lg"
                 src={imageUrl || userData.profileImageUrl || "https://placedog.net/500/280"}
                 alt="Profilo"
-                width="150"
-                height="150"
               />
             </div>
-            <form onSubmit={handleImageUpload}>
+            <form onSubmit={handleImageUpload} className="image-upload-form-pp">
+              <label htmlFor="fileInput" className="file-label-pp">
+                Scegli file
+              </label>
               <input
                 type="file"
-                id="fileInput" 
+                id="fileInput"
                 accept="image/*"
                 onChange={(e) => setImageFile(e.target.files[0])}
                 required
-                className="form-control mt-3"
-                style={{
-                  display: "none",
-                }}
+                className="file-input-pp"
               />
-              <label htmlFor="fileInput" className="file-label">
-                Scegli file
-              </label>
-              <button type="submit" className=" mt-3">
+              <button type="submit" className="btn-upload-pp">
                 Carica immagine
               </button>
             </form>
           </div>
-
-          <div className="col-md-8 col-sm-12 profile-details py-5">
-            <div className="card-body ps-5">
+          <div className="profile-details-section-pp">
+            <div className="details-card-pp">
               <p>
                 <strong>Username:</strong> {userData.username}
               </p>
@@ -148,34 +142,30 @@ const UserProfile = () => {
                 {userData.profileImageUrl ? "Presente" : "Nessuna immagine"}
               </p>
             </div>
-
-            <div className="input-container">
-              <form onSubmit={handleUserUpdate}>
-                <div className="form-group">
-                  <label className="text-form-group mb-2">Nuovo Username:</label>
-                  <input
-                    type="text"
-                    className="form-control"
-                    value={newUsername}
-                    onChange={(e) => setNewUsername(e.target.value)}
-                  />
-                </div>
-                <div className="form-group">
-                  <label className="text-form-group mb-2" >Nuova Password:</label>
-                  <input
-                    type="password"
-                    className="form-control"
-                    value={newPassword}
-                    onChange={(e) => setNewPassword(e.target.value)}
-                  />
-                </div>
-                <button type="submit" className="btn mt-4">
-                  Aggiorna Dati
-                </button>
-              </form>
-            </div>
-
-            {message && <div className="alert mt-3">{message}</div>}
+            <form onSubmit={handleUserUpdate} className="update-form-pp">
+              <div className="form-group-pp">
+                <label className="form-label-pp">Nuovo Username:</label>
+                <input
+                  type="text"
+                  className="form-control-pp"
+                  value={newUsername}
+                  onChange={(e) => setNewUsername(e.target.value)}
+                />
+              </div>
+              <div className="form-group-pp">
+                <label className="form-label-pp">Nuova Password:</label>
+                <input
+                  type="password"
+                  className="form-control-pp"
+                  value={newPassword}
+                  onChange={(e) => setNewPassword(e.target.value)}
+                />
+              </div>
+              <button type="submit" className="btn-update-pp">
+                Aggiorna Dati
+              </button>
+            </form>
+            {message && <div className="alert-pp mt-3">{message}</div>}
           </div>
         </div>
       </div>
