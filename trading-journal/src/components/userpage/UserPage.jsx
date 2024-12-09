@@ -111,13 +111,12 @@ const UserPage = () => {
             operazioni, analizza i tuoi dati e accedi ai report dettagliati.
           </p>
         </div>
-       
 
         {/* Sezione per impostare e visualizzare il capitale iniziale */}
-        <div className="capitale-section container mt-5">
-          <div className="row justify-content-center align-items-center">
-            {/* Sezione per impostare il capitale iniziale */}
-            <div className="col-md-6 mb-4">
+        <div className="capitale-valuta-section container mt-5">
+          <div className="row justify-content-center">
+            {/* Colonna per impostare il capitale iniziale */}
+            <div className="col-lg-6 col-md-12 mb-4">
               <div className="form-group">
                 <label htmlFor="capitaleIniziale" className="capitale-label">
                   Imposta Capitale Iniziale:
@@ -138,10 +137,8 @@ const UserPage = () => {
               </button>
             </div>
 
-             {/* Sezione di selezione valuta */}
-        <div className="currency-selection container mt-4">
-          <div className="row justify-content-center">
-            <div className="col-md-6">
+            {/* Colonna per selezionare la valuta */}
+            <div className="col-lg-6 col-md-12 mb-4">
               <div className="form-group">
                 <label htmlFor="currency" className="currency-label">
                   Seleziona la tua valuta preferita:
@@ -167,13 +164,11 @@ const UserPage = () => {
               </button>
               {message && <p className="currency-message mt-2">{message}</p>}
             </div>
-          </div>
-        </div>
 
             {/* Sezione per visualizzare il capitale iniziale */}
             <div className="col-md-6 mb-4 spacing">
               <div className="form-group text-center">
-                <label className="capitale-label">
+                <label className="capitale-label2">
                   Capitale Iniziale Attuale:
                 </label>
                 <div className="capitale-value mt-2">

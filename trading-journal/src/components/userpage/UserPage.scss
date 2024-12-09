@@ -29,78 +29,85 @@
   }
 }
 
-/* Currency Selection Section */
-.currency-selection {
-  .currency-label {
-    font-size: $font-size-h5;
-    color: $title-color;
-    font-weight: bold;
-  }
 
-  .form-select {
-    background-color: $div-secondary;
-    color: $title-color;
-    border: none;
-    border-radius: 5px;
-    font-size: $font-size-body;
-    padding: $spacing-small;
+.capitale-valuta-section {
+  
+  .form-group {
+    margin-bottom: $spacing-medium;
+    margin-top: $spacing-xlarge;
 
-    &:focus {
-      outline: none;
-      box-shadow: $box-shadow-light;
+    .capitale-label,
+    .currency-label {
+      font-size: $font-size-h5;
+      font-weight: bold;
+      color: $title-color;
     }
-  }
 
-  .btn-currency-update {
-    @include button-style($button-color, $button-hover-color);
-    font-size: $font-size-body;
-  }
+    .form-control,
+    .form-select {
+      background-color: $div-secondary;
+      color: $title-color;
+      border: none;
+      border-radius: 5px;
+      font-size: $font-size-body;
+      padding: $spacing-small;
 
-  .currency-message {
-    color: lighten($title-color, 20%);
-    font-size: $font-size-small;
-    font-style: italic;
+      &:focus {
+        outline: none;
+        box-shadow: $box-shadow-light;
+      }
+    }
+
+    .btn-set-capitale,
+    .btn-currency-update {
+      @include button-style($button-color, $button-hover-color);
+      font-size: $font-size-body;
+      width: 100%; 
+      margin-top: $spacing-small;
+      padding: $spacing-small $spacing-medium;
+      border-radius: 5px;
+    }
+
+    .currency-message {
+      color: lighten($title-color, 20%);
+      font-size: $font-size-small;
+      text-align: center;
+    }
   }
 }
 
-/* Capitale Section */
-.capitale-section {
-  .capitale-label {
-    font-size: $font-size-h5;
-    color: $title-color;
-    font-weight: bold;
-  }
+.capitale-label2 {
+  margin-top: $spacing-xxlarge;
+  font-family: $font-primary;
+  font-size: $font-size-h2;
+  color: $button-color;
+  margin-bottom: $spacing-medium;
+}
 
-  .form-control {
-    background-color: $div-secondary;
-    color: $title-color;
-    border: none;
-    border-radius: 5px;
-    font-size: $font-size-body;
-    padding: $spacing-small;
+.capitale-value {
+  font-family: $font-primary;
+  font-size: $font-size-h2;
+  color: $button-color;
+  margin-bottom: $spacing-medium;
+}
+/* Responsività */
+@media (max-width: $breakpoint-md) {
+  .capitale-valuta-section {
+    .form-group {
+      margin-bottom: $spacing-small;
 
-    &:focus {
-      outline: none;
-      box-shadow: $box-shadow-light;
+      .btn-set-capitale,
+      .btn-currency-update {
+        font-size: $font-size-small;
+      }
     }
-
-    &::placeholder {
-      color: lighten($title-color, 20%);
-    }
   }
+}
 
-  .spacing {
-    margin-top: 100px;
-  }
-
-  .capitale-value {
-    font-size: $font-size-h3;
-    font-weight: bold;
-    color: $button-color;
-  }
 
   /* Bottone per impostare il capitale iniziale */
-  .btn-set-capitale {
+  .btn-set-capitale,
+  .btn-currency-update {
     @include button-style($button-color, $button-hover-color);
     font-size: $font-size-body;
     width: 100%; 
@@ -108,7 +115,7 @@
     padding: $spacing-small $spacing-medium;
     border-radius: 5px;
   }
-}
+
 
 /* Video Tutorials Section */
 .video-tutorials-section {
