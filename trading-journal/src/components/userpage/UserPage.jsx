@@ -3,9 +3,9 @@ import { Link } from "react-router-dom";
 import FooterPage from "../footer/FooterPage";
 import "./UserPage.scss";
 import UserNav from "../usernav/UserNav";
-import tutorialVideo1 from "./Video1_Navigazione.mp4";
-import tutorialVideo2 from "./Video2_ModificaDati.mp4";
-import tutorialVideo3 from "./Video3_Sezioni.mp4";
+import tutorialVideo1 from "./Navigazione.mp4";
+import tutorialVideo2 from "./Profilo.mp4";
+import tutorialVideo3 from "./Usage.mp4";
 import { aggiornaValuta, getAllValute } from "../utils/apiValuta";
 import { getCapitaleByUserId, setCapitaleIniziale } from "../utils/apiCapitale";
 
@@ -14,8 +14,8 @@ const UserPage = () => {
   const [selectedCurrency, setSelectedCurrency] = useState("");
   const [message, setMessage] = useState("");
   const [valute, setValute] = useState([]);
-  const [capitaleIniziale, setCapitaleInizialeValue] = useState(""); 
-  const [newCapitaleIniziale, setNewCapitaleIniziale] = useState(""); 
+  const [capitaleIniziale, setCapitaleInizialeValue] = useState("");
+  const [newCapitaleIniziale, setNewCapitaleIniziale] = useState("");
 
   useEffect(() => {
     const token = localStorage.getItem("token");
@@ -88,7 +88,7 @@ const UserPage = () => {
       await setCapitaleIniziale(userData.id, newCapitaleIniziale, token);
 
       setCapitaleInizialeValue(newCapitaleIniziale);
-      setNewCapitaleIniziale(""); 
+      setNewCapitaleIniziale("");
 
       setMessage("Capitale iniziale impostato con successo!");
 
@@ -110,39 +110,8 @@ const UserPage = () => {
             Esplora le funzionalità del tuo Trading Journal. Traccia le tue
             operazioni, analizza i tuoi dati e accedi ai report dettagliati.
           </p>
-
-          {/* Sezione di selezione valuta */}
-          <div className="currency-selection container mt-4">
-            <div className="row justify-content-center">
-              <div className="col-md-6">
-                <div className="form-group">
-                  <label htmlFor="currency" className="currency-label">
-                    Seleziona la tua valuta preferita:
-                  </label>
-                  <select
-                    id="currency"
-                    value={selectedCurrency}
-                    onChange={handleCurrencyChange}
-                    className="form-select mt-2"
-                  >
-                    {valute.map((valuta) => (
-                      <option key={valuta.id} value={valuta.id}>
-                        {valuta.codice} - {valuta.nome}
-                      </option>
-                    ))}
-                  </select>
-                </div>
-                <button
-                  className="btn-currency-update btn-lg mt-3 w-100"
-                  onClick={handleUpdateCurrency}
-                >
-                  Aggiorna Valuta
-                </button>
-                {message && <p className="currency-message mt-2">{message}</p>}
-              </div>
-            </div>
-          </div>
         </div>
+       
 
         {/* Sezione per impostare e visualizzare il capitale iniziale */}
         <div className="capitale-section container mt-5">
@@ -169,8 +138,40 @@ const UserPage = () => {
               </button>
             </div>
 
+             {/* Sezione di selezione valuta */}
+        <div className="currency-selection container mt-4">
+          <div className="row justify-content-center">
+            <div className="col-md-6">
+              <div className="form-group">
+                <label htmlFor="currency" className="currency-label">
+                  Seleziona la tua valuta preferita:
+                </label>
+                <select
+                  id="currency"
+                  value={selectedCurrency}
+                  onChange={handleCurrencyChange}
+                  className="form-select mt-2"
+                >
+                  {valute.map((valuta) => (
+                    <option key={valuta.id} value={valuta.id}>
+                      {valuta.codice} - {valuta.nome}
+                    </option>
+                  ))}
+                </select>
+              </div>
+              <button
+                className="btn-currency-update btn-lg mt-3 w-100"
+                onClick={handleUpdateCurrency}
+              >
+                Aggiorna Valuta
+              </button>
+              {message && <p className="currency-message mt-2">{message}</p>}
+            </div>
+          </div>
+        </div>
+
             {/* Sezione per visualizzare il capitale iniziale */}
-            <div className="col-md-6 mb-4">
+            <div className="col-md-6 mb-4 spacing">
               <div className="form-group text-center">
                 <label className="capitale-label">
                   Capitale Iniziale Attuale:
@@ -217,7 +218,7 @@ const UserPage = () => {
         <div className="features-section container">
           <div className="row">
             {/* Journal Section */}
-            <div className="col-md-6 col-lg-4 text-center mb-4">
+            <div className="col-md-6 col-lg-3 text-center mb-4">
               <div className="feature-card shadow h-100">
                 <h3 className="feature-title">Journal</h3>
                 <p className="feature-description">
@@ -231,7 +232,7 @@ const UserPage = () => {
             </div>
 
             {/* Analytics Section */}
-            <div className="col-md-6 col-lg-4 text-center mb-4">
+            <div className="col-md-6 col-lg-3 text-center mb-4">
               <div className="feature-card shadow h-100">
                 <h3 className="feature-title">Analytics</h3>
                 <p className="feature-description">
@@ -245,7 +246,7 @@ const UserPage = () => {
             </div>
 
             {/* Reporting Section */}
-            <div className="col-md-6 col-lg-4 text-center mb-4">
+            <div className="col-md-6 col-lg-3 text-center mb-4">
               <div className="feature-card shadow h-100">
                 <h3 className="feature-title">Reporting</h3>
                 <p className="feature-description">
@@ -253,6 +254,20 @@ const UserPage = () => {
                 </p>
                 <Link to="/userreport" className="btn-feature text-light">
                   Vai al Reporting
+                </Link>
+              </div>
+            </div>
+
+            {/* Storico Session*/}
+            <div className="col-md-6 col-lg-3 text-center mb-4">
+              <div className="feature-card shadow h-100">
+                <h3 className="feature-title">Storico</h3>
+                <p className="feature-description">
+                  Analizza le tue performance con grafici dettagliati e
+                  statistici.
+                </p>
+                <Link to="/userstorico" className="btn-feature text-light">
+                  Vai allo Storico
                 </Link>
               </div>
             </div>
@@ -265,5 +280,3 @@ const UserPage = () => {
 };
 
 export default UserPage;
-
-

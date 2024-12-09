@@ -52,7 +52,7 @@ const FooterPage = () => {
             <h2 className="footer-brand">Seguici sui Social</h2>
             <div className="social-icons">
               <a
-                href="https://www.linkedin.com"
+                href="https://www.linkedin.com/in/marco-widesott-6187291b8/"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="social-link"
@@ -60,7 +60,7 @@ const FooterPage = () => {
                 <i className="fab fa-linkedin"></i>
               </a>
               <a
-                href="https://www.facebook.com"
+                href="https://www.facebook.com/marco.wide"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="social-link"
@@ -68,7 +68,7 @@ const FooterPage = () => {
                 <i className="fab fa-facebook"></i>
               </a>
               <a
-                href="https://www.instagram.com"
+                href="https://www.instagram.com/marcowidesott/"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="social-link"
