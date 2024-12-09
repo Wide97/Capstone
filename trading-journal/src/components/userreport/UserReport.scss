@@ -65,8 +65,12 @@
       }
 
       p {
-        font-size: $font-size-h6;
-        color: $title-color;
+        font-family: $font-primary;
+        font-size: $font-size-h2;
+        color: $button-color;
+        text-align: center;
+        text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.6);
+        margin-bottom: 0;
       }
     }
   }

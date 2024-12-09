@@ -12,7 +12,11 @@
     padding: $spacing-medium;
     border-radius: 10px;
     box-shadow: $box-shadow-light;
-    margin-bottom:80px;
+    margin-bottom: 80px;
+    margin: 0 auto 80px auto; 
+    max-width: 500px; 
+    width: 100%; 
+    text-align: center;
 
     .title-pp {
       font-family: $font-primary;
