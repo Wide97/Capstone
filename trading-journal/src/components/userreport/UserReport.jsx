@@ -5,6 +5,7 @@ import "./UserReport.scss";
 import FooterPage from "../footer/FooterPage";
 import UserNav from "../usernav/UserNav";
 import Chart from "chart.js/auto";
+import LoadingSpinner from "../spinner/LoadingSpinner"; 
 
 const UserReport = () => {
   const [userData, setUserData] = useState({});
@@ -17,6 +18,8 @@ const UserReport = () => {
     strategy: "",
     result: "",
   });
+  const [loading, setLoading] = useState(true); 
+  const [deleting, setDeleting] = useState(false); 
 
   const chartRef = useRef(null);
   const chartInstanceRef = useRef(null);
@@ -26,33 +29,38 @@ const UserReport = () => {
 
     if (!token) {
       setError("Token non trovato, effettua il login.");
+      setLoading(false); 
       return;
     }
 
-    fetch("http://localhost:3001/api/auth/profile", {
-      method: "GET",
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    })
-      .then((response) => {
-        if (!response.ok) {
-          throw new Error("Errore nel recupero del profilo utente.");
-        }
-        return response.json();
+    Promise.all([
+      fetch("http://localhost:3001/api/auth/profile", {
+        method: "GET",
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
       })
-      .then((data) => {
-        setUserData(data.user);
-        if (data.user.valuta && data.user.valuta.simbolo) {
-          setCurrencySymbol(data.user.valuta.simbolo);
-        }
-        loadTrades(data.user.id);
-        loadCapital(data.user.id, token); // Carica il capitale attuale
-      })
+        .then((response) => {
+          if (!response.ok) {
+            throw new Error("Errore nel recupero del profilo utente.");
+          }
+          return response.json();
+        })
+        .then((data) => {
+          setUserData(data.user);
+          if (data.user.valuta && data.user.valuta.simbolo) {
+            setCurrencySymbol(data.user.valuta.simbolo);
+          }
+          loadTrades(data.user.id);
+          loadCapital(data.user.id, token); 
+        }),
+    ])
       .catch((error) => {
         console.error("Errore nel recupero dei dati dell'utente:", error);
         setError("Errore nel recupero del profilo utente.");
-      });
+      })
+      .finally(() => setLoading(false));
+
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
@@ -80,6 +88,7 @@ const UserReport = () => {
 
   const handleDelete = async (tradeId) => {
     const userId = userData.id;
+    setDeleting(true); 
 
     try {
       await deleteTrade(tradeId, userId);
@@ -93,6 +102,8 @@ const UserReport = () => {
     } catch (error) {
       console.error("Errore nell'eliminazione del trade:", error);
       setError("Errore nell'eliminazione del trade.");
+    } finally {
+      setDeleting(false); 
     }
   };
 
@@ -154,6 +165,10 @@ const UserReport = () => {
     };
   }, []);
 
+  if (loading) {
+    return <LoadingSpinner />; 
+  }
+
   return (
     <>
       <UserNav userData={userData} />
@@ -162,7 +177,6 @@ const UserReport = () => {
         <div className="profile-header-ur text-center">
           <h2 className="title-ur">Benvenuto, {userData.username}</h2>
         </div>
-
         {/* Capitale Attuale */}
         <div className="capital-container-ur text-center">
           <h4>
@@ -174,7 +188,7 @@ const UserReport = () => {
 
           {error && <div className="alert">{error}</div>}
         </div>
-
+        {deleting && <LoadingSpinner />}
         {/* Statistiche */}
         <div className="stats-container-ur row text-center">
           <div className="col-md-4 stat-box-ur">
@@ -201,7 +215,6 @@ const UserReport = () => {
             </p>
           </div>
         </div>
-
         {/* Filtri */}
         <div className="filters-container-ur row">
           <div className="col-md-4">
@@ -239,7 +252,6 @@ const UserReport = () => {
             </select>
           </div>
         </div>
-
         {/* Tabella */}
         <div className="table-container-ur table-responsive-ur">
           <table className="table-ur">
@@ -282,7 +294,6 @@ const UserReport = () => {
             </tbody>
           </table>
         </div>
-
         {/* Grafico */}
         <div className="chart-container-ur">
           <canvas id="tradeChart" ref={chartRef} />

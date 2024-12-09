@@ -16,7 +16,6 @@ const UserPage = () => {
   const [valute, setValute] = useState([]);
   const [capitaleIniziale, setCapitaleInizialeValue] = useState("");
   const [newCapitaleIniziale, setNewCapitaleIniziale] = useState("");
-
   useEffect(() => {
     const token = localStorage.getItem("token");
 

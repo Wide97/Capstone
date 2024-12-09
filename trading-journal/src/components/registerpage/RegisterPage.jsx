@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import NavbarPage from "../navbar/NavbarPage";
 import "./RegisterPage.scss";
 import FooterPage from "../footer/FooterPage";
+import LoadingSpinner from "../spinner/LoadingSpinner"; 
 
 const RegisterPage = () => {
   const navigate = useNavigate();
@@ -18,6 +19,7 @@ const RegisterPage = () => {
   const [error, setError] = useState("");
   const [success, setSuccess] = useState("");
   const [showPassword, setShowPassword] = useState(false);
+  const [loading, setLoading] = useState(false); 
 
   const validateForm = () => {
     if (!formData.email.includes("@")) {
@@ -46,8 +48,12 @@ const RegisterPage = () => {
     e.preventDefault();
     setError("");
     setSuccess("");
+    setLoading(true); 
 
-    if (!validateForm()) return;
+    if (!validateForm()) {
+      setLoading(false);
+      return;
+    }
 
     try {
       const response = await fetch("http://localhost:3001/api/auth/register", {
@@ -63,9 +69,11 @@ const RegisterPage = () => {
       }
 
       setSuccess("Registrazione completata con successo!");
-      setTimeout(() => navigate("/login"), 2000);
+      setTimeout(() => navigate("/login"), 2000); 
     } catch (err) {
       setError(err.message);
+    } finally {
+      setLoading(false); 
     }
   };
 
@@ -75,70 +83,73 @@ const RegisterPage = () => {
       <div className="container-register d-flex justify-content-center align-items-center vh-100">
         <div className="form-container">
           <h1 className="text-center mb-4">Registrazione</h1>
+          {loading && <LoadingSpinner />} 
           {error && <div className="alert alert-danger">{error}</div>}
           {success && <div className="alert alert-success">{success}</div>}
-          <form onSubmit={handleSubmit}>
-            <input
-              type="text"
-              name="firstName"
-              placeholder="Nome"
-              className="form-control"
-              value={formData.firstName}
-              onChange={handleChange}
-              required
-            />
-            <input
-              type="text"
-              name="lastName"
-              placeholder="Cognome"
-              className="form-control"
-              value={formData.lastName}
-              onChange={handleChange}
-              required
-            />
-            <input
-              type="email"
-              name="email"
-              placeholder="Email"
-              className="form-control"
-              value={formData.email}
-              onChange={handleChange}
-              required
-            />
-            <input
-              type="text"
-              name="username"
-              placeholder="Username"
-              className="form-control"
-              value={formData.username}
-              onChange={handleChange}
-              required
-            />
-            <div className="input-group mb-4">
+          {!loading && ( 
+            <form onSubmit={handleSubmit}>
               <input
-                type={showPassword ? "text" : "password"}
-                name="password"
-                placeholder="Password"
+                type="text"
+                name="firstName"
+                placeholder="Nome"
                 className="form-control"
-                value={formData.password}
+                value={formData.firstName}
                 onChange={handleChange}
                 required
               />
-              <button
-                type="button"
-                className="btn toggle-password mb-3"
-                onClick={() => setShowPassword(!showPassword)}
-              >
-                <i
-                  className={`bi ${showPassword ? "bi-eye-slash" : "bi-eye"}`}
-                ></i>
-              </button>
-            </div>
+              <input
+                type="text"
+                name="lastName"
+                placeholder="Cognome"
+                className="form-control"
+                value={formData.lastName}
+                onChange={handleChange}
+                required
+              />
+              <input
+                type="email"
+                name="email"
+                placeholder="Email"
+                className="form-control"
+                value={formData.email}
+                onChange={handleChange}
+                required
+              />
+              <input
+                type="text"
+                name="username"
+                placeholder="Username"
+                className="form-control"
+                value={formData.username}
+                onChange={handleChange}
+                required
+              />
+              <div className="input-group mb-4">
+                <input
+                  type={showPassword ? "text" : "password"}
+                  name="password"
+                  placeholder="Password"
+                  className="form-control"
+                  value={formData.password}
+                  onChange={handleChange}
+                  required
+                />
+                <button
+                  type="button"
+                  className="btn toggle-password mb-3"
+                  onClick={() => setShowPassword(!showPassword)}
+                >
+                  <i
+                    className={`bi ${showPassword ? "bi-eye-slash" : "bi-eye"}`}
+                  ></i>
+                </button>
+              </div>
 
-            <button type="submit" className="btn-register">
-              Registrati
-            </button>
-          </form>
+              <button type="submit" className="btn-register">
+                Registrati
+              </button>
+            </form>
+          )}
         </div>
       </div>
       <FooterPage />

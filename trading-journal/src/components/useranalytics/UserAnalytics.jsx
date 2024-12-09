@@ -5,6 +5,7 @@ import UserNav from "../usernav/UserNav";
 import Chart from "chart.js/auto";
 import "./UserAnalytics.scss";
 import { getCapitaleIniziale } from "../utils/apiCapitale";
+import LoadingSpinner from "../spinner/LoadingSpinner"; 
 
 const UserAnalytics = () => {
   const [userData, setUserData] = useState({});
@@ -16,6 +17,7 @@ const UserAnalytics = () => {
   const [tradeSessionData, setTradeSessionData] = useState(null);
   const [error, setError] = useState("");
   const [capitalTrendData, setCapitalTrendData] = useState(null);
+  const [loading, setLoading] = useState(true);
 
   const chartRefPerformance = useRef(null);
   const chartRefEquity = useRef(null);
@@ -38,6 +40,7 @@ const UserAnalytics = () => {
 
     if (!token || token === "null" || token === "undefined") {
       setError("Token non valido, effettua il login.");
+      setLoading(false); 
       return;
     }
 
@@ -60,6 +63,7 @@ const UserAnalytics = () => {
       .catch((error) => {
         console.error("Errore nel recupero del profilo utente:", error);
         setError("Errore nel recupero del profilo utente.");
+        setLoading(false); 
       });
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
@@ -100,6 +104,8 @@ const UserAnalytics = () => {
     } catch (error) {
       console.error("Errore nel caricamento dei dati analitici:", error);
       setError("Errore nel recupero dei dati analitici.");
+    } finally {
+      setLoading(false); 
     }
   };
 
@@ -630,6 +636,7 @@ const UserAnalytics = () => {
       <div className="container-fluid mt-5 me-5">
         <h2 className="text-center mb-4 journal-title">Analytics</h2>
         {error && <div className="alert alert-danger">{error}</div>}
+        {loading && <LoadingSpinner />} 
         {!performanceData && !error && (
           <p className="text-center">Caricamento in corso...</p>
         )}
