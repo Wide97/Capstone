@@ -38,7 +38,8 @@ const PageLogin = () => {
       <NavbarPage />
       <div className="container-login d-flex justify-content-center align-items-center vh-100">
         <div className="login-container">
-          <h1 className="text-center mb-5">Login</h1>
+          <h1 className="text-center mb-5">Weclocme to TradingJournal</h1>
+          <p className="text-center mb-3">We help traders become profitable!</p>
           {loading && <LoadingSpinner />} 
           {error && (
             <p className="alert alert-danger">
@@ -88,7 +89,7 @@ const PageLogin = () => {
               </div>
 
               <button type="submit" className="btn-login">
-                Accedi
+                Sign up
               </button>
             </form>
           )}

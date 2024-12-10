@@ -1,6 +1,8 @@
+
 @import "../../styles/variables.scss";
 
 .user-profile-container-pp {
+
   background-color: $background-body;
   color: $text-paragraph;
   padding: $spacing-large;
@@ -12,10 +14,9 @@
     padding: $spacing-medium;
     border-radius: 10px;
     box-shadow: $box-shadow-light;
-    margin-bottom: 80px;
-    margin: 0 auto 80px auto; 
-    max-width: 500px; 
-    width: 100%; 
+    margin: 0 auto $spacing-large auto;
+    max-width: 500px;
+    width: 100%;
     text-align: center;
 
     .title-pp {
@@ -31,12 +32,13 @@
     flex-wrap: wrap;
     justify-content: center;
     align-items: flex-start;
-    margin-top: $spacing-large;
+    gap: $spacing-large;
+    margin-top: $spacing-xxlarge;
 
     .profile-image-section-pp {
-      flex: 1 1 300px;
+      flex: 1 1 250px;
+      max-width: 300px;
       text-align: center;
-      margin-bottom: 50px;
 
       .profile-image-container-pp {
         margin: 0 auto;
@@ -76,7 +78,8 @@
     }
 
     .profile-details-section-pp {
-      flex: 2 1 600px;
+      flex: 1 1 400px;
+      max-width: 750px; 
       background-color: $div-secondary;
       padding: $spacing-medium;
       border-radius: 10px;

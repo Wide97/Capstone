@@ -168,7 +168,7 @@ const UserPage = () => {
             <div className="col-md-6 mb-4 spacing">
               <div className="form-group text-center">
                 <label className="capitale-label2">
-                  Capitale Iniziale Attuale:
+                  Capitale Iniziale:
                 </label>
                 <div className="capitale-value mt-2">
                   {capitaleIniziale
