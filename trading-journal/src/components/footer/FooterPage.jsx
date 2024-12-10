@@ -7,11 +7,7 @@ const FooterPage = () => {
 
   useEffect(() => {
     const handleScroll = () => {
-      if (window.scrollY > 300) {
-        setShowButton(true);
-      } else {
-        setShowButton(false);
-      }
+      setShowButton(window.scrollY > 300);
     };
 
     window.addEventListener("scroll", handleScroll);
@@ -21,6 +17,12 @@ const FooterPage = () => {
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
+
+  const socialLinks = [
+    { href: "https://www.linkedin.com/in/marco-widesott-6187291b8/", icon: "fab fa-linkedin" },
+    { href: "https://www.facebook.com/marco.wide", icon: "fab fa-facebook" },
+    { href: "https://www.instagram.com/marcowidesott/", icon: "fab fa-instagram" },
+  ];
 
   return (
     <footer className="footer-container">
@@ -51,30 +53,18 @@ const FooterPage = () => {
           <Col md={4}>
             <h2 className="footer-brand">Seguici sui Social</h2>
             <div className="social-icons">
-              <a
-                href="https://www.linkedin.com/in/marco-widesott-6187291b8/"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="social-link"
-              >
-                <i className="fab fa-linkedin"></i>
-              </a>
-              <a
-                href="https://www.facebook.com/marco.wide"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="social-link"
-              >
-                <i className="fab fa-facebook"></i>
-              </a>
-              <a
-                href="https://www.instagram.com/marcowidesott/"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="social-link"
-              >
-                <i className="fab fa-instagram"></i>
-              </a>
+              {socialLinks.map((link, index) => (
+                <a
+                  key={index}
+                  href={link.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="social-link"
+                  aria-label={`Vai a ${link.href}`}
+                >
+                  <i className={link.icon}></i>
+                </a>
+              ))}
             </div>
           </Col>
         </Row>
@@ -86,7 +76,11 @@ const FooterPage = () => {
           </Col>
         </Row>
         {showButton && (
-          <button className="scroll-to-top" onClick={scrollToTop}>
+          <button
+            className="scroll-to-top"
+            onClick={scrollToTop}
+            aria-label="Scroll to top"
+          >
             ↑
           </button>
         )}
@@ -96,3 +90,4 @@ const FooterPage = () => {
 };
 
 export default FooterPage;
+

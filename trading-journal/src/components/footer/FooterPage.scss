@@ -1,21 +1,20 @@
-@import '../../styles/variables.scss'; // Import delle variabili centralizzate
+@import '../../styles/variables.scss';
 
 .footer-container {
-  background-color: $div-primary; // Sfondo viola scuro
-  color: $text-paragraph; // Testo chiaro
+  background-color: $div-primary;
+  color: $text-paragraph;
   padding: $spacing-large 0;
 
   h2.footer-brand {
     font-family: $font-primary;
     font-size: $font-size-h4;
-    color: $button-color; // Titoli arancioni per contrasto
+    color: $button-color;
     margin-bottom: $spacing-medium;
-    text-transform: uppercase; // Testo in maiuscolo
-    letter-spacing: 1px; // Miglioramento visivo del testo
-    border-bottom: 2px solid $button-color; // Sottolineatura decorativa
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    border-bottom: 2px solid $button-color;
     display: inline-block;
-
-    @include hover-scale(1.05); // Effetto hover per ingrandimento
+    @include hover-scale(1.05);
   }
 
   p.footer-p {
@@ -34,7 +33,7 @@
 
       a {
         font-family: $font-secondary;
-        color: lighten($text-paragraph, 15%); // Testo più chiaro per maggiore leggibilità
+        color: lighten($text-paragraph, 15%);
         text-decoration: none;
         transition: color 0.3s ease;
 
@@ -52,14 +51,13 @@
     gap: $spacing-medium;
 
     .social-link {
-      color: lighten($button-color, 10%); // Colore arancione chiaro per maggiore contrasto
-      font-size: 1.5rem; // Dimensioni delle icone
+      color: lighten($button-color, 10%);
+      font-size: 1.5rem;
       transition: all 0.3s ease;
+      @include hover-shadow(orange, 0.5);
 
       &:hover {
-        color: $button-color; // Diventa arancione più scuro all'hover
         transform: rotate(10deg) scale(1.2);
-        box-shadow: 0 4px 8px rgba(255, 165, 0, 0.5);
       }
     }
   }
@@ -67,7 +65,7 @@
   .footer-credit {
     font-family: $font-secondary;
     font-size: $font-size-small;
-    color: lighten($text-paragraph, 20%); // Colore più chiaro per testo meno importante
+    color: lighten($text-paragraph, 20%);
     margin-top: $spacing-medium;
   }
 
@@ -96,7 +94,6 @@
   }
 }
 
-
 @media (max-width: $breakpoint-md) {
   .footer-container {
     text-align: center;
@@ -111,6 +108,20 @@
 
     .footer-p {
       font-size: $font-size-small;
+    }
+  }
+}
+
+@media (max-width: $breakpoint-sm) {
+  .footer-container {
+    h2.footer-brand {
+      font-size: $font-size-small;
+    }
+    .social-icons {
+      font-size: 1.2rem;
+    }
+    .footer-p {
+      line-height: 1.4;
     }
   }
 }

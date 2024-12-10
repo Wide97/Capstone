@@ -145,3 +145,10 @@ $breakpoint-lg: 992px;
 // Variables.scss
 $gradient-colors: linear-gradient(90deg, $div-primary, $div-secondary, $button-color);
 
+@mixin hover-shadow($shadow-color, $intensity: 0.3) {
+  &:hover {
+    box-shadow: 0 4px 8px rgba($shadow-color, $intensity);
+  }
+}
+
+
