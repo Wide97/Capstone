@@ -178,6 +178,7 @@ const HomePage = () => {
               </div>
             </Col>
           </Row>
+          <hr className="feature-divider" />
 
           {/* Storico Section */}
           <Row className="text-center align-items-center feature-row">
