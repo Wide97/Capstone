@@ -37,9 +37,10 @@
 
     .capitale-label,
     .currency-label {
-      font-size: $font-size-h5;
+      font-size: $font-size-h3;
+      font-family: $font-primary;
       font-weight: bold;
-      color: $title-color;
+      color: $button-color;
     }
 
     .form-control,
@@ -76,8 +77,9 @@
 }
 
 .capitale-label2 {
-  margin-top: $spacing-xxlarge;
+  margin-top: $spacing-xlarge;
   font-family: $font-primary;
+  font-weight: bold;
   font-size: $font-size-h2;
   color: $button-color;
   margin-bottom: $spacing-medium;
@@ -85,8 +87,9 @@
 
 .capitale-value {
   font-family: $font-primary;
-  font-size: $font-size-h2;
+  font-size: $font-size-h1;
   color: $button-color;
+  font-weight: bold;
   margin-bottom: $spacing-medium;
 }
 /* Responsività */
