@@ -6,11 +6,11 @@
   color: $text-paragraph;
   padding: $spacing-large;
   min-height: 100vh;
-  margin-top: 50px;
+  padding-top: 50px;
 
   .profile-header-ur {
     margin-bottom: $spacing-large;
-    margin-top: $spacing-xxlarge;
+    padding-top: $spacing-xxlarge;
 
     .title-ur {
       font-family: $font-primary;

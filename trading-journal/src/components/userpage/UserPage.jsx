@@ -207,7 +207,7 @@ const UserPage = () => {
           </div>
         </div>
 
-        <div className="features-section container">
+        <div className="features-section-up container">
           <div className="row">
             {/* Journal Section */}
             <div className="col-md-6 col-lg-3 text-center mb-4">
