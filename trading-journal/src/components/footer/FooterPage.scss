@@ -1,7 +1,9 @@
 @import '../../styles/variables.scss';
 
 .footer-container {
-  background-color: $div-primary;
+  background: $gradient-dark-primary;
+  animation: diagonal-scroll 10s infinite;
+  background-size: 400%, 400%;
   color: $text-paragraph;
   padding: $spacing-large 0;
 

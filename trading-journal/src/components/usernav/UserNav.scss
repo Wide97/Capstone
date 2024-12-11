@@ -2,7 +2,9 @@
 
 /* Navbar */
 .navbar-animated {
-  background-color: $div-primary; // Sfondo scuro
+  background: $gradient-dark-primary;
+  animation: diagonal-scroll 10s infinite;
+  background-size: 400%, 400%;
   padding: $spacing-small $spacing-medium;
   transition: transform 0.3s ease, background-color 0.3s ease;
 
