@@ -55,7 +55,7 @@
     /* Stile del primo pulsante */
     .cta-button {
       background-color: $button-color;
-      color: $title-color;
+      color: #360057;
 
       &:hover {
         background-color: lighten($button-color, 10%);
@@ -65,7 +65,7 @@
     /* Stile del secondo pulsante */
     .cta-button-demo {
       background-color: $button-color;
-      color: $text-paragraph;
+      color: #360057;
     }
   }
 }
