@@ -118,7 +118,7 @@ const UserPage = () => {
             <div className="col-lg-6 col-md-12 mb-4">
               <div className="form-group">
                 <label htmlFor="capitaleIniziale" className="capitale-label">
-                  Imposta Capitale Iniziale:
+                  Imposta Capitale:
                 </label>
                 <input
                   type="number"

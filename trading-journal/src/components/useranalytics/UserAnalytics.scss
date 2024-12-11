@@ -2,6 +2,8 @@
 
 /* Contenitore principale */
 .container-fluid {
+  background-color: rgb(0, 0, 0, 0.5);
+  backdrop-filter: blur(10px);
   color: $text-paragraph;
   padding: $spacing-large;
 

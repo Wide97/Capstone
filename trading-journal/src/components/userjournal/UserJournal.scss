@@ -1,13 +1,16 @@
 @import "../../styles/variables.scss";
-
-
+.bg {
+  background-color: rgb(0, 0, 0, 0.5);
+  backdrop-filter: blur(10px);
+  padding-bottom: 50px;
+}
 .journal-title {
-    padding-top: 70px;
-    font-family: $font-primary;
-    font-size: $font-size-h2;
-    color: $button-color;
-    text-align: center;
-    margin-bottom: $spacing-medium;
+  padding-top: 70px;
+  font-family: $font-primary;
+  font-size: $font-size-h2;
+  color: $button-color;
+  text-align: center;
+  margin-bottom: $spacing-medium;
 }
 
 /* Container principale */
@@ -17,7 +20,7 @@
   border-radius: 10px;
   box-shadow: $box-shadow-light;
   margin-bottom: $spacing-large;
- 
+
   h4 {
     font-family: $font-primary;
     font-size: $font-size-h4;
@@ -46,7 +49,7 @@
 /* Sezione Lots & Leverage */
 .lots-leverage-section {
   background: $gradient-dark-primary;
-  animation:animated-gradient 10s infinite;
+  animation: animated-gradient 10s infinite;
   background-size: 200%, 200%;
   color: $text-paragraph;
   padding: $spacing-large;
@@ -80,7 +83,7 @@
 /* Sezione Costs */
 .costs-section {
   background: $gradient-dark-primary;
-  animation:animated-gradient 10s infinite;
+  animation: animated-gradient 10s infinite;
   background-size: 200%, 200%;
   color: $title-color;
   padding: $spacing-large;
