@@ -43,7 +43,9 @@
   .col-md-6,
   .col-xl-4 {
     .animated-background {
-      background-color: $div-primary; 
+      background: $gradient-dark-primary;
+      animation:animated-gradient 10s infinite;
+      background-size: 200%, 200%; 
       border-radius: 10px;
       box-shadow: $box-shadow-light;
       position: relative;

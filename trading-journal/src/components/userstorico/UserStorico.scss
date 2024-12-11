@@ -92,7 +92,9 @@
       margin-top: $spacing-xxlarge;
       height: 400px;
       width: 100%;
-      background-color: $div-primary;
+      background: $gradient-dark-primary;
+      animation:animated-gradient 10s infinite;
+      background-size: 200%, 200%;
       padding: 20px;
       border-radius: 5px;
 

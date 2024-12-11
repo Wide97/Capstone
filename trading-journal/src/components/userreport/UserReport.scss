@@ -20,7 +20,9 @@
   }
 
   .capital-container-ur {
-    background-color: $div-secondary;
+    background: $gradient-dark-primary;
+    animation:animated-gradient 10s infinite;
+    background-size: 200%, 200%;
     color: $title-color;
     padding: $spacing-medium;
     border-radius: 10px;
@@ -50,7 +52,9 @@
     margin-top: $spacing-xxlarge;
 
     .stat-box-ur {
-      background-color: $div-primary;
+      background: $gradient-dark-alternate;
+      animation: diagonal-scroll 10s infinite;
+      background-size: 200%, 200%;
       padding: $spacing-small $spacing-medium;
       border-radius: 10px;
       box-shadow: $box-shadow-light;

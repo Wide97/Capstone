@@ -11,7 +11,9 @@
 }
 
 .form-container {
-  background-color: $div-primary;
+  background: $gradient-dark-primary;
+  animation:animated-gradient 10s infinite;
+  background-size: 200%, 200%;
   color: $title-color;
   padding: $spacing-large;
   border-radius: 10px;

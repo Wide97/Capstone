@@ -2,6 +2,9 @@
 
 /* Hero Section */
 .hero-section {
+  background: $gradient-dark-primary;
+  animation:animated-gradient 10s infinite;
+  background-size: 200%, 200%;
   color: $title-color;
   text-align: center;
   padding: $spacing-large;

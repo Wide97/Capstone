@@ -8,7 +8,9 @@
 
 /* Hero Section */
 .hero-section {
-  background-color: $div-primary;
+  background: $gradient-dark-primary;
+  animation:animated-gradient 10s infinite;
+  background-size: 200%, 200%;
   color: $title-color;
   padding: $spacing-xlarge $spacing-medium;
   text-align: center;
@@ -145,7 +147,9 @@
 /* Features Section */
 .features-section {
   .feature-card {
-    background-color: $div-primary;
+    background: $gradient-dark-primary;
+    animation:animated-gradient 10s infinite;
+    background-size: 200%, 200%;
     color: $title-color;
     padding: $spacing-medium;
     border-radius: 10px;

@@ -28,7 +28,9 @@
 
 /* Sezione Time */
 .time-section {
-  background-color: $div-secondary;
+  background: $gradient-dark-alternate;
+  animation: diagonal-scroll 10s infinite;
+  background-size: 200%, 200%;
   color: $title-color;
   padding: $spacing-large;
   border-radius: 10px;
@@ -43,7 +45,9 @@
 
 /* Sezione Lots & Leverage */
 .lots-leverage-section {
-  background-color: $div-primary;
+  background: $gradient-dark-primary;
+  animation:animated-gradient 10s infinite;
+  background-size: 200%, 200%;
   color: $text-paragraph;
   padding: $spacing-large;
   border-radius: 10px;
@@ -58,7 +62,9 @@
 
 /* Sezione Trade */
 .trade-section {
-  background-color: $div-secondary;
+  background: $gradient-dark-alternate;
+  animation: diagonal-scroll 10s infinite;
+  background-size: 200%, 200%;
   color: $title-color;
   padding: $spacing-large;
   border-radius: 10px;
@@ -73,7 +79,9 @@
 
 /* Sezione Costs */
 .costs-section {
-  background-color: $div-primary;
+  background: $gradient-dark-primary;
+  animation:animated-gradient 10s infinite;
+  background-size: 200%, 200%;
   color: $title-color;
   padding: $spacing-large;
   border-radius: 10px;
