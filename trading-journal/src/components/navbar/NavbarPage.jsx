@@ -1,38 +1,10 @@
-
-
-import React, { useEffect } from "react";
+import React from "react";
 import { Navbar, Nav, Container } from "react-bootstrap";
+import useNavbarVisibility from "./useNavbarVisibility";
 import "./NavbarPage.scss";
 
 const NavbarPage = () => {
-  const [isVisible, setIsVisible] = React.useState(true);
-  const [isToggled, setIsToggled] = React.useState(false);
-
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      setIsVisible(true);
-    }, 1000);
-    return () => clearTimeout(timer);
-  }, []);
-
-  React.useEffect(() => {
-    let lastScrollY = window.scrollY;
-
-    const handleScroll = () => {
-      if (window.scrollY > lastScrollY) {
-        setIsVisible(false); 
-      } else {
-        setIsVisible(true); 
-      }
-      lastScrollY = window.scrollY;
-    };
-
-    window.addEventListener("scroll", handleScroll);
-
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
-
-  
+  const { isVisible, isToggled, setIsToggled } = useNavbarVisibility();
 
   return (
     <Navbar
@@ -45,7 +17,7 @@ const NavbarPage = () => {
           <img
             src="/img/t-removebg-preview.png"
             alt="Logo"
-            style={{ width: "100px", marginRight: "10px" }}
+            onError={(e) => (e.target.src = "/img/fallback-logo.png")}
           />
           Trading Journal
         </Navbar.Brand>
@@ -69,6 +41,7 @@ const NavbarPage = () => {
 };
 
 export default NavbarPage;
+
 
 
 

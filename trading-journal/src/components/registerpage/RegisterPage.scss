@@ -1,9 +1,8 @@
 @import "../../styles/variables.scss";
 
-/* Contenitore principale */
 .container-register {
-  background-color: $background-body; 
-  color: $text-paragraph; 
+  background-color: $background-body;
+  color: $text-paragraph;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -12,26 +11,23 @@
   padding: $spacing-large;
 }
 
-/* Contenitore del form */
 .form-container {
-  background-color: $div-primary; 
-  color: $title-color; 
+  background-color: $div-primary;
+  color: $title-color;
   padding: $spacing-large;
   border-radius: 10px;
   box-shadow: $box-shadow-light;
   width: 100%;
   max-width: 400px;
 
-  /* Titolo */
   h1 {
     font-family: $font-primary;
     font-size: $font-size-h2;
-    color: $button-color; 
+    color: $button-color;
     text-align: center;
     margin-bottom: $spacing-medium;
   }
 
-  /* Messaggi di errore o successo */
   .alert {
     padding: $spacing-small;
     border-radius: 5px;
@@ -40,20 +36,19 @@
     margin-bottom: $spacing-medium;
 
     &.alert-danger {
-      background-color: $alert-color; 
-      color: $title-color; 
+      background-color: $alert-color;
+      color: $title-color;
     }
 
     &.alert-success {
-      background-color: $button-color; 
+      background-color: $button-color;
       color: $title-color;
     }
   }
 
-  /* Stile per gli input */
   .form-control {
-    background-color: $div-secondary; 
-    color: $title-color; 
+    background-color: $div-secondary;
+    color: $title-color;
     border: none;
     border-radius: 5px;
     margin-bottom: $spacing-medium;
@@ -62,81 +57,71 @@
 
     &:focus {
       outline: none;
-      box-shadow: 0 0 5px $button-color; 
+      box-shadow: 0 0 5px $button-color;
+      transition: box-shadow 0.3s ease;
     }
 
     &::placeholder {
-      color: lighten($title-color, 20%); 
+      color: lighten($title-color, 20%);
       font-style: italic;
+    }
+
+    &.invalid {
+      border: 1px solid $alert-color;
+      box-shadow: 0 0 5px $alert-color;
     }
   }
 
-  /* Pulsante di registrazione */
   .btn-register {
-    @include button-style(
-      $button-color,
-      $button-hover-color
-    ); // Stile dei bottoni
+    @include button-style($button-color, $button-hover-color);
     width: 100%;
     margin-top: $spacing-medium;
+
+    &:disabled {
+      background-color: darken($button-color, 10%);
+      cursor: not-allowed;
+      opacity: 0.7;
+    }
   }
 
-  /* Input Group per password */
   .input-group {
     position: relative;
 
     .form-control {
-      border-radius: 5px 0 0 5px; 
-      padding-right: 40px; 
+      padding-right: 40px;
     }
 
     .toggle-password {
-        background-color: white; 
-        color: black; 
-        border: none;
-        border-radius: 0 5px 5px 0; 
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        position: absolute;
-        right: 0;
-        top: 0;
-        bottom: 0;
-        width: 40px; 
-        cursor: pointer;
-        transition: background-color 0.3s ease, transform 0.3s ease;
-  
-        i {
-          font-size: $font-size-h5; 
-        }
-  
-        &:hover {
-          background-color: lighten($div-secondary, 10%);
-          transform: scale(1.1);
-        }
+      background-color: $title-color;
+      color: $text-paragraph;
+      border: none;
+      border-radius: 0 5px 5px 0;
+      position: absolute;
+      right: 0;
+      top: 0;
+      bottom: 0;
+      width: 40px;
+      cursor: pointer;
+      transition: background-color 0.3s ease, transform 0.3s ease;
+
+      i {
+        font-size: $font-size-h5;
       }
+
+      &:hover {
+        background-color: lighten($div-secondary, 10%);
+        transform: scale(1.1);
+      }
+    }
   }
 }
 
-/* Responsività */
-@media (max-width: $breakpoint-md) {
+@include respond-to(md) {
   .form-container {
     padding: $spacing-medium;
 
     h1 {
-      font-size: $font-size-h3; 
+      font-size: $font-size-h3;
     }
-
-    .form-control {
-      font-size: $font-size-small; 
-    }
-
-    .btn-register {
-      font-size: $font-size-small; 
-    }
-  }
-
-  .toggle-password {
-    width: 35px; 
   }
 }

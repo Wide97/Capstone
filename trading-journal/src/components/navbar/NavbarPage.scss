@@ -1,21 +1,23 @@
 @import '../../styles/variables.scss';
 
 .navbar-animated {
-  background-color: $div-primary; 
-  transition: transform 0.3s ease, background-color 0.3s ease;
+  background-color: $div-primary;
+  transition: transform 0.3s ease, opacity 0.3s ease, background-color 0.3s ease;
   padding: $spacing-small $spacing-medium;
+  opacity: 1;
 
   &.visible {
     transform: translateY(0);
+    opacity: 1;
   }
 
   &.hidden {
     transform: translateY(-100%);
+    opacity: 0;
   }
 
   box-shadow: $box-shadow-light;
 }
-
 
 .navbar-brand {
   font-family: $font-primary;
@@ -26,10 +28,8 @@
 
   img {
     margin-right: $spacing-small;
-    width: auto; 
-    height: 50px; 
+    height: 50px;
     object-fit: contain;
-    max-width: 100%; 
   }
 
   &:hover {
@@ -37,8 +37,6 @@
     @include hover-scale;
   }
 }
-
-
 
 .nav-link {
   font-family: $font-secondary;
@@ -48,8 +46,13 @@
   transition: color 0.3s ease, transform 0.3s ease;
 
   &:hover {
-    color: $button-color; 
+    color: $button-color;
     transform: scale(1.1);
+  }
+
+  &:focus {
+    outline: 2px solid $button-hover-color;
+    outline-offset: 2px;
   }
 
   &:active {
@@ -57,12 +60,11 @@
   }
 }
 
-
 .navbar-toggler {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  width: 35px; 
+  width: 35px;
   height: 25px;
   cursor: pointer;
   border: none;
@@ -70,11 +72,10 @@
 
   span {
     display: block;
-    height: 4px; // Spessore maggiore
-    background-color: $button-color; 
+    height: 4px;
+    background-color: $button-color;
     border-radius: 2px;
     transition: all 0.3s ease;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3); 
 
     &:nth-child(1) {
       transform-origin: top left;
@@ -98,14 +99,9 @@
       transform: rotate(-45deg);
     }
   }
-
-  &:hover span {
-    background-color: lighten($button-color, 10%); 
-  }
 }
 
-
-@media (max-width: $breakpoint-md) {
+@include respond-to(sm) {
   .navbar-animated {
     padding: $spacing-small;
   }
