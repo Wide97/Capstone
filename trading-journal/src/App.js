@@ -7,13 +7,16 @@ import UserPage from "./components/userpage/UserPage";
 import UserAnalytics from "./components/useranalytics/UserAnalytics";
 import UserReport from "./components/userreport/UserReport";
 import UserJournal from "./components/userjournal/UserJournal";
-import UserProfile from "./components/userprofile/UserProfile"; 
+import UserProfile from "./components/userprofile/UserProfile";
 import UserStorico from "./components/userstorico/UserStorico";
-
+import DynamicBackground from "./components/dynamic-bg/DynamicBackground";
 
 function App() {
   return (
-      <Router>
+    <Router>
+      {/* Sfondo dinamico visibile su tutte le pagine */}
+      <DynamicBackground />
+      <div style={{ position: "relative", zIndex: 1 }}>
         <Routes>
           <Route path="/" element={<Homepage />} />
           <Route path="/login" element={<PageLogin />} />
@@ -23,11 +26,13 @@ function App() {
           <Route path="/useranalytics" element={<UserAnalytics />} />
           <Route path="/userreport" element={<UserReport />} />
           <Route path="/userprofile" element={<UserProfile />} />
-          <Route path="/userstorico" element={<UserStorico />} /> 
+          <Route path="/userstorico" element={<UserStorico />} />
         </Routes>
-      </Router>
+      </div>
+    </Router>
   );
 }
 
 export default App;
+
 

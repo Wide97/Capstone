@@ -2,7 +2,6 @@
 
 /* Container principale della UserPage */
 .userpage-container {
-  background-color: $background-body;
   color: $text-paragraph;
   min-height: 100vh;
 }
@@ -133,8 +132,9 @@
   }
 
   .video-description {
-    font-size: $font-size-body;
-    color: $text-paragraph;
+    font-size: $font-size-h5;
+    font-weight: bold;
+    color: $button-color;
     margin-top: $spacing-small;
   }
 }

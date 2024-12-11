@@ -166,9 +166,7 @@ const RegisterPage = () => {
                   onClick={() => setShowPassword(!showPassword)}
                 >
                   <i
-                    className={`bi ${
-                      showPassword ? "bi-eye-slash" : "bi-eye"
-                    }`}
+                    className={`bi ${showPassword ? "bi-eye-slash" : "bi-eye"}`}
                   ></i>
                 </button>
               </div>

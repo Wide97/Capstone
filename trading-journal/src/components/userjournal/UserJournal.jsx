@@ -7,6 +7,7 @@ import { getValutaUtente } from "../utils/apiValuta";
 import { ricalcolaCapitale } from "../utils/apiCapitale";
 import LoadingSpinner from "../spinner/LoadingSpinner";
 
+
 const UserJournal = () => {
   const [userData, setUserData] = useState({});
   const [currencySymbol, setCurrencySymbol] = useState("");

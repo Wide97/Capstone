@@ -167,9 +167,7 @@ const UserPage = () => {
             {/* Sezione per visualizzare il capitale iniziale */}
             <div className="col-md-6 mb-4 spacing">
               <div className="form-group text-center">
-                <label className="capitale-label2">
-                  Capitale Iniziale:
-                </label>
+                <label className="capitale-label2">Capitale Iniziale:</label>
                 <div className="capitale-value mt-2">
                   {capitaleIniziale
                     ? `${capitaleIniziale} ${userData?.valuta?.simbolo || ""}`

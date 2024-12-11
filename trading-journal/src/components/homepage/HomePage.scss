@@ -2,7 +2,7 @@
 
 /* Hero Section */
 .hero-section {
-  background: $background-body;
+  background-color: rgba(0, 0, 0, 0.5); /* Semi-trasparente */
   color: $title-color;
   text-align: center;
   padding: $spacing-large;
@@ -105,7 +105,6 @@
 
 /* Features Section */
 .features-section {
-  background-color: $background-body;
   color: $text-paragraph;
   padding: $spacing-xlarge 0;
 
@@ -131,7 +130,9 @@
     }
 
     .feature-description {
-      font-size: $font-size-small;
+      font-size: $font-size-h5;
+      color: $button-color;
+      font-weight: bold;
       line-height: 1.4;
     }
 

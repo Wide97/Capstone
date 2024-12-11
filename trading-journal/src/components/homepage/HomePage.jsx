@@ -9,6 +9,7 @@ import AnalyticsVideo from "./Analytics.mp4";
 import HomePageImg from "./HomePage.png";
 import StoricoVideo from "./Storico.mp4";
 
+
 const HomePage = () => {
   return (
     <>

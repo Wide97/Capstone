@@ -1,0 +1,85 @@
+@keyframes gradient-overlay {
+    0% {
+      background-position: 0% 50%;
+    }
+    50% {
+      background-position: 100% 50%;
+    }
+    100% {
+      background-position: 0% 50%;
+    }
+  }
+  
+  .dynamic-background {
+    background-image: 
+      linear-gradient(
+        135deg,
+        rgb(6, 0, 10),
+        rgb(159, 16, 241),
+        rgb(159, 16, 241),
+        rgb(6, 0, 10)
+      ),
+      url('./trading-background.webp'); 
+    background-blend-mode: overlay;
+    background-size: 120% 100%; 
+    background-position: center;
+    background-attachment: fixed; 
+    animation: gradient-overlay 60s linear infinite; 
+    height: 100vh;
+    width: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: -1; 
+    filter: brightness(0.9) contrast(1.1);
+  
+    &::after {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: radial-gradient(
+        circle,
+        rgba(255, 255, 255, 0.2) 0%,
+        rgba(0, 0, 0, 0.4) 100%
+      ); /* Effetto di luce radiale */
+      mix-blend-mode: overlay; 
+      z-index: -1;
+    }
+  
+    &::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-image: radial-gradient(
+        rgba(255, 255, 255, 0.1) 2px,
+        transparent 3px
+      );
+      background-size: 4px 4px;
+      opacity: 0.4;
+      z-index: -1;
+      animation: sparkle 8s linear infinite;
+    }
+  }
+  
+  @keyframes sparkle {
+    0% {
+      opacity: 0.3;
+      transform: translate(0, 0);
+    }
+    50% {
+      opacity: 0.6;
+      transform: translate(2px, 2px);
+    }
+    100% {
+      opacity: 0.3;
+      transform: translate(-2px, -2px);
+    }
+  }
+  
+  
