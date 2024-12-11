@@ -2,7 +2,7 @@
 
 .footer-container {
   background: $gradient-dark-primary;
-  animation: diagonal-scroll 10s infinite;
+  animation: skeleton-animation 50s infinite;
   background-size: 400%, 400%;
   color: $text-paragraph;
   padding: $spacing-large 0;
