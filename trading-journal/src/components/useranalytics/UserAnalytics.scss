@@ -1,11 +1,13 @@
 @import "../../styles/variables.scss";
 
 /* Contenitore principale */
-.container-fluid {
+.container-fluid-an {
   background-color: rgb(0, 0, 0, 0.5);
   backdrop-filter: blur(10px);
   color: $text-paragraph;
   padding: $spacing-large;
+  width: 100%;
+
 
   h2 {
     font-family: $font-primary;

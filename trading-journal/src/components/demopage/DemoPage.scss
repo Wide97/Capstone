@@ -1,0 +1,82 @@
+@import "../../styles/variables.scss";
+
+.demo-page-container {
+  background-color: rgb(0, 0, 0, 0.5);
+  backdrop-filter: blur(10px);
+  color: $text-paragraph;
+  padding: $spacing-large;
+  min-height: 100vh;
+  padding-top: 100px;
+
+  .demo-header {
+    text-align: center;
+    margin-bottom: $spacing-large;
+
+    .demo-title {
+      font-family: $font-primary;
+      font-size: $font-size-h2;
+      color: $button-color;
+      text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.6);
+    }
+
+    .demo-description {
+      font-family: $font-secondary;
+      font-size: $font-size-h5;
+      color: $title-color;
+      margin-top: $spacing-xlarge;
+    }
+  }
+
+  .videos-container {
+    margin-top: $spacing-xxlarge;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: $spacing-large;
+
+    .video-card {
+      background-color: $div-secondary;
+      border-radius: 10px;
+      padding: $spacing-medium;
+      box-shadow: $box-shadow-light;
+      max-width: 300px;
+      text-align: center;
+
+      &:hover {
+        transform: scale(1.05);
+        box-shadow: $box-shadow-heavy;
+      }
+
+      .video-title {
+        font-family: $font-primary;
+        font-size: $font-size-h5;
+        color: $button-color;
+        margin-bottom: $spacing-small;
+      }
+
+      .video-element {
+        width: 100%;
+        border-radius: 10px;
+        margin-bottom: $spacing-small;
+      }
+
+      .video-description {
+        font-family: $font-secondary;
+        font-size: $font-size-small;
+        color: $text-paragraph;
+      }
+    }
+  }
+}
+
+@media (max-width: $breakpoint-md) {
+  .videos-container {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .video-card {
+    width: 100%;
+    max-width: none;
+  }
+}

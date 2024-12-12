@@ -10,6 +10,7 @@ import UserJournal from "./components/userjournal/UserJournal";
 import UserProfile from "./components/userprofile/UserProfile";
 import UserStorico from "./components/userstorico/UserStorico";
 import DynamicBackground from "./components/dynamic-bg/DynamicBackground";
+import DemoPage from "./components/demopage/DemoPage";
 
 function App() {
   return (
@@ -27,6 +28,7 @@ function App() {
           <Route path="/userreport" element={<UserReport />} />
           <Route path="/userprofile" element={<UserProfile />} />
           <Route path="/userstorico" element={<UserStorico />} />
+          <Route path="/demo" element={<DemoPage />} />
         </Routes>
       </div>
     </Router>
