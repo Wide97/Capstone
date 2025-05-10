@@ -1,11 +1,11 @@
-
 export const uploadProfileImage = async (id, formData) => {
   const token = localStorage.getItem("token");
+  const API_BASE_URL = `${process.env.REACT_APP_API_URL}/api/auth`;
 
-  const response = await fetch(`http://localhost:3001/api/auth/${id}/uploadImage`, {
+  const response = await fetch(`${API_BASE_URL}/${id}/uploadImage`, {
     method: "POST",
     headers: {
-      "Authorization": `Bearer ${token}`,
+      Authorization: `Bearer ${token}`,
     },
     body: formData,
   });
@@ -14,10 +14,10 @@ export const uploadProfileImage = async (id, formData) => {
     throw new Error("Errore nel caricamento dell'immagine");
   }
 
-  const updatedProfileResponse = await fetch("http://localhost:3001/api/auth/profile", {
+  const updatedProfileResponse = await fetch(`${API_BASE_URL}/profile`, {
     method: "GET",
     headers: {
-      "Authorization": `Bearer ${token}`,
+      Authorization: `Bearer ${token}`,
     },
   });
 
@@ -27,14 +27,9 @@ export const uploadProfileImage = async (id, formData) => {
 
   const updatedData = await updatedProfileResponse.json();
 
-
   if (updatedData.newToken) {
     localStorage.setItem("token", updatedData.newToken);
   }
 
-  return updatedData; 
+  return updatedData;
 };
-
-
-
-  

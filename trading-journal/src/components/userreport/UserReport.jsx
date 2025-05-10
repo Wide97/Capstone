@@ -5,7 +5,7 @@ import "./UserReport.scss";
 import FooterPage from "../footer/FooterPage";
 import UserNav from "../usernav/UserNav";
 import Chart from "chart.js/auto";
-import LoadingSpinner from "../spinner/LoadingSpinner"; 
+import LoadingSpinner from "../spinner/LoadingSpinner";
 
 const UserReport = () => {
   const [userData, setUserData] = useState({});
@@ -18,8 +18,8 @@ const UserReport = () => {
     strategy: "",
     result: "",
   });
-  const [loading, setLoading] = useState(true); 
-  const [deleting, setDeleting] = useState(false); 
+  const [loading, setLoading] = useState(true);
+  const [deleting, setDeleting] = useState(false);
 
   const chartRef = useRef(null);
   const chartInstanceRef = useRef(null);
@@ -29,12 +29,14 @@ const UserReport = () => {
 
     if (!token) {
       setError("Token non trovato, effettua il login.");
-      setLoading(false); 
+      setLoading(false);
       return;
     }
 
+    const API_BASE_URL = process.env.REACT_APP_API_URL;
+
     Promise.all([
-      fetch("http://localhost:3001/api/auth/profile", {
+      fetch(`${API_BASE_URL}/api/auth/profile`, {
         method: "GET",
         headers: {
           Authorization: `Bearer ${token}`,
@@ -52,7 +54,7 @@ const UserReport = () => {
             setCurrencySymbol(data.user.valuta.simbolo);
           }
           loadTrades(data.user.id);
-          loadCapital(data.user.id, token); 
+          loadCapital(data.user.id, token);
         }),
     ])
       .catch((error) => {
@@ -88,7 +90,7 @@ const UserReport = () => {
 
   const handleDelete = async (tradeId) => {
     const userId = userData.id;
-    setDeleting(true); 
+    setDeleting(true);
 
     try {
       await deleteTrade(tradeId, userId);
@@ -103,7 +105,7 @@ const UserReport = () => {
       console.error("Errore nell'eliminazione del trade:", error);
       setError("Errore nell'eliminazione del trade.");
     } finally {
-      setDeleting(false); 
+      setDeleting(false);
     }
   };
 
@@ -166,7 +168,7 @@ const UserReport = () => {
   }, []);
 
   if (loading) {
-    return <LoadingSpinner />; 
+    return <LoadingSpinner />;
   }
 
   return (

@@ -19,9 +19,10 @@ const UserStorico = () => {
   useEffect(() => {
     const fetchUserData = async () => {
       const token = localStorage.getItem("token");
+      const API_BASE_URL = process.env.REACT_APP_API_URL;
 
       try {
-        const response = await fetch("http://localhost:3001/api/auth/profile", {
+        const response = await fetch(`${API_BASE_URL}/api/auth/profile`, {
           method: "GET",
           headers: {
             Authorization: `Bearer ${token}`,

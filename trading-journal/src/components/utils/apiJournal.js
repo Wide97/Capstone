@@ -1,10 +1,12 @@
 export const createTrade = async (tradeData) => {
   const token = localStorage.getItem("token");
+  const API_BASE_URL = `${process.env.REACT_APP_API_URL}/api/trades`;
+
   try {
-    const response = await fetch("http://localhost:3001/api/trades/createTrade", {
+    const response = await fetch(`${API_BASE_URL}/createTrade`, {
       method: "POST",
       headers: {
-        "Authorization": `Bearer ${token}`,
+        Authorization: `Bearer ${token}`,
         "Content-Type": "application/json",
       },
       body: JSON.stringify(tradeData),
@@ -15,16 +17,9 @@ export const createTrade = async (tradeData) => {
     }
 
     const data = await response.json();
-
     return data;  
   } catch (error) {
     console.error("Errore nella creazione del trade:", error);
     throw error;
   }
 };
-
-
-  
-
-
-  

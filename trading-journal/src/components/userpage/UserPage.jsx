@@ -18,8 +18,9 @@ const UserPage = () => {
   const [newCapitaleIniziale, setNewCapitaleIniziale] = useState("");
   useEffect(() => {
     const token = localStorage.getItem("token");
+    const API_BASE_URL = process.env.REACT_APP_API_URL;
 
-    fetch("http://localhost:3001/api/auth/profile", {
+    fetch(`${API_BASE_URL}/api/auth/profile`, {
       method: "GET",
       headers: {
         Authorization: `Bearer ${token}`,
@@ -55,11 +56,12 @@ const UserPage = () => {
 
   const handleUpdateCurrency = async () => {
     const token = localStorage.getItem("token");
+    const API_BASE_URL = process.env.REACT_APP_API_URL;
 
     try {
       await aggiornaValuta(userData.id, selectedCurrency, token);
 
-      fetch("http://localhost:3001/api/auth/profile", {
+      fetch(`${API_BASE_URL}/api/auth/profile`, {
         method: "GET",
         headers: {
           Authorization: `Bearer ${token}`,
@@ -71,10 +73,7 @@ const UserPage = () => {
         });
 
       setMessage("Valuta aggiornata con successo!");
-
-      setTimeout(() => {
-        setMessage("");
-      }, 1000);
+      setTimeout(() => setMessage(""), 1000);
     } catch (error) {
       setMessage("Errore durante l'aggiornamento della valuta.");
     }

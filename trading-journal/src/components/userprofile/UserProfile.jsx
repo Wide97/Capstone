@@ -4,7 +4,7 @@ import UserNav from "../usernav/UserNav";
 import { uploadProfileImage } from "../utils/apiImage";
 import { updateUser } from "../utils/apiUpadate";
 import "./UserProfile.scss";
-import LoadingSpinner from "../spinner/LoadingSpinner"; 
+import LoadingSpinner from "../spinner/LoadingSpinner";
 
 const UserProfile = () => {
   const [userData, setUserData] = useState({});
@@ -13,13 +13,14 @@ const UserProfile = () => {
   const [newUsername, setNewUsername] = useState("");
   const [newPassword, setNewPassword] = useState("");
   const [imageUrl, setImageUrl] = useState("");
-  const [loading, setLoading] = useState(true); 
-  const [updating, setUpdating] = useState(false); 
+  const [loading, setLoading] = useState(true);
+  const [updating, setUpdating] = useState(false);
 
   useEffect(() => {
     const token = localStorage.getItem("token");
+    const API_BASE_URL = process.env.REACT_APP_API_URL;
 
-    fetch("http://localhost:3001/api/auth/profile", {
+    fetch(`${API_BASE_URL}/api/auth/profile`, {
       method: "GET",
       headers: {
         Authorization: `Bearer ${token}`,
@@ -31,7 +32,7 @@ const UserProfile = () => {
         setImageUrl(data.user.profileImageUrl);
       })
       .catch((error) => console.error("Error fetching user data:", error))
-      .finally(() => setLoading(false)); 
+      .finally(() => setLoading(false));
   }, []);
 
   useEffect(() => {
@@ -45,7 +46,7 @@ const UserProfile = () => {
 
   const handleImageUpload = async (e) => {
     e.preventDefault();
-    setUpdating(true); 
+    setUpdating(true);
 
     const id = userData.id ? userData.id : null;
     if (!id) {
@@ -69,13 +70,13 @@ const UserProfile = () => {
     } catch (error) {
       setMessage("Errore nel caricamento dell'immagine.");
     } finally {
-      setUpdating(false); 
+      setUpdating(false);
     }
   };
 
   const handleUserUpdate = async (e) => {
     e.preventDefault();
-    setUpdating(true); 
+    setUpdating(true);
 
     const id = userData.id ? userData.id : null;
     if (!id) {
@@ -94,7 +95,7 @@ const UserProfile = () => {
     } catch (error) {
       setMessage("Errore nell'aggiornamento dei dati.");
     } finally {
-      setUpdating(false); 
+      setUpdating(false);
     }
   };
 
@@ -110,7 +111,7 @@ const UserProfile = () => {
           <h2 className="title-pp">Profilo Utente</h2>
         </div>
         <div className="profile-content-pp">
-          {updating ? ( 
+          {updating ? (
             <LoadingSpinner />
           ) : (
             <>

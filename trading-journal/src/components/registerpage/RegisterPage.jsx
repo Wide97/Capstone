@@ -69,7 +69,9 @@ const RegisterPage = () => {
     }
 
     try {
-      const response = await fetch("http://localhost:3001/api/auth/register", {
+      const API_BASE_URL = process.env.REACT_APP_API_URL;
+
+      const response = await fetch(`${API_BASE_URL}/api/auth/register`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

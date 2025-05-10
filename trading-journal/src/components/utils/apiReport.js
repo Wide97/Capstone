@@ -1,4 +1,4 @@
-const API_URL = "http://localhost:3001/api"; 
+const API_URL = `${process.env.REACT_APP_API_URL}/api`;
 
 // Funzione per ottenere tutti i trade di un utente
 export const getAllTrades = async (userId) => {
@@ -7,7 +7,7 @@ export const getAllTrades = async (userId) => {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
-        Authorization: `Bearer ${localStorage.getItem("token")}`, 
+        Authorization: `Bearer ${localStorage.getItem("token")}`,
       },
     });
 
@@ -34,22 +34,13 @@ export const deleteTrade = async (tradeId, userId) => {
     });
 
     if (!response.ok) {
-      console.log("Response error:", response); 
+      console.log("Response error:", response);
       throw new Error("Errore nell'eliminazione del trade");
     }
 
     return await response.json();
   } catch (error) {
-    console.error("Errore nella chiamata per eliminare il trade:", error); 
+    console.error("Errore nella chiamata per eliminare il trade:", error);
     throw error;
   }
 };
-
-
-
-
-
-
-
-
-  

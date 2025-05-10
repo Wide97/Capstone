@@ -1,4 +1,4 @@
-const API_BASE_URL = "http://localhost:3001/api/report";
+const API_BASE_URL = `${process.env.REACT_APP_API_URL}/api/report`;
 
 // Funzione per ottenere tutti i report mensili di un utente
 export const getReportMensiliByUserId = async (userId, token) => {
@@ -51,7 +51,6 @@ export const generaReportMensile = async (userId, token) => {
   }
 };
 
-
 export const deleteReportMensile = async (reportId, token) => {
   try {
     const response = await fetch(`${API_BASE_URL}/${reportId}`, {
@@ -74,5 +73,3 @@ export const deleteReportMensile = async (reportId, token) => {
     throw error;
   }
 };
-
-

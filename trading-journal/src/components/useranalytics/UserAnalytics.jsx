@@ -44,7 +44,9 @@ const UserAnalytics = () => {
       return;
     }
 
-    fetch("http://localhost:3001/api/auth/profile", {
+    const API_BASE_URL = process.env.REACT_APP_API_URL;
+
+    fetch(`${API_BASE_URL}/api/auth/profile`, {
       method: "GET",
       headers: {
         Authorization: `Bearer ${token}`,

@@ -33,8 +33,9 @@ const UserJournal = () => {
     const token = localStorage.getItem("token");
     const userId = localStorage.getItem("userId");
 
-    // Otteniamo i dati dell'utente per il profilo
-    fetch("http://localhost:3001/api/auth/profile", {
+    const API_BASE_URL = process.env.REACT_APP_API_URL;
+
+    fetch(`${API_BASE_URL}/api/auth/profile`, {
       method: "GET",
       headers: {
         Authorization: `Bearer ${token}`,
