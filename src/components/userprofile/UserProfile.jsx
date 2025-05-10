@@ -1,8 +1,10 @@
+
 import React, { useState, useEffect } from "react";
 import FooterPage from "../footer/FooterPage.jsx";
 import UserNav from "../usernav/UserNav.jsx";
 import { uploadProfileImage } from "../utils/apiImage";
 import { updateUser } from "../utils/apiUpadate";
+import "./UserProfile.scss";
 import LoadingSpinner from "../spinner/LoadingSpinner";
 
 const UserProfile = () => {
@@ -18,6 +20,7 @@ const UserProfile = () => {
   useEffect(() => {
     const token = localStorage.getItem("token");
     const API_BASE_URL = import.meta.env.VITE_API_URL;
+
 
     fetch(`${API_BASE_URL}/api/auth/profile`, {
       method: "GET",
@@ -47,7 +50,7 @@ const UserProfile = () => {
     e.preventDefault();
     setUpdating(true);
 
-    const id = userData.id;
+    const id = userData.id ? userData.id : null;
     if (!id) {
       alert("ID utente non valido.");
       return;
@@ -60,7 +63,12 @@ const UserProfile = () => {
       const updatedUserData = await uploadProfileImage(id, formData);
       setUserData(updatedUserData.user);
       setImageUrl(updatedUserData.user.profileImageUrl);
+
       setMessage("Immagine caricata con successo.");
+
+      setTimeout(() => {
+        setMessage("");
+      }, 2000);
     } catch (error) {
       setMessage("Errore nel caricamento dell'immagine.");
     } finally {
@@ -72,14 +80,13 @@ const UserProfile = () => {
     e.preventDefault();
     setUpdating(true);
 
-    const id = userData.id;
+    const id = userData.id ? userData.id : null;
     if (!id) {
       alert("ID utente non valido.");
       return;
     }
     if (newPassword.length < 8) {
       setMessage("La password deve contenere almeno 8 caratteri.");
-      setUpdating(false);
       return;
     }
 
@@ -101,76 +108,93 @@ const UserProfile = () => {
   return (
     <>
       <UserNav userData={userData} />
-      <div className="container my-5">
-        <h2 className="text-center mb-4">Profilo Utente</h2>
-        <div className="row g-4">
-          {/* IMMAGINE E UPLOAD */}
-          <div className="col-12 col-md-5 text-center">
-            <img
-              className="img-fluid rounded-circle shadow mb-3"
-              style={{ maxWidth: "250px" }}
-              src={
-                imageUrl ||
-                userData.profileImageUrl ||
-                "https://placedog.net/500/280"
-              }
-              alt="Profilo"
-            />
-            <form onSubmit={handleImageUpload}>
-              <div className="mb-3">
-                <input
-                  type="file"
-                  className="form-control"
-                  accept="image/*"
-                  onChange={(e) => setImageFile(e.target.files[0])}
-                  required
-                />
+      <div className="user-profile-container-pp">
+        <div className="profile-header-pp text-center">
+          <h2 className="title-pp">Profilo Utente</h2>
+        </div>
+        <div className="profile-content-pp">
+          {updating ? (
+            <LoadingSpinner />
+          ) : (
+            <>
+              <div className="profile-image-section-pp">
+                <div className="profile-image-container-pp">
+                  <img
+                    className="profile-image-pp shadow-lg"
+                    src={
+                      imageUrl ||
+                      userData.profileImageUrl ||
+                      "https://placedog.net/500/280"
+                    }
+                    alt="Profilo"
+                  />
+                </div>
+                <form
+                  onSubmit={handleImageUpload}
+                  className="image-upload-form-pp"
+                >
+                  <label htmlFor="fileInput" className="file-label-pp">
+                    Scegli file
+                  </label>
+                  <input
+                    type="file"
+                    id="fileInput"
+                    accept="image/*"
+                    onChange={(e) => setImageFile(e.target.files[0])}
+                    required
+                    className="file-input-pp"
+                  />
+                  <button type="submit" className="btn-upload-pp">
+                    Carica immagine
+                  </button>
+                </form>
               </div>
-              <button className="btn btn-primary" type="submit" disabled={updating}>
-                Carica immagine
-              </button>
-            </form>
-          </div>
-
-          {/* DETTAGLI E FORM UPDATE */}
-          <div className="col-12 col-md-7">
-            <div className="card p-3 shadow-sm mb-4">
-              <p><strong>Username:</strong> {userData.username}</p>
-              <p><strong>Email:</strong> {userData.email}</p>
-              <p><strong>Nome:</strong> {userData.firstName}</p>
-              <p><strong>Cognome:</strong> {userData.lastName}</p>
-              <p>
-                <strong>Immagine Profilo:</strong>{" "}
-                {userData.profileImageUrl ? "Presente" : "Nessuna immagine"}
-              </p>
-            </div>
-
-            <form onSubmit={handleUserUpdate}>
-              <div className="mb-3">
-                <label className="form-label">Nuovo Username:</label>
-                <input
-                  type="text"
-                  className="form-control"
-                  value={newUsername}
-                  onChange={(e) => setNewUsername(e.target.value)}
-                />
+              <div className="profile-details-section-pp">
+                <div className="details-card-pp">
+                  <p>
+                    <strong>Username:</strong> {userData.username}
+                  </p>
+                  <p>
+                    <strong>Email:</strong> {userData.email}
+                  </p>
+                  <p>
+                    <strong>Nome:</strong> {userData.firstName}
+                  </p>
+                  <p>
+                    <strong>Cognome:</strong> {userData.lastName}
+                  </p>
+                  <p>
+                    <strong>Immagine Profilo:</strong>{" "}
+                    {userData.profileImageUrl ? "Presente" : "Nessuna immagine"}
+                  </p>
+                </div>
+                <form onSubmit={handleUserUpdate} className="update-form-pp">
+                  <div className="form-group-pp">
+                    <label className="form-label-pp">Nuovo Username:</label>
+                    <input
+                      type="text"
+                      className="form-control-pp"
+                      value={newUsername}
+                      onChange={(e) => setNewUsername(e.target.value)}
+                    />
+                  </div>
+                  <div className="form-group-pp">
+                    <label className="form-label-pp">Nuova Password:</label>
+                    <input
+                      type="password"
+                      className="form-control-pp"
+                      value={newPassword}
+                      onChange={(e) => setNewPassword(e.target.value)}
+                    />
+                  </div>
+                  <button type="submit" className="btn-update-pp">
+                    Aggiorna Dati
+                  </button>
+                </form>
+                {message && <div className="alert-pp mt-3">{message}</div>}
               </div>
-              <div className="mb-3">
-                <label className="form-label">Nuova Password:</label>
-                <input
-                  type="password"
-                  className="form-control"
-                  value={newPassword}
-                  onChange={(e) => setNewPassword(e.target.value)}
-                />
-              </div>
-              <button className="btn btn-success" type="submit" disabled={updating}>
-                Aggiorna Dati
-              </button>
-            </form>
-
-            {message && <div className="alert alert-info mt-3">{message}</div>}
-          </div>
+            </>
+          )}
         </div>
       </div>
       <FooterPage />
