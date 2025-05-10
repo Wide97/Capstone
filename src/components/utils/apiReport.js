@@ -3,7 +3,7 @@ const API_BASE_URL = `${import.meta.env.VITE_API_URL}/api`;
 // Funzione per ottenere tutti i trade di un utente
 export const getAllTrades = async (userId) => {
   try {
-    const response = await fetch(`${API_URL}/trades/user/${userId}/trades`, {
+    const response = await fetch(`${API_BASE_URL}/trades/user/${userId}/trades`, {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
@@ -25,7 +25,7 @@ export const getAllTrades = async (userId) => {
 // Funzione per eliminare un trade
 export const deleteTrade = async (tradeId, userId) => {
   try {
-    const response = await fetch(`${API_URL}/trades/${tradeId}`, {
+    const response = await fetch(`${API_BASE_URL}/trades/${tradeId}`, {
       method: "DELETE",
       headers: {
         "Content-Type": "application/json",
