@@ -1,229 +1,159 @@
 @import "../../styles/variables.scss";
 
-/* Container principale della UserPage */
-.userpage-container {
+.user-profile-container-pp {
   background-color: rgb(0, 0, 0, 0.5);
   backdrop-filter: blur(10px);
   color: $text-paragraph;
-  min-height: 100vh;
-}
+  padding: 150px;
+  min-height: 90vh;
 
-/* Hero Section */
-.hero-section {
-  background: $gradient-dark-primary;
-  animation:animated-gradient 10s infinite;
-  background-size: 200%, 200%;
-  color: $title-color;
-  padding: $spacing-xlarge $spacing-medium;
-  text-align: center;
-  padding-top: 120px;
-
-  .hero-title {
-    font-family: $font-primary;
-    font-size: $font-size-h2;
-    color: $button-color;
-    margin-bottom: $spacing-medium;
-  }
-
-  .hero-description {
-    font-family: $font-secondary;
-    font-size: $font-size-body;
-    margin-bottom: $spacing-medium;
-  }
-}
-
-
-.capitale-valuta-section {
-  
-  .form-group {
-    margin-bottom: $spacing-medium;
-    margin-top: $spacing-xlarge;
-
-    .capitale-label,
-    .currency-label {
-      font-size: $font-size-h3;
-      font-family: $font-primary;
-      font-weight: bold;
-      color: $button-color;
-    }
-
-    .form-control,
-    .form-select {
-      background-color: $div-secondary;
-      color: $title-color;
-      border: none;
-      border-radius: 5px;
-      font-size: $font-size-body;
-      padding: $spacing-small;
-
-      &:focus {
-        outline: none;
-        box-shadow: $box-shadow-light;
-      }
-    }
-
-    .btn-set-capitale,
-    .btn-currency-update {
-      @include button-style($button-color, $button-hover-color);
-      font-size: $font-size-body;
-      width: 100%; 
-      margin-top: $spacing-small;
-      padding: $spacing-small $spacing-medium;
-      border-radius: 5px;
-    }
-
-    .currency-message {
-      color: lighten($title-color, 20%);
-      font-size: $font-size-small;
-      text-align: center;
-    }
-  }
-}
-
-.capitale-label2 {
-  margin-top: $spacing-xlarge;
-  font-family: $font-primary;
-  font-weight: bold;
-  font-size: $font-size-h2;
-  color: $button-color;
-  margin-bottom: $spacing-medium;
-}
-
-.capitale-value {
-  font-family: $font-primary;
-  font-size: $font-size-h1;
-  color: $button-color;
-  font-weight: bold;
-  margin-bottom: $spacing-medium;
-}
-/* Responsività */
-@media (max-width: $breakpoint-md) {
-  .capitale-valuta-section {
-    .form-group {
-      margin-bottom: $spacing-small;
-
-      .btn-set-capitale,
-      .btn-currency-update {
-        font-size: $font-size-small;
-      }
-    }
-  }
-}
-
-
-  /* Bottone per impostare il capitale iniziale */
-  .btn-set-capitale,
-  .btn-currency-update {
-    @include button-style($button-color, $button-hover-color);
-    font-size: $font-size-body;
-    width: 100%; 
-    margin-top: $spacing-small;
-    padding: $spacing-small $spacing-medium;
-    border-radius: 5px;
-  }
-
-
-/* Video Tutorials Section */
-.video-tutorials-section {
-  .responsive-iframe {
-    width: 100%;
-    height: auto;
-    border-radius: 10px;
-    box-shadow: $box-shadow-light;
-    margin-bottom: $spacing-medium;
-
-    &:hover {
-      transform: scale(1.02);
-      box-shadow: $box-shadow-heavy;
-    }
-  }
-
-  .video-description {
-    font-size: $font-size-h5;
-    font-weight: bold;
-    color: $button-color;
-    margin-top: $spacing-small;
-  }
-}
-
-/* Features Section */
-.features-section-up {
-
-  .feature-card {
+  .profile-header-pp {
     background: $gradient-dark-primary;
-    animation:animated-gradient 10s infinite;
+    animation: animated-gradient 10s infinite;
     background-size: 200%, 200%;
-    color: $title-color;
     padding: $spacing-medium;
     border-radius: 10px;
     box-shadow: $box-shadow-light;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    margin: 0 auto $spacing-large auto;
+    max-width: 500px;
+    width: 100%;
+    text-align: center;
 
-    &:hover {
-      transform: translateY(-5px);
-      box-shadow: $box-shadow-heavy;
-    }
-
-    .feature-title {
+    .title-pp {
       font-family: $font-primary;
-      font-size: $font-size-h4;
+      font-size: $font-size-h2;
       color: $button-color;
-      margin-bottom: $spacing-small;
+      text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.6);
     }
+  }
 
-    .feature-description {
-      font-family: $font-secondary;
-      font-size: $font-size-small;
-      margin-bottom: $spacing-medium;
-      color: lighten($title-color, 10%);
-    }
+  .profile-content-pp {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: flex-start;
+    gap: $spacing-large;
+    margin-top: $spacing-xxlarge;
 
-    .btn-feature {
-      @include button-style($button-color, $button-hover-color);
-      font-size: $font-size-small;
-      padding: $spacing-small $spacing-medium;
-      text-transform: uppercase;
+    .profile-image-section-pp {
+      flex: 1 1 250px;
+      max-width: 300px;
       text-align: center;
-      display: block;
-      margin-top: $spacing-small;
+
+      .profile-image-container-pp {
+        margin: 0 auto;
+        width: 150px;
+        height: 150px;
+        overflow: hidden;
+
+        .profile-image-pp {
+          width: 100%;
+          height: 100%;
+          border-radius: 50%;
+          object-fit: cover;
+          box-shadow: $box-shadow-heavy;
+        }
+      }
+
+      .image-upload-form-pp {
+        margin-top: $spacing-medium;
+
+        .file-label-pp {
+          display: block;
+          font-size: $font-size-small;
+          font-weight: bold;
+          color: $button-color;
+          cursor: pointer;
+          margin-bottom: $spacing-small;
+        }
+
+        .file-input-pp {
+          display: none;
+        }
+
+        .btn-upload-pp {
+          @include button-style($button-color, $button-hover-color);
+        }
+      }
+    }
+
+    .profile-details-section-pp {
+      flex: 1 1 400px;
+      max-width: 750px;
+      background: $gradient-dark-alternate;
+      animation: gradient-animation 20s infinite;
+      background-size: 200%, 200%;
+      padding: $spacing-medium;
+      border-radius: 10px;
+      box-shadow: $box-shadow-light;
+
+      .details-card-pp {
+        background: $gradient-dark-primary;
+        animation: gradient-animation 20s infinite;
+        background-size: 200%, 200%;
+        padding: $spacing-medium;
+        border-radius: 10px;
+        color: $title-color;
+        margin-bottom: $spacing-large;
+
+        p {
+          font-size: $font-size-body;
+          margin-bottom: $spacing-small;
+        }
+      }
+
+      .update-form-pp {
+        .form-group-pp {
+          margin-bottom: $spacing-medium;
+
+          .form-label-pp {
+            font-size: $font-size-small;
+            color: $title-color;
+            display: block;
+            margin-bottom: $spacing-small;
+          }
+
+          .form-control-pp {
+            width: 100%;
+            padding: $spacing-small;
+            border: none;
+            border-radius: 5px;
+            box-shadow: $box-shadow-light;
+
+            &:focus {
+              outline: none;
+              border: 1px solid $button-color;
+            }
+          }
+        }
+
+        .btn-update-pp {
+          @include button-style($button-color, $button-hover-color);
+          width: 100%;
+        }
+      }
+
+      .alert-pp {
+        font-size: $font-size-small;
+        padding: $spacing-small;
+        border-radius: 5px;
+
+        &.mt-3 {
+          margin-top: $spacing-medium;
+        }
+      }
     }
   }
 }
 
-/* Responsività */
 @media (max-width: $breakpoint-md) {
-  .hero-title {
-    font-size: $font-size-h3;
+  .profile-content-pp {
+    flex-direction: column;
+    align-items: center;
   }
 
-  .hero-description {
-    font-size: $font-size-small;
-  }
-
-  .currency-label,
-  .capitale-label {
-    font-size: $font-size-body;
-  }
-
-  .capitale-value {
-    font-size: $font-size-h4;
-  }
-
-  .video-description {
-    font-size: 0.875rem;
-  }
-}
-
-@media (max-width: $breakpoint-sm) {
-  .hero-title {
-    font-size: $font-size-h4;
-  }
-
-  .hero-description {
-    font-size: 0.75rem;
-  }
-
-  .capitale-value {
-    font-size: $font-size-h5;
+  .profile-details-section-pp {
+    flex: none;
+    width: 100%;
   }
 }
