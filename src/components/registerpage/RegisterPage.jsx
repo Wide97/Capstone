@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import NavbarPage from "../navbar/NavbarPage";
+import NavbarPage from "../navbar/NavbarPage.jsx";
 import "./RegisterPage.scss";
-import FooterPage from "../footer/FooterPage";
+import FooterPage from "../footer/FooterPage.jsx";
 import LoadingSpinner from "../spinner/LoadingSpinner";
 
 const RegisterPage = () => {
@@ -69,7 +69,7 @@ const RegisterPage = () => {
     }
 
     try {
-      const API_BASE_URL = process.env.REACT_APP_API_URL;
+      const API_BASE_URL = import.meta.env.VITE_API_URL;
 
       const response = await fetch(`${API_BASE_URL}/api/auth/register`, {
         method: "POST",

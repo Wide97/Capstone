@@ -1,4 +1,4 @@
-const BASE_URL = `${process.env.REACT_APP_API_URL}/api/auth`;
+const API_BASE_URL = `${import.meta.env.VITE_API_URL}/api/auth`;
 
 export const login = async (username, password) => {
   try {
@@ -15,10 +15,9 @@ export const login = async (username, password) => {
       throw new Error(errorData.message || "Errore durante il login.");
     }
 
-    const token = await response.text(); 
+    const token = await response.text();
     return token;
   } catch (error) {
-    throw error; 
+    throw error;
   }
 };
-

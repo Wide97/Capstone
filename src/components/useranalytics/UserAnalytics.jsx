@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import { getAllTrades } from "../utils/apiReport";
-import FooterPage from "../footer/FooterPage";
-import UserNav from "../usernav/UserNav";
+import FooterPage from "../footer/FooterPage.jsx";
+import UserNav from "../usernav/UserNav.jsx";
 import Chart from "chart.js/auto";
 import "./UserAnalytics.scss";
 import { getCapitaleIniziale } from "../utils/apiCapitale";
@@ -44,7 +44,8 @@ const UserAnalytics = () => {
       return;
     }
 
-    const API_BASE_URL = process.env.REACT_APP_API_URL;
+   const API_BASE_URL = import.meta.env.VITE_API_URL;
+
 
     fetch(`${API_BASE_URL}/api/auth/profile`, {
       method: "GET",

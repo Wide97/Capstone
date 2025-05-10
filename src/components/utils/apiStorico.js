@@ -1,4 +1,4 @@
-const API_BASE_URL = `${process.env.REACT_APP_API_URL}/api/report`;
+const API_BASE_URL = `${import.meta.env.VITE_API_URL}/api/report`;
 
 // Funzione per ottenere tutti i report mensili di un utente
 export const getReportMensiliByUserId = async (userId, token) => {

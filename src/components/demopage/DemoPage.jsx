@@ -1,7 +1,7 @@
 import React from "react";
 import "./DemoPage.scss";
-import NavbarPage from "../navbar/NavbarPage";
-import FooterPage from "../footer/FooterPage";
+import NavbarPage from "../navbar/NavbarPage.jsx";
+import FooterPage from "../footer/FooterPage.jsx";
 import LoginVideo from "./LoginTutorial.mp4";
 import RegisterVideo from "./RegisterTutorial.mp4";
 import JournalVideo from "./JournalTutorial.mp4";

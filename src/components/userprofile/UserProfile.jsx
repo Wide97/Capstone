@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
-import FooterPage from "../footer/FooterPage";
-import UserNav from "../usernav/UserNav";
+import FooterPage from "../footer/FooterPage.jsx";
+import UserNav from "../usernav/UserNav.jsx";
 import { uploadProfileImage } from "../utils/apiImage";
 import { updateUser } from "../utils/apiUpadate";
 import "./UserProfile.scss";
@@ -18,7 +18,8 @@ const UserProfile = () => {
 
   useEffect(() => {
     const token = localStorage.getItem("token");
-    const API_BASE_URL = process.env.REACT_APP_API_URL;
+    const API_BASE_URL = import.meta.env.VITE_API_URL;
+
 
     fetch(`${API_BASE_URL}/api/auth/profile`, {
       method: "GET",

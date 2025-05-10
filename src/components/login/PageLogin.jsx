@@ -2,8 +2,8 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { login } from "../utils/api";
 import "./PageLogin.scss";
-import NavbarPage from "../navbar/NavbarPage";
-import FooterPage from "../footer/FooterPage";
+import NavbarPage from "../navbar/NavbarPage.jsx";
+import FooterPage from "../footer/FooterPage.jsx";
 import LoadingSpinner from "../spinner/LoadingSpinner";
 
 const PageLogin = () => {

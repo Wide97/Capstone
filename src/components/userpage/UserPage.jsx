@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import FooterPage from "../footer/FooterPage";
+import FooterPage from "../footer/FooterPage.jsx";
 import "./UserPage.scss";
-import UserNav from "../usernav/UserNav";
+import UserNav from "../usernav/UserNav.jsx";
 import tutorialVideo1 from "./Navigazione.mp4";
 import tutorialVideo2 from "./Profilo.mp4";
 import tutorialVideo3 from "./Usage.mp4";
@@ -18,7 +18,8 @@ const UserPage = () => {
   const [newCapitaleIniziale, setNewCapitaleIniziale] = useState("");
   useEffect(() => {
     const token = localStorage.getItem("token");
-    const API_BASE_URL = process.env.REACT_APP_API_URL;
+    const API_BASE_URL = import.meta.env.VITE_API_URL;
+
 
     fetch(`${API_BASE_URL}/api/auth/profile`, {
       method: "GET",
@@ -56,7 +57,8 @@ const UserPage = () => {
 
   const handleUpdateCurrency = async () => {
     const token = localStorage.getItem("token");
-    const API_BASE_URL = process.env.REACT_APP_API_URL;
+    const API_BASE_URL = import.meta.env.VITE_API_URL;
+
 
     try {
       await aggiornaValuta(userData.id, selectedCurrency, token);

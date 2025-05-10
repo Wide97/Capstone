@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { Button, Container, Spinner, Table, Alert } from "react-bootstrap";
 import { Line } from "react-chartjs-2";
-import UserNav from "../usernav/UserNav";
-import FooterPage from "../footer/FooterPage";
+import UserNav from "../usernav/UserNav.jsx";
+import FooterPage from "../footer/FooterPage.jsx";
 import {
   getReportMensiliByUserId,
   generaReportMensile,
@@ -19,7 +19,8 @@ const UserStorico = () => {
   useEffect(() => {
     const fetchUserData = async () => {
       const token = localStorage.getItem("token");
-      const API_BASE_URL = process.env.REACT_APP_API_URL;
+     const API_BASE_URL = import.meta.env.VITE_API_URL;
+
 
       try {
         const response = await fetch(`${API_BASE_URL}/api/auth/profile`, {

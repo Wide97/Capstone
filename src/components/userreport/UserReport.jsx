@@ -2,8 +2,8 @@ import React, { useState, useEffect, useRef } from "react";
 import { getAllTrades, deleteTrade } from "../utils/apiReport";
 import { getCapitaleAttuale } from "../utils/apiCapitale";
 import "./UserReport.scss";
-import FooterPage from "../footer/FooterPage";
-import UserNav from "../usernav/UserNav";
+import FooterPage from "../footer/FooterPage.jsx";
+import UserNav from "../usernav/UserNav.jsx";
 import Chart from "chart.js/auto";
 import LoadingSpinner from "../spinner/LoadingSpinner";
 
@@ -33,7 +33,7 @@ const UserReport = () => {
       return;
     }
 
-    const API_BASE_URL = process.env.REACT_APP_API_URL;
+    const API_BASE_URL = import.meta.env.VITE_API_URL;
 
     Promise.all([
       fetch(`${API_BASE_URL}/api/auth/profile`, {

@@ -1,8 +1,8 @@
 import React from "react";
-import NavbarPage from "../navbar/NavbarPage";
+import NavbarPage from "../navbar/NavbarPage.jsx";
 import "./HomePage.scss";
 import { Container, Row, Col, Button } from "react-bootstrap";
-import FooterPage from "../footer/FooterPage";
+import FooterPage from "../footer/FooterPage.jsx";
 import JournalVideo from "./Journal.mp4";
 import ReportVideo from "./Report.mp4";
 import AnalyticsVideo from "./Analytics.mp4";
