@@ -1,164 +1,70 @@
-# Capstone
+# Getting Started with Create React App
 
+This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-[https://github.com/Wide97/CapstoneBE](https://github.com/Wide97/CapstoneBE/tree/master)
+## Available Scripts
 
+In the project directory, you can run:
 
-# Trading Journal - Capstone Project
+### `npm start`
 
-Benvenuto nel repository del **Trading Journal**, il progetto capstone sviluppato per fornire una piattaforma completa per monitorare, analizzare e ottimizzare le performance di trading.
+Runs the app in the development mode.\
+Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 
-## Descrizione del Progetto
+The page will reload when you make changes.\
+You may also see any lint errors in the console.
 
-Il **Trading Journal** è un'applicazione full-stack progettata per consentire agli utenti di:
-- Registrare i propri trade con dettagli completi.
-- Analizzare le performance attraverso grafici e report dettagliati.
-- Generare uno storico mensile dei risultati.
-- Personalizzare l'applicazione in base alle proprie esigenze, selezionando valute e impostando un capitale iniziale.
+### `npm test`
 
-L'applicazione è stata sviluppata utilizzando **React.js** per il frontend e **Spring Boot** per il backend, con **PostgreSQL** come database.
+Launches the test runner in the interactive watch mode.\
+See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
 
----
+### `npm run build`
 
-## Funzionalità Principali
+Builds the app for production to the `build` folder.\
+It correctly bundles React in production mode and optimizes the build for the best performance.
 
-### **1. Gestione Utente**
-- **Registrazione e Login**: Accesso sicuro tramite autenticazione JWT.
-- **Profilo Utente**:
-  - Modifica username e password.
-  - Caricamento immagine profilo.
-  - Impostazione del capitale iniziale.
-  - Selezione della valuta preferita.
+The build is minified and the filenames include the hashes.\
+Your app is ready to be deployed!
 
-### **2. Gestione dei Trade**
-- **Registrazione dei Trade**: Inserimento dettagliato di ogni operazione, inclusi:
-  - Data e ora di acquisto e vendita.
-  - Leva finanziaria.
-  - Tipo di trade (long/short).
-  - Strategia utilizzata.
-  - Costi e risultati (profitto/perdita).
-- **Modifica ed Eliminazione**: Possibilità di aggiornare o rimuovere trade esistenti.
+See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
-### **3. Analisi e Reporting**
-- **Analytics**: Visualizzazione di grafici e statistiche per monitorare:
-  - Andamento del capitale.
-  - Performance per strategia.
-  - Percentuali di successo.
-- **Report**: Generazione di riepiloghi mensili con profitti, perdite e capitale finale.
+### `npm run eject`
 
-### **4. Storico**
-- Archiviazione di report mensili per un confronto a lungo termine.
-- Filtraggio dei dati per analisi approfondite.
+**Note: this is a one-way operation. Once you `eject`, you can't go back!**
 
-### **5. Demo e Tutorial**
-- Una pagina dedicata con video tutorial che spiegano come utilizzare ogni funzionalità del sito.
+If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
 
----
+Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
 
-## Tecnologie Utilizzate
+You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
 
-### **Frontend**
-- **React.js**
-  - React Router per la navigazione.
-  - SCSS per lo stile, con variabili e mixin centralizzati.
-  - Componenti modulari e responsive.
+## Learn More
 
-### **Backend**
-- **Spring Boot**
-  - API RESTful.
-  - Gestione delle entità tramite Hibernate.
-  - Sicurezza con Spring Security e JWT.
+You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
 
-### **Database**
-- **PostgreSQL**
-  - Schema relazionale ottimizzato per gestire utenti, valute, trade e storico.
+To learn React, check out the [React documentation](https://reactjs.org/).
 
----
+### Code Splitting
 
-## Installazione
+This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
 
-### **Requisiti**
-- Node.js (versione 16 o superiore).
-- Java JDK (versione 17 o superiore).
-- PostgreSQL (versione 14 o superiore).
+### Analyzing the Bundle Size
 
-### **Istruzioni per l'Installazione**
+This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
 
-#### 1. Clona il repository
-```bash
-$ git clone https://github.com/Wide97/Capstone.git
-$ cd Capstone/trading-journal
-```
+### Making a Progressive Web App
 
-#### 2. Configura il Backend
-- Accedi alla cartella `backend`.
-- Configura il file `application.properties` con i dati del tuo database PostgreSQL:
-  ```properties
-  spring.datasource.url=jdbc:postgresql://localhost:5432/trading_journal
-  spring.datasource.username=tuo_username
-  spring.datasource.password=tua_password
-  ```
-- Avvia il server Spring Boot:
-  ```bash
-  $ mvn spring-boot:run
-  ```
+This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
 
-#### 3. Configura il Frontend
-- Accedi alla cartella `frontend`.
-- Installa le dipendenze:
-  ```bash
-  $ npm install
-  ```
-- Avvia il server di sviluppo:
-  ```bash
-  $ npm start
-  ```
+### Advanced Configuration
 
-#### 4. Accedi all'applicazione
-- Visita `http://localhost:3000` nel tuo browser.
+This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
 
----
+### Deployment
 
-## Struttura del Progetto
+This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
 
-### **Frontend**
-- `src/components`: Contiene tutti i componenti React principali, inclusi:
-  - **Homepage**: Pagina iniziale.
-  - **UserProfile**: Gestione del profilo utente.
-  - **UserJournal**: Registrazione e modifica dei trade.
-  - **UserAnalytics**: Visualizzazione dei grafici.
-  - **UserReport**: Generazione dei report.
-- `src/styles`: File SCSS con stili centralizzati e gradienti animati.
+### `npm run build` fails to minify
 
-### **Backend**
-- `src/main/java`: Contiene:
-  - **Entities**: Modelli di dati (Utente, Trade, Valuta, Storico).
-  - **Services**: Logica di business.
-  - **Controllers**: API RESTful.
-  - **Repositories**: Accesso al database tramite Spring Data JPA.
-
----
-
-## Funzionalità Future
-- Aggiungere filtri avanzati per i grafici.
-- Esportazione dei dati in formato CSV o PDF.
-- Supporto per ulteriori valute.
-
----
-
-## Contributi
-Contributi, suggerimenti e feedback sono benvenuti! Sentiti libero di aprire una **issue** o inviare una **pull request**.
-
----
-
-## Autore
-- **Marco Widesott**
-- Email: [mwidesott@gmail.com](mailto:mwidesott@gmail.com)
-- LinkedIn: [linkedin.com/in/marco-widesott](https://linkedin.com/in/marco-widesott)
-
----
-
-Grazie per aver esplorato il progetto Trading Journal! Se trovi utile questa applicazione, lascia una stella ⭐ su GitHub.
-
-
- 
+This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
