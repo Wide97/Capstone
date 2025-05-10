@@ -13,6 +13,7 @@ import DynamicBackground from "./components/dynamic-bg/DynamicBackground";
 import DemoPage from "./components/demopage/DemoPage";
 
 function App() {
+    console.log("Trigger deploy Vercel"); // 👈 modifica finta
   return (
     <Router>
       {/* Sfondo dinamico visibile su tutte le pagine */}
