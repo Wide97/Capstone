@@ -153,7 +153,7 @@ const UserStorico = () => {
         {userData && <UserNav userData={userData} />}
         <Container className="mt-5 content-wrapper-us">
           <h1 className="text-center titolo-storico-us">
-            Storico Report Mensili
+            STORICO REPORT MENSILI
           </h1>
           {loading && (
             <Spinner

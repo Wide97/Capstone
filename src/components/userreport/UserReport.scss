@@ -15,15 +15,15 @@
     .title-ur {
       font-family: $font-primary;
       font-size: $font-size-h2;
-      color: $button-color;
+      @include bold-gradient-text;
       text-align: center;
-      text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.6);
+      font-weight: bolder;
     }
   }
 
   .capital-container-ur {
     background: $gradient-dark-primary;
-    animation:animated-gradient 10s infinite;
+    animation: animated-gradient 10s infinite;
     background-size: 200%, 200%;
     color: $title-color;
     padding: $spacing-medium;
@@ -38,9 +38,8 @@
     h4 {
       font-family: $font-primary;
       font-size: $font-size-h2;
-      color: $button-color;
+      @include bold-gradient-text;
       text-align: center;
-      text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.6);
       margin-bottom: 0;
     }
   }
@@ -83,6 +82,7 @@
   .filters-container-ur {
     margin-bottom: $spacing-large;
     margin-top: $spacing-xxlarge;
+
     .filter-label-ur {
       color: $text-muted;
       font-size: $font-size-small;
@@ -151,7 +151,8 @@
 
 @media (max-width: $breakpoint-lg) {
   .stats-container-ur {
-    gap: $spacing-small; /* Riduce il margine tra i box */
+    gap: $spacing-small;
+    /* Riduce il margine tra i box */
   }
 }
 
@@ -160,7 +161,8 @@
     flex-direction: column;
 
     .stat-box-ur {
-      width: 100%; /* Box si allargano a schermi medi */
+      width: 100%;
+      /* Box si allargano a schermi medi */
       margin-bottom: $spacing-medium;
     }
   }

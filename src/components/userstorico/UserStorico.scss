@@ -26,8 +26,9 @@
     .titolo-storico-us {
       font-family: $font-primary;
       font-size: $font-size-h2;
-      color: $button-color;
+      @include bold-gradient-text;
       margin-bottom: $spacing-large;
+      font-weight: bolder;
   
       @include respond-to(md) {
         font-size: $font-size-h3;

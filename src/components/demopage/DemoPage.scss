@@ -15,8 +15,8 @@
     .demo-title {
       font-family: $font-primary;
       font-size: $font-size-h2;
-      color: $button-color;
-      text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.6);
+      @include bold-gradient-text;
+      font-weight: bolder;
     }
 
     .demo-description {

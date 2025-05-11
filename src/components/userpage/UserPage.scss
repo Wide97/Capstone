@@ -141,7 +141,7 @@
   .video-description {
     font-size: $font-size-h5;
     font-weight: bold;
-    color: $button-color;
+    color: $text-paragraph;
     margin-top: $spacing-small;
   }
 }
@@ -167,7 +167,7 @@
     .feature-title {
       font-family: $font-primary;
       font-size: $font-size-h4;
-      color: $button-color;
+      @include bold-gradient-text;
       margin-bottom: $spacing-small;
     }
 

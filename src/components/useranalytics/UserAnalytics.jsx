@@ -637,7 +637,7 @@ const UserAnalytics = () => {
     <>
       <UserNav userData={userData} />
       <div className="container-fluid-an me-5">
-        <h2 className="text-center mb-4 journal-title">Analytics</h2>
+        <h2 className="text-center mb-4 journal-title">ANALYTICS</h2>
         {error && <div className="alert alert-danger">{error}</div>}
         {loading && <LoadingSpinner />}
         {!performanceData && !error && (
