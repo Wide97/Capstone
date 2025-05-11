@@ -1,159 +1,229 @@
 @import "../../styles/variables.scss";
 
-.user-profile-container-pp {
+/* Container principale della UserPage */
+.userpage-container {
   background-color: rgb(0, 0, 0, 0.5);
   backdrop-filter: blur(10px);
   color: $text-paragraph;
-  padding: 150px;
-  min-height: 90vh;
+  min-height: 100vh;
+}
 
-  .profile-header-pp {
-    background: $gradient-dark-primary;
-    animation: animated-gradient 10s infinite;
-    background-size: 200%, 200%;
-    padding: $spacing-medium;
-    border-radius: 10px;
-    box-shadow: $box-shadow-light;
-    margin: 0 auto $spacing-large auto;
-    max-width: 500px;
-    width: 100%;
-    text-align: center;
+/* Hero Section */
+.hero-section {
+  background: $gradient-dark-primary;
+  animation:animated-gradient 10s infinite;
+  background-size: 200%, 200%;
+  color: $title-color;
+  padding: $spacing-xlarge $spacing-medium;
+  text-align: center;
+  padding-top: 120px;
 
-    .title-pp {
-      font-family: $font-primary;
-      font-size: $font-size-h2;
-      color: $button-color;
-      text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.6);
-    }
+  .hero-title {
+    font-family: $font-primary;
+    font-size: $font-size-h2;
+    color: $button-color;
+    margin-bottom: $spacing-medium;
   }
 
-  .profile-content-pp {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    align-items: flex-start;
-    gap: $spacing-large;
-    margin-top: $spacing-xxlarge;
+  .hero-description {
+    font-family: $font-secondary;
+    font-size: $font-size-body;
+    margin-bottom: $spacing-medium;
+  }
+}
 
-    .profile-image-section-pp {
-      flex: 1 1 250px;
-      max-width: 300px;
-      text-align: center;
 
-      .profile-image-container-pp {
-        margin: 0 auto;
-        width: 150px;
-        height: 150px;
-        overflow: hidden;
+.capitale-valuta-section {
+  
+  .form-group {
+    margin-bottom: $spacing-medium;
+    margin-top: $spacing-xlarge;
 
-        .profile-image-pp {
-          width: 100%;
-          height: 100%;
-          border-radius: 50%;
-          object-fit: cover;
-          box-shadow: $box-shadow-heavy;
-        }
-      }
+    .capitale-label,
+    .currency-label {
+      font-size: $font-size-h3;
+      font-family: $font-primary;
+      font-weight: bold;
+      color: $button-color;
+    }
 
-      .image-upload-form-pp {
-        margin-top: $spacing-medium;
+    .form-control,
+    .form-select {
+      background-color: $div-secondary;
+      color: $title-color;
+      border: none;
+      border-radius: 5px;
+      font-size: $font-size-body;
+      padding: $spacing-small;
 
-        .file-label-pp {
-          display: block;
-          font-size: $font-size-small;
-          font-weight: bold;
-          color: $button-color;
-          cursor: pointer;
-          margin-bottom: $spacing-small;
-        }
-
-        .file-input-pp {
-          display: none;
-        }
-
-        .btn-upload-pp {
-          @include button-style($button-color, $button-hover-color);
-        }
+      &:focus {
+        outline: none;
+        box-shadow: $box-shadow-light;
       }
     }
 
-    .profile-details-section-pp {
-      flex: 1 1 400px;
-      max-width: 750px;
-      background: $gradient-dark-alternate;
-      animation: gradient-animation 20s infinite;
-      background-size: 200%, 200%;
-      padding: $spacing-medium;
-      border-radius: 10px;
-      box-shadow: $box-shadow-light;
+    .btn-set-capitale,
+    .btn-currency-update {
+      @include button-style($button-color, $button-hover-color);
+      font-size: $font-size-body;
+      width: 100%; 
+      margin-top: $spacing-small;
+      padding: $spacing-small $spacing-medium;
+      border-radius: 5px;
+    }
 
-      .details-card-pp {
-        background: $gradient-dark-primary;
-        animation: gradient-animation 20s infinite;
-        background-size: 200%, 200%;
-        padding: $spacing-medium;
-        border-radius: 10px;
-        color: $title-color;
-        margin-bottom: $spacing-large;
+    .currency-message {
+      color: lighten($title-color, 20%);
+      font-size: $font-size-small;
+      text-align: center;
+    }
+  }
+}
 
-        p {
-          font-size: $font-size-body;
-          margin-bottom: $spacing-small;
-        }
-      }
+.capitale-label2 {
+  margin-top: $spacing-xlarge;
+  font-family: $font-primary;
+  font-weight: bold;
+  font-size: $font-size-h2;
+  color: $button-color;
+  margin-bottom: $spacing-medium;
+}
 
-      .update-form-pp {
-        .form-group-pp {
-          margin-bottom: $spacing-medium;
+.capitale-value {
+  font-family: $font-primary;
+  font-size: $font-size-h1;
+  color: $button-color;
+  font-weight: bold;
+  margin-bottom: $spacing-medium;
+}
+/* Responsività */
+@media (max-width: $breakpoint-md) {
+  .capitale-valuta-section {
+    .form-group {
+      margin-bottom: $spacing-small;
 
-          .form-label-pp {
-            font-size: $font-size-small;
-            color: $title-color;
-            display: block;
-            margin-bottom: $spacing-small;
-          }
-
-          .form-control-pp {
-            width: 100%;
-            padding: $spacing-small;
-            border: none;
-            border-radius: 5px;
-            box-shadow: $box-shadow-light;
-
-            &:focus {
-              outline: none;
-              border: 1px solid $button-color;
-            }
-          }
-        }
-
-        .btn-update-pp {
-          @include button-style($button-color, $button-hover-color);
-          width: 100%;
-        }
-      }
-
-      .alert-pp {
+      .btn-set-capitale,
+      .btn-currency-update {
         font-size: $font-size-small;
-        padding: $spacing-small;
-        border-radius: 5px;
-
-        &.mt-3 {
-          margin-top: $spacing-medium;
-        }
       }
     }
   }
 }
 
-@media (max-width: $breakpoint-md) {
-  .profile-content-pp {
-    flex-direction: column;
-    align-items: center;
+
+  /* Bottone per impostare il capitale iniziale */
+  .btn-set-capitale,
+  .btn-currency-update {
+    @include button-style($button-color, $button-hover-color);
+    font-size: $font-size-body;
+    width: 100%; 
+    margin-top: $spacing-small;
+    padding: $spacing-small $spacing-medium;
+    border-radius: 5px;
   }
 
-  .profile-details-section-pp {
-    flex: none;
+
+/* Video Tutorials Section */
+.video-tutorials-section {
+  .responsive-iframe {
     width: 100%;
+    height: auto;
+    border-radius: 10px;
+    box-shadow: $box-shadow-light;
+    margin-bottom: $spacing-medium;
+
+    &:hover {
+      transform: scale(1.02);
+      box-shadow: $box-shadow-heavy;
+    }
+  }
+
+  .video-description {
+    font-size: $font-size-h5;
+    font-weight: bold;
+    color: $button-color;
+    margin-top: $spacing-small;
+  }
+}
+
+/* Features Section */
+.features-section-up {
+
+  .feature-card {
+    background: $gradient-dark-primary;
+    animation:animated-gradient 10s infinite;
+    background-size: 200%, 200%;
+    color: $title-color;
+    padding: $spacing-medium;
+    border-radius: 10px;
+    box-shadow: $box-shadow-light;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+
+    &:hover {
+      transform: translateY(-5px);
+      box-shadow: $box-shadow-heavy;
+    }
+
+    .feature-title {
+      font-family: $font-primary;
+      font-size: $font-size-h4;
+      color: $button-color;
+      margin-bottom: $spacing-small;
+    }
+
+    .feature-description {
+      font-family: $font-secondary;
+      font-size: $font-size-small;
+      margin-bottom: $spacing-medium;
+      color: lighten($title-color, 10%);
+    }
+
+    .btn-feature {
+      @include button-style($button-color, $button-hover-color);
+      font-size: $font-size-small;
+      padding: $spacing-small $spacing-medium;
+      text-transform: uppercase;
+      text-align: center;
+      display: block;
+      margin-top: $spacing-small;
+    }
+  }
+}
+
+/* Responsività */
+@media (max-width: $breakpoint-md) {
+  .hero-title {
+    font-size: $font-size-h3;
+  }
+
+  .hero-description {
+    font-size: $font-size-small;
+  }
+
+  .currency-label,
+  .capitale-label {
+    font-size: $font-size-body;
+  }
+
+  .capitale-value {
+    font-size: $font-size-h4;
+  }
+
+  .video-description {
+    font-size: 0.875rem;
+  }
+}
+
+@media (max-width: $breakpoint-sm) {
+  .hero-title {
+    font-size: $font-size-h4;
+  }
+
+  .hero-description {
+    font-size: 0.75rem;
+  }
+
+  .capitale-value {
+    font-size: $font-size-h5;
   }
 }
