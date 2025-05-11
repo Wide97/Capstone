@@ -1,21 +1,33 @@
 // Centralized Variables and Styles for the Project
 
-// Colori principali basati su finanza
-$background-body: #0f1a2b; // Blu navy molto scuro, professionale e rilassante
-$button-color: #1e88e5; // Blu finanza per i bottoni
-$button-hover-color: #1565c0; // Blu più scuro all'hover
-$div-primary: #1b2a41; // Blu navy per contenitori principali
-$div-secondary: #31465f; // Blu-grigio più chiaro per contenitori secondari
-$alert-color: #d32f2f; // Rosso soft per alert (es. stop loss)
-$table-color: #e3ecf3; // Azzurro/grigio chiaro per tabelle
-$text-paragraph: #e0e0e0; // Grigio chiaro per i testi
-$title-color: #ffffff; // Bianco per i titoli
-$text-muted: #a0a0a0; // Grigio medio per testi disabilitati
+// ─────────── 🎨 Color Variables (Finance-inspired) ───────────
 
-// ─────────── 🌈 Gradienti Animati Standard ───────────
-$gradient-dark-primary: linear-gradient(45deg, #1b2a41, #223c5c, #2e5a88, #31465f);
-$gradient-dark-secondary: linear-gradient(135deg, #20344c, #2a4d6f, #376b97, #31465f);
-$gradient-dark-alternate: linear-gradient(45deg, #253b58, #345b80, #427aa1, #31465f);
+// Background generale e contenitori
+$background-body: #415a77; // yinmn-blue: intensità media per un look calmo e professionale
+$div-primary: #1b263b; // oxford-blue: contenitori principali
+$div-secondary: #0d1b2a; // rich-black: contenitori secondari più scuri
+
+// Bottoni e interazioni
+$button-color: #0d1b2a; // rich-black: bottoni principali (molto dark)
+$button-hover-color: #1b263b; // oxford-blue: hover leggermente più chiaro
+
+// Testo
+$title-color: #ffffff; // Titoli in bianco pieno
+$text-paragraph: #e0e1dd; // platinum: testi principali, chiaro ma non abbagliante
+$text-muted: #778da9; // silver-lake-blue: per placeholder o testo disattivato
+
+// Tabelle e card
+$table-color: #e0e1dd; // platinum: sfondo tabelle/card
+
+// Alert (mantieni rossi per contrasto)
+$alert-color: #d32f2f; // rosso per errori o stop loss
+$success-color: #2e7d32; // verde per profitto o successi
+$warning-color: #f9a825; // giallo ambrato per warning
+
+// Gradienti raffinati
+$gradient-dark-primary: linear-gradient(45deg, #0d1b2a, #1b263b, #415a77);
+$gradient-dark-secondary: linear-gradient(135deg, #1b263b, #415a77, #778da9);
+$gradient-dark-alternate: linear-gradient(45deg, #1b263b, #415a77, #e0e1dd);
 
 // Animazioni Gradienti
 @keyframes animated-gradient {
