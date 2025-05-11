@@ -203,7 +203,7 @@ const UserReport = () => {
               {(
                 (trades.filter((trade) => trade.result === "PROFIT").length /
                   trades.length) *
-                  100 || 0
+                100 || 0
               ).toFixed(2)}
               %
             </p>
@@ -255,46 +255,48 @@ const UserReport = () => {
           </div>
         </div>
         {/* Tabella */}
-        <div className="table-container-ur table-responsive-ur">
-          <table className="table-ur">
-            <thead>
-              <tr>
-                <th>Data di Acquisto</th>
-                <th>Data di Vendita</th>
-                <th>Asset</th>
-                <th>Posizione</th>
-                <th>Leva</th>
-                <th>Strategia</th>
-                <th>Tipo di Trade</th>
-                <th>Esito</th>
-                <th>Profitto/Perdita ({currencySymbol})</th>
-                <th>Azioni</th>
-              </tr>
-            </thead>
-            <tbody>
-              {filteredTrades.map((trade) => (
-                <tr key={trade.tradeId}>
-                  <td>{trade.purchaseDate}</td>
-                  <td>{trade.saleDate}</td>
-                  <td>{trade.asset}</td>
-                  <td>{trade.positionSize}</td>
-                  <td>{trade.leverage}</td>
-                  <td>{trade.strategy}</td>
-                  <td>{trade.tradeType}</td>
-                  <td>{trade.result}</td>
-                  <td>{`${trade.profitLoss} ${currencySymbol}`}</td>
-                  <td>
-                    <button
-                      onClick={() => handleDelete(trade.tradeId)}
-                      className="btn-delete-ur"
-                    >
-                      Elimina
-                    </button>
-                  </td>
+        <div className="table-container-ur">
+          <div className="table-wrapper-ur">
+            <table className="table-ur">
+              <thead>
+                <tr>
+                  <th>Data di Acquisto</th>
+                  <th>Data di Vendita</th>
+                  <th>Asset</th>
+                  <th>Posizione</th>
+                  <th>Leva</th>
+                  <th>Strategia</th>
+                  <th>Tipo di Trade</th>
+                  <th>Esito</th>
+                  <th>Profitto/Perdita ({currencySymbol})</th>
+                  <th>Azioni</th>
                 </tr>
-              ))}
-            </tbody>
-          </table>
+              </thead>
+              <tbody>
+                {filteredTrades.map((trade) => (
+                  <tr key={trade.tradeId}>
+                    <td>{trade.purchaseDate}</td>
+                    <td>{trade.saleDate}</td>
+                    <td>{trade.asset}</td>
+                    <td>{trade.positionSize}</td>
+                    <td>{trade.leverage}</td>
+                    <td>{trade.strategy}</td>
+                    <td>{trade.tradeType}</td>
+                    <td>{trade.result}</td>
+                    <td>{`${trade.profitLoss} ${currencySymbol}`}</td>
+                    <td>
+                      <button
+                        onClick={() => handleDelete(trade.tradeId)}
+                        className="btn-delete-ur"
+                      >
+                        Elimina
+                      </button>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
         </div>
         {/* Grafico */}
         <div className="chart-container-ur">
