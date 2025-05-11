@@ -44,7 +44,7 @@
       font-size: $font-size-h3;
       font-family: $font-primary;
       font-weight: bold;
-      color: $button-color;
+      @include bold-gradient-text;
     }
 
     .form-control,
@@ -85,14 +85,14 @@
   font-family: $font-primary;
   font-weight: bold;
   font-size: $font-size-h2;
-  color: $button-color;
+  @include bold-gradient-text;
   margin-bottom: $spacing-medium;
 }
 
 .capitale-value {
   font-family: $font-primary;
   font-size: $font-size-h1;
-  color: $button-color;
+  @include bold-gradient-text;
   font-weight: bold;
   margin-bottom: $spacing-medium;
 }

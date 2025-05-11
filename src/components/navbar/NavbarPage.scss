@@ -1,7 +1,7 @@
 @import '../../styles/variables.scss';
 
 .navbar-animated {
-  background: $gradient-dark-primary;
+  background: $div-primary;
   background-size: 400%, 400%;
   transition: transform 0.3s ease, background-color 0.3s ease;
   padding: $spacing-small $spacing-medium;
