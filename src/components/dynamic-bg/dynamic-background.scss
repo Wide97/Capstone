@@ -10,16 +10,16 @@
     }
   }
   
-  .dynamic-background {
-    background-image: 
-      linear-gradient(
-        135deg,
-        rgb(6, 0, 10),
-        rgb(159, 16, 241),
-        rgb(159, 16, 241),
-        rgb(6, 0, 10)
-      ),
-      url('./trading-background.webp'); 
+ .dynamic-background {
+  background-image: 
+    linear-gradient(
+      135deg,
+      rgba(65, 90, 119, 0.85),      // #415a77 yinmn-blue con opacità
+      rgba(119, 141, 169, 0.85),    // #778da9 silver lake blue
+      rgba(119, 141, 169, 0.85),    // ripetuto per effetto omogeneo
+      rgba(65, 90, 119, 0.85)       // ritorno alla base
+    ),
+    url('./trading-background.webp');
       
     background-blend-mode: overlay;
     background-size: 120% 100%; 
