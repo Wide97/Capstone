@@ -1,21 +1,21 @@
 // Centralized Variables and Styles for the Project
 
-// Color Variables
-$background-body: #121212; // Nero tendente al grigio per il background del body.
-$button-color: #ffa500; // Colore arancione per i bottoni.
-$button-hover-color: #d8b4ff; // Viola chiaro all'hover.
-$div-primary: #4b0082; // Viola scuro per i div principali.
-$div-secondary: #8b00ff; // Viola più chiaro per i div secondari.
-$alert-color: #dc3545; // Rosso per gli alert.
-$table-color: #ffe5b4; // Tonalità arancione chiaro per le tabelle.
-$text-paragraph: #e0e0e0; // Grigio chiaro per i paragrafi.
-$title-color: #ffffff; // Bianco per i titoli.
-$text-muted: #aaaaaa; // Testi secondari o disabilitati.
+// Colori principali basati su finanza
+$background-body: #0f1a2b; // Blu navy molto scuro, professionale e rilassante
+$button-color: #1e88e5; // Blu finanza per i bottoni
+$button-hover-color: #1565c0; // Blu più scuro all'hover
+$div-primary: #1b2a41; // Blu navy per contenitori principali
+$div-secondary: #31465f; // Blu-grigio più chiaro per contenitori secondari
+$alert-color: #d32f2f; // Rosso soft per alert (es. stop loss)
+$table-color: #e3ecf3; // Azzurro/grigio chiaro per tabelle
+$text-paragraph: #e0e0e0; // Grigio chiaro per i testi
+$title-color: #ffffff; // Bianco per i titoli
+$text-muted: #a0a0a0; // Grigio medio per testi disabilitati
 
-// Gradienti Animati Standard
-$gradient-dark-primary: linear-gradient(45deg, #2b0048, #3c005e, #4b0082, #32005b);
-$gradient-dark-secondary: linear-gradient(135deg, #2e003e, #40005e, #520080, #3d0068);
-$gradient-dark-alternate: linear-gradient(45deg, #30004a, #450065, #5a0080, #3b0055);
+// ─────────── 🌈 Gradienti Animati Standard ───────────
+$gradient-dark-primary: linear-gradient(45deg, #1b2a41, #223c5c, #2e5a88, #31465f);
+$gradient-dark-secondary: linear-gradient(135deg, #20344c, #2a4d6f, #376b97, #31465f);
+$gradient-dark-alternate: linear-gradient(45deg, #253b58, #345b80, #427aa1, #31465f);
 
 // Animazioni Gradienti
 @keyframes animated-gradient {
