@@ -23,7 +23,7 @@ const HomePage = () => {
           <Row className="text-center hero-content">
             <Col>
               <h1 className="hero-title">
-                Welcome to <span className="highlight">Trading Journal</span>
+                <span className="highlight">WELCOME TO </span><span className="highlight">TRADING JOURNAL</span>
               </h1>
               <p className="hero-description">
                 Il tuo strumento definitivo per monitorare, analizzare e

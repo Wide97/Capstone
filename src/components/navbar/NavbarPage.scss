@@ -22,7 +22,7 @@
 .navbar-brand {
   font-family: $font-primary;
   font-size: $font-size-h3;
-  color: $title-color;
+  @include bold-gradient-text;
   display: flex;
   align-items: center;
 

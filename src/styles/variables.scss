@@ -7,6 +7,7 @@ $background-body: #415a77; // yinmn-blue: intensità media per un look calmo e p
 $div-primary: #1b263b; // oxford-blue: contenitori principali
 $div-secondary: #0d1b2a; // rich-black: contenitori secondari più scuri
 
+
 // Bottoni e interazioni
 $button-color: #0d1b2a; // rich-black: bottoni principali (molto dark)
 $button-hover-color: #1b263b; // oxford-blue: hover leggermente più chiaro
@@ -15,6 +16,7 @@ $button-hover-color: #1b263b; // oxford-blue: hover leggermente più chiaro
 $title-color: #ffffff; // Titoli in bianco pieno
 $text-paragraph: #e0e1dd; // platinum: testi principali, chiaro ma non abbagliante
 $text-muted: #778da9; // silver-lake-blue: per placeholder o testo disattivato
+$sotto-paragrafo: #58648a; 
 
 // Tabelle e card
 $table-color: #e0e1dd; // platinum: sfondo tabelle/card
@@ -28,6 +30,7 @@ $warning-color: #f9a825; // giallo ambrato per warning
 $gradient-dark-primary: linear-gradient(45deg, #0d1b2a, #1b263b, #415a77);
 $gradient-dark-secondary: linear-gradient(135deg, #1b263b, #415a77, #778da9);
 $gradient-dark-alternate: linear-gradient(45deg, #1b263b, #415a77, #e0e1dd);
+$bg-sottosezione: #1b263b;
 
 // Animazioni Gradienti
 @keyframes animated-gradient {
@@ -66,8 +69,9 @@ $gradient-dark-alternate: linear-gradient(45deg, #1b263b, #415a77, #e0e1dd);
 
 
 // Font Variables
-$font-primary: 'Teko', sans-serif; // Font per i titoli.
-$font-secondary: 'Roboto', sans-serif; // Font per i paragrafi.
+$font-primary: 'Inter', sans-serif; // Font per i titoli, pulito e moderno.
+$font-secondary: 'IBM Plex Sans', sans-serif; // Font per i paragrafi e dati.
+
 
 
 // Typography Sizes
@@ -202,5 +206,20 @@ $gradient-colors: linear-gradient(90deg, $div-primary, $div-secondary, $button-c
     box-shadow: 0 4px 8px rgba($shadow-color, $intensity);
   }
 }
+
+//per i titoli
+$gradient-text-multi: linear-gradient(90deg, #6366f1, #8b5cf6, #ec4899); // viola-rosa come nell'immagine
+
+@mixin bold-gradient-text {
+  background: $gradient-text-multi;
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+  -webkit-text-fill-color: transparent;
+}
+
+
+
+
 
 

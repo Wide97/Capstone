@@ -10,11 +10,10 @@
   h2.footer-brand {
     font-family: $font-primary;
     font-size: $font-size-h4;
-    color: $button-color;
+    @include bold-gradient-text;
     margin-bottom: $spacing-medium;
     text-transform: uppercase;
     letter-spacing: 1px;
-    border-bottom: 2px solid $button-color;
     display: inline-block;
     @include hover-scale(1.05);
   }
@@ -24,6 +23,10 @@
     font-size: $font-size-body;
     line-height: 1.6;
     margin-bottom: $spacing-medium;
+
+    &:hover{
+       @include bold-gradient-text;
+    }
   }
 
   .quick-links {
@@ -35,12 +38,12 @@
 
       a {
         font-family: $font-secondary;
-        color: lighten($text-paragraph, 15%);
+        color: $text-paragraph;
         text-decoration: none;
         transition: color 0.3s ease;
 
         &:hover {
-          color: $button-color;
+           @include bold-gradient-text;
           text-decoration: underline;
         }
       }
@@ -53,7 +56,7 @@
     gap: $spacing-medium;
 
     .social-link {
-      color: lighten($button-color, 10%);
+      @include bold-gradient-text;
       font-size: 1.5rem;
       transition: all 0.3s ease;
       @include hover-shadow(orange, 0.5);
