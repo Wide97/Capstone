@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from "react";
 import FooterPage from "../footer/FooterPage.jsx";
 import UserNav from "../usernav/UserNav.jsx";
@@ -21,27 +20,22 @@ const UserProfile = () => {
     const token = localStorage.getItem("token");
     const API_BASE_URL = import.meta.env.VITE_API_URL;
 
-
     fetch(`${API_BASE_URL}/api/auth/profile`, {
       method: "GET",
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
+      headers: { Authorization: `Bearer ${token}` },
     })
-      .then((response) => response.json())
+      .then((res) => res.json())
       .then((data) => {
         setUserData(data.user);
         setImageUrl(data.user.profileImageUrl);
       })
-      .catch((error) => console.error("Error fetching user data:", error))
+      .catch((err) => console.error("Errore:", err))
       .finally(() => setLoading(false));
   }, []);
 
   useEffect(() => {
     if (message) {
-      const timer = setTimeout(() => {
-        setMessage("");
-      }, 2000);
+      const timer = setTimeout(() => setMessage(""), 2000);
       return () => clearTimeout(timer);
     }
   }, [message]);
@@ -49,27 +43,18 @@ const UserProfile = () => {
   const handleImageUpload = async (e) => {
     e.preventDefault();
     setUpdating(true);
-
-    const id = userData.id ? userData.id : null;
-    if (!id) {
-      alert("ID utente non valido.");
-      return;
-    }
+    const id = userData.id;
+    if (!id) return alert("ID utente non valido.");
 
     const formData = new FormData();
     formData.append("file", imageFile);
 
     try {
-      const updatedUserData = await uploadProfileImage(id, formData);
-      setUserData(updatedUserData.user);
-      setImageUrl(updatedUserData.user.profileImageUrl);
-
-      setMessage("Immagine caricata con successo.");
-
-      setTimeout(() => {
-        setMessage("");
-      }, 2000);
-    } catch (error) {
+      const res = await uploadProfileImage(id, formData);
+      setUserData(res.user);
+      setImageUrl(res.user.profileImageUrl);
+      setMessage("Immagine aggiornata con successo.");
+    } catch {
       setMessage("Errore nel caricamento dell'immagine.");
     } finally {
       setUpdating(false);
@@ -79,121 +64,93 @@ const UserProfile = () => {
   const handleUserUpdate = async (e) => {
     e.preventDefault();
     setUpdating(true);
-
-    const id = userData.id ? userData.id : null;
-    if (!id) {
-      alert("ID utente non valido.");
-      return;
-    }
+    const id = userData.id;
+    if (!id) return alert("ID utente non valido.");
     if (newPassword.length < 8) {
       setMessage("La password deve contenere almeno 8 caratteri.");
+      setUpdating(false);
       return;
     }
 
     try {
-      const updatedData = await updateUser(id, newUsername, newPassword);
-      setUserData(updatedData.user);
+      const res = await updateUser(id, newUsername, newPassword);
+      setUserData(res.user);
       setMessage("Dati aggiornati con successo.");
-    } catch (error) {
+    } catch {
       setMessage("Errore nell'aggiornamento dei dati.");
     } finally {
       setUpdating(false);
     }
   };
 
-  if (loading) {
-    return <LoadingSpinner />;
-  }
+  if (loading) return <LoadingSpinner />;
 
   return (
     <>
       <UserNav userData={userData} />
       <div className="user-profile-container-pp">
-        <div className="profile-header-pp text-center">
-          <h2 className="title-pp">Profilo Utente</h2>
-        </div>
-        <div className="profile-content-pp">
+        <div className="profile-wrapper">
+          <h2 className="title-pp">PROFILO UTENTE</h2>
+
           {updating ? (
             <LoadingSpinner />
           ) : (
-            <>
-              <div className="profile-image-section-pp">
-                <div className="profile-image-container-pp">
-                  <img
-                    className="profile-image-pp shadow-lg"
-                    src={
-                      imageUrl ||
-                      userData.profileImageUrl ||
-                      "https://placedog.net/500/280"
-                    }
-                    alt="Profilo"
-                  />
-                </div>
-                <form
-                  onSubmit={handleImageUpload}
-                  className="image-upload-form-pp"
-                >
-                  <label htmlFor="fileInput" className="file-label-pp">
-                    Scegli file
-                  </label>
+            <div className="row gy-4 justify-content-center">
+              <div className="col-md-4 text-center">
+                <img
+                  className="rounded-circle shadow-lg profile-img mb-3"
+                  src={imageUrl || userData.profileImageUrl || "https://placedog.net/500/280"}
+                  alt="Profilo"
+                />
+                <form onSubmit={handleImageUpload}>
                   <input
                     type="file"
-                    id="fileInput"
+                    className="form-control mb-2"
                     accept="image/*"
                     onChange={(e) => setImageFile(e.target.files[0])}
                     required
-                    className="file-input-pp"
                   />
-                  <button type="submit" className="btn-upload-pp">
-                    Carica immagine
+                  <button type="submit" className="btn btn-dark w-100">
+                    Carica Immagine
                   </button>
                 </form>
               </div>
-              <div className="profile-details-section-pp">
-                <div className="details-card-pp">
-                  <p>
-                    <strong>Username:</strong> {userData.username}
-                  </p>
-                  <p>
-                    <strong>Email:</strong> {userData.email}
-                  </p>
-                  <p>
-                    <strong>Nome:</strong> {userData.firstName}
-                  </p>
-                  <p>
-                    <strong>Cognome:</strong> {userData.lastName}
-                  </p>
-                  <p>
-                    <strong>Immagine Profilo:</strong>{" "}
-                    {userData.profileImageUrl ? "Presente" : "Nessuna immagine"}
-                  </p>
+
+              <div className="col-md-6">
+                <div className="p-4 rounded shadow-sm bg-section mb-4">
+                  <p><strong>Username:</strong> {userData.username}</p>
+                  <p><strong>Email:</strong> {userData.email}</p>
+                  <p><strong>Nome:</strong> {userData.firstName}</p>
+                  <p><strong>Cognome:</strong> {userData.lastName}</p>
+                  <p><strong>Immagine Profilo:</strong> {userData.profileImageUrl ? "Presente" : "Nessuna immagine"}</p>
                 </div>
-                <form onSubmit={handleUserUpdate} className="update-form-pp">
-                  <div className="form-group-pp">
-                    <label className="form-label-pp">Nuovo Username:</label>
+
+                <form onSubmit={handleUserUpdate} className="bg-section p-4 rounded shadow-sm">
+                  <div className="mb-3">
+                    <label className="form-label">Nuovo Username</label>
                     <input
                       type="text"
-                      className="form-control-pp"
+                      className="form-control"
                       value={newUsername}
                       onChange={(e) => setNewUsername(e.target.value)}
                     />
                   </div>
-                  <div className="form-group-pp">
-                    <label className="form-label-pp">Nuova Password:</label>
+                  <div className="mb-3">
+                    <label className="form-label">Nuova Password</label>
                     <input
                       type="password"
-                      className="form-control-pp"
+                      className="form-control"
                       value={newPassword}
                       onChange={(e) => setNewPassword(e.target.value)}
                     />
                   </div>
-                  <button type="submit" className="btn-update-pp">
+                  <button type="submit" className="btn btn-dark w-100">
                     Aggiorna Dati
                   </button>
+                  {message && <div className="alert alert-info mt-3">{message}</div>}
                 </form>
-                {message && <div className="alert-pp mt-3">{message}</div>}
               </div>
-            </>
+            </div>
           )}
         </div>
       </div>

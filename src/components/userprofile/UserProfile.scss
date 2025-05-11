@@ -1,159 +1,43 @@
 @import "../../styles/variables.scss";
 
 .user-profile-container-pp {
-  background-color: rgb(0, 0, 0, 0.5);
+  min-height: 100vh;
+  padding-top: 140px;
+  padding-bottom: 80px;
+  background-color: rgba(0, 0, 0, 0.5);
   backdrop-filter: blur(10px);
   color: $text-paragraph;
-  padding: 150px;
-  min-height: 90vh;
-
-  .profile-header-pp {
-    background: $gradient-dark-primary;
-    animation: animated-gradient 10s infinite;
-    background-size: 200%, 200%;
-    padding: $spacing-medium;
-    border-radius: 10px;
-    box-shadow: $box-shadow-light;
-    margin: 0 auto $spacing-large auto;
-    max-width: 500px;
-    width: 100%;
-    text-align: center;
-
-    .title-pp {
-      font-family: $font-primary;
-      font-size: $font-size-h2;
-      color: $button-color;
-      text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.6);
-    }
-  }
-
-  .profile-content-pp {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    align-items: flex-start;
-    gap: $spacing-large;
-    margin-top: $spacing-xxlarge;
-
-    .profile-image-section-pp {
-      flex: 1 1 250px;
-      max-width: 300px;
-      text-align: center;
-
-      .profile-image-container-pp {
-        margin: 0 auto;
-        width: 150px;
-        height: 150px;
-        overflow: hidden;
-
-        .profile-image-pp {
-          width: 100%;
-          height: 100%;
-          border-radius: 50%;
-          object-fit: cover;
-          box-shadow: $box-shadow-heavy;
-        }
-      }
-
-      .image-upload-form-pp {
-        margin-top: $spacing-medium;
-
-        .file-label-pp {
-          display: block;
-          font-size: $font-size-small;
-          font-weight: bold;
-          color: $button-color;
-          cursor: pointer;
-          margin-bottom: $spacing-small;
-        }
-
-        .file-input-pp {
-          display: none;
-        }
-
-        .btn-upload-pp {
-          @include button-style($button-color, $button-hover-color);
-        }
-      }
-    }
-
-    .profile-details-section-pp {
-      flex: 1 1 400px;
-      max-width: 750px;
-      background: $gradient-dark-alternate;
-      animation: gradient-animation 20s infinite;
-      background-size: 200%, 200%;
-      padding: $spacing-medium;
-      border-radius: 10px;
-      box-shadow: $box-shadow-light;
-
-      .details-card-pp {
-        background: $gradient-dark-primary;
-        animation: gradient-animation 20s infinite;
-        background-size: 200%, 200%;
-        padding: $spacing-medium;
-        border-radius: 10px;
-        color: $title-color;
-        margin-bottom: $spacing-large;
-
-        p {
-          font-size: $font-size-body;
-          margin-bottom: $spacing-small;
-        }
-      }
-
-      .update-form-pp {
-        .form-group-pp {
-          margin-bottom: $spacing-medium;
-
-          .form-label-pp {
-            font-size: $font-size-small;
-            color: $title-color;
-            display: block;
-            margin-bottom: $spacing-small;
-          }
-
-          .form-control-pp {
-            width: 100%;
-            padding: $spacing-small;
-            border: none;
-            border-radius: 5px;
-            box-shadow: $box-shadow-light;
-
-            &:focus {
-              outline: none;
-              border: 1px solid $button-color;
-            }
-          }
-        }
-
-        .btn-update-pp {
-          @include button-style($button-color, $button-hover-color);
-          width: 100%;
-        }
-      }
-
-      .alert-pp {
-        font-size: $font-size-small;
-        padding: $spacing-small;
-        border-radius: 5px;
-
-        &.mt-3 {
-          margin-top: $spacing-medium;
-        }
-      }
-    }
-  }
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
-@media (max-width: $breakpoint-md) {
-  .profile-content-pp {
-    flex-direction: column;
-    align-items: center;
-  }
+.profile-wrapper {
+  width: 100%;
+  max-width: 1100px;
+  padding: 2rem;
+}
 
-  .profile-details-section-pp {
-    flex: none;
-    width: 100%;
-  }
+.title-pp {
+  font-family: $font-primary;
+  font-weight: bolder;
+  font-size: $font-size-h2;
+  @include bold-gradient-text;
+  text-align: center;
+  margin-bottom: $spacing-large;
+}
+
+.bg-section {
+  background: $gradient-dark-alternate;
+  animation: animated-gradient 10s infinite;
+  background-size: 200% 200%;
+  color: $title-color;
+}
+
+.profile-img {
+  width: 150px;
+  height: 150px;
+  object-fit: cover;
+  border-radius: 50%;
+  box-shadow: $box-shadow-heavy;
 }
