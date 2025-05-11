@@ -137,10 +137,6 @@
       font-family: $font-secondary;
       font-weight: bold;
       line-height: 1.4;
-
-      &:hover{
-         @include bold-gradient-text;
-      }
     }
 
     .video-tutorials video {
