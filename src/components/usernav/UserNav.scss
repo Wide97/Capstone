@@ -3,7 +3,6 @@
 /* Navbar */
 .navbar-animated {
   background: $gradient-dark-primary;
-  animation: skeleton-animation 50s infinite;
   background-size: 400%, 400%;
   padding: $spacing-small $spacing-medium;
   transition: transform 0.3s ease, background-color 0.3s ease;
