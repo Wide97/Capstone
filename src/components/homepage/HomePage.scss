@@ -17,8 +17,8 @@
   .hero-title {
     font-family: $font-primary;
     font-weight: 700;
-   @include bold-gradient-text;
-    
+    @include bold-gradient-text;
+
     .highlight {
       color: $text-paragraph;
     }
@@ -81,12 +81,11 @@
     color: $text-paragraph;
     margin-bottom: $spacing-medium;
     font-family: $font-primary;
-    
   }
 
   .feature-icon {
     font-size: 3rem;
-     @include bold-gradient-text;
+    @include bold-gradient-text;
     margin-bottom: $spacing-small;
   }
 
@@ -118,7 +117,7 @@
 
     .feature-icon-large {
       font-size: 3rem;
-       @include bold-gradient-text;
+      @include bold-gradient-text;
       margin-bottom: $spacing-medium;
     }
 
@@ -180,16 +179,16 @@
   }
 }
 
-.img-tutorials img {
+.img-tutorials {
   max-width: 100%;
   height: auto;
   border-radius: 10px;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
   margin: 20px 0;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
 
-.img-tutorials img:hover {
-  transform: scale(1.05);
-  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
+  &:hover {
+    transform: scale(1.05);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
+  }
 }
