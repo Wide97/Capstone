@@ -122,7 +122,7 @@ const UserJournal = () => {
     <>
       <UserNav userData={userData} />
       <div className="bg">
-        <h2 className="text-center mt-5 journal-title">Creazione Trade</h2>
+        <h2 className="text-center mt-5 journal-title">CREAZIONE TRADE </h2>
         <div className="container container-journal mt-5">
           {submitting && <LoadingSpinner />}{" "}
           {!submitting && (
