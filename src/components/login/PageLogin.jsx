@@ -13,6 +13,7 @@ const PageLogin = () => {
   const [error, setError] = useState("");
   const [success, setSuccess] = useState("");
   const [loading, setLoading] = useState(false);
+
   const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
@@ -36,68 +37,69 @@ const PageLogin = () => {
   return (
     <>
       <NavbarPage />
-      <div className="container-login d-flex justify-content-center align-items-center vh-100">
+
+      <div className="container-login">
         <div className="login-container">
-          <h1 className="text-center mb-5">Welcome to TradingJournal</h1>
-          <p className="text-center mb-3">We help traders become profitable!</p>
+          <h1 className="text-center">Welcome to TradingJournal</h1>
+          <p className="text-center subtitle">We help traders become profitable!</p>
+
           {loading && <LoadingSpinner />}
-          {error && (
-            <p className="alert alert-danger">
-              <i className="bi bi-exclamation-circle"></i> {error}
-            </p>
-          )}
-          {success && (
-            <p className="alert alert-success">
-              <i className="bi bi-check-circle"></i> {success}
-            </p>
-          )}
+          {error && <AlertMessage type="danger" icon="exclamation-circle" message={error} />}
+          {success && <AlertMessage type="success" icon="check-circle" message={success} />}
+
           {!loading && (
-            <form onSubmit={handleSubmit}>
+            <form onSubmit={handleSubmit} autoComplete="off">
+              {/* Username */}
               <div className="input-group mb-4">
                 <span className="input-group-text">
                   <i className="bi bi-person"></i>
                 </span>
                 <input
                   type="text"
-                  placeholder="Username"
                   className="form-control"
+                  placeholder="Username"
                   value={username}
                   onChange={(e) => setUsername(e.target.value)}
                   required
                 />
               </div>
+
+              {/* Password */}
               <div className="input-group mb-4">
                 <span className="input-group-text">
                   <i className="bi bi-lock"></i>
                 </span>
                 <input
                   type={showPassword ? "text" : "password"}
-                  placeholder="Password"
                   className="form-control"
+                  placeholder="Password"
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
                   required
                 />
-                <span
-                  className="input-group-text toggle-password"
-                  onClick={() => setShowPassword(!showPassword)}
-                >
-                  <i
-                    className={`bi ${showPassword ? "bi-eye-slash" : "bi-eye"}`}
-                  ></i>
+                <span className="input-group-text toggle-password" onClick={() => setShowPassword(!showPassword)}>
+                  <i className={`bi ${showPassword ? "bi-eye-slash" : "bi-eye"}`} />
                 </span>
               </div>
 
+              {/* Submit */}
               <button type="submit" className="btn-login">
-                Sign up
+                Accedi
               </button>
             </form>
           )}
         </div>
       </div>
+
       <FooterPage />
     </>
   );
 };
+
+const AlertMessage = ({ type, icon, message }) => (
+  <p className={`alert alert-${type}`}>
+    <i className={`bi bi-${icon}`}></i> {message}
+  </p>
+);
 
 export default PageLogin;

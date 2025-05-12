@@ -44,8 +44,7 @@ const UserAnalytics = () => {
       return;
     }
 
-   const API_BASE_URL = import.meta.env.VITE_API_URL;
-
+    const API_BASE_URL = import.meta.env.VITE_API_URL;
 
     fetch(`${API_BASE_URL}/api/auth/profile`, {
       method: "GET",
@@ -114,35 +113,23 @@ const UserAnalytics = () => {
 
   const getCapitalTrend = async (userId, token) => {
     try {
-      // Recupera il capitale iniziale
       const capitaleIniziale = await getCapitaleIniziale(userId, token);
-
-      // Verifica che il capitale iniziale sia un numero valido
       if (!capitaleIniziale || isNaN(parseFloat(capitaleIniziale))) {
-        throw new Error(
-          "Il capitale iniziale non è stato restituito correttamente dal backend."
-        );
+        throw new Error("Il capitale iniziale non è valido.");
       }
 
       let cumulativeCapital = parseFloat(capitaleIniziale);
-      const trades = await getAllTrades(userId);
+      const trades = (await getAllTrades(userId)).sort(
+        (a, b) => new Date(a.saleDate) - new Date(b.saleDate)
+      );
 
       const capitalData = [{ date: "Iniziale", capital: cumulativeCapital }];
 
       trades.forEach((trade) => {
         let profitLoss = parseFloat(trade.profitLoss);
-        if (isNaN(profitLoss)) {
-          console.error(
-            "Errore: il profit/loss del trade non è un numero valido.",
-            trade.profitLoss
-          );
-          profitLoss = 0;
-        }
+        if (isNaN(profitLoss)) profitLoss = 0;
         cumulativeCapital += profitLoss;
-        capitalData.push({
-          date: trade.saleDate,
-          capital: cumulativeCapital,
-        });
+        capitalData.push({ date: trade.saleDate, capital: cumulativeCapital });
       });
 
       const dates = capitalData.map((data) => data.date);
@@ -164,7 +151,7 @@ const UserAnalytics = () => {
     }
 
     if (!chartRefCapitalTrend.current) {
-      console.error("Canvas per il grafico Trend Capitale non disponibile.");
+      console.error("Canvas Trend Capitale non disponibile.");
       return;
     }
 
@@ -191,6 +178,15 @@ const UserAnalytics = () => {
             display: true,
             text: "Andamento del Capitale Attuale",
             color: "#FFC200",
+          },
+          tooltip: {
+            callbacks: {
+              label: (context) =>
+                `${context.dataset.label}: €${context.formattedValue}`,
+            },
+            backgroundColor: "#000",
+            titleColor: "#fff",
+            bodyColor: "#ffc200",
           },
         },
         scales: {
@@ -630,6 +626,9 @@ const UserAnalytics = () => {
       if (chartInstanceTradeSession.current) {
         chartInstanceTradeSession.current.destroy();
       }
+      if (chartInstanceCapitalTrend.current) {
+        chartInstanceCapitalTrend.current.destroy();
+      }
     };
   }, []);
 
@@ -649,7 +648,7 @@ const UserAnalytics = () => {
           <div className="col-12 col-md-6 col-lg-6">
             <div className="d-flex justify-content-center align-items-center animated-background p-5">
               <canvas
-                id="tradePerformanceChart"
+                id="performanceLineChart"
                 ref={chartRefPerformance}
                 style={{ maxWidth: "100%", height: "100%" }}
               />
@@ -713,7 +712,7 @@ const UserAnalytics = () => {
             <div className="col-12 col-md-6 col-lg-6">
               <div className="d-flex justify-content-center align-items-center animated-background p-5">
                 <canvas
-                  id="tradePerformancePieChart"
+                  id="performancePieChart"
                   ref={chartRefTradePerformance}
                   style={{ maxWidth: "100%", height: "100%" }}
                 />

@@ -1,10 +1,15 @@
 @import '../../styles/variables.scss';
 
+// ────────────────────────
+// Navbar principale
+// ────────────────────────
+
 .navbar-animated {
   background: $div-primary;
-  background-size: 400%, 400%;
-  transition: transform 0.3s ease, background-color 0.3s ease;
+  background-size: 400% 400%;
   padding: $spacing-small $spacing-medium;
+  transition: transform 0.3s ease, background-color 0.3s ease;
+  box-shadow: $box-shadow-light;
 
   &.visible {
     transform: translateY(0);
@@ -13,10 +18,11 @@
   &.hidden {
     transform: translateY(-100%);
   }
-
-  box-shadow: $box-shadow-light;
 }
 
+// ────────────────────────
+// Brand + Logo
+// ────────────────────────
 
 .navbar-brand {
   font-family: $font-primary;
@@ -27,10 +33,10 @@
 
   img {
     margin-right: $spacing-small;
-    width: auto; 
-    height: 50px; 
+    width: auto;
+    height: 50px;
     object-fit: contain;
-    max-width: 100%; 
+    max-width: 100%;
   }
 
   &:hover {
@@ -39,7 +45,9 @@
   }
 }
 
-
+// ────────────────────────
+// Link di navigazione
+// ────────────────────────
 
 .nav-link {
   font-family: $font-secondary;
@@ -49,7 +57,7 @@
   transition: color 0.3s ease, transform 0.3s ease;
 
   &:hover {
-    color: $button-color; 
+    color: $button-color;
     transform: scale(1.1);
   }
 
@@ -58,12 +66,15 @@
   }
 }
 
+// ────────────────────────
+// Toggle hamburger
+// ────────────────────────
 
 .navbar-toggler {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  width: 35px; 
+  width: 35px;
   height: 25px;
   cursor: pointer;
   border: none;
@@ -71,11 +82,11 @@
 
   span {
     display: block;
-    height: 4px; // Spessore maggiore
-    background-color: $button-color; 
+    height: 4px;
+    background-color: $button-color;
     border-radius: 2px;
     transition: all 0.3s ease;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3); 
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
 
     &:nth-child(1) {
       transform-origin: top left;
@@ -101,12 +112,15 @@
   }
 
   &:hover span {
-    background-color: lighten($button-color, 10%); 
+    background-color: lighten($button-color, 10%);
   }
 }
 
+// ────────────────────────
+// Responsive
+// ────────────────────────
 
-@media (max-width: $breakpoint-md) {
+@include respond-to(md) {
   .navbar-animated {
     padding: $spacing-small;
   }

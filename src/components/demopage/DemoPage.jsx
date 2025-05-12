@@ -8,6 +8,17 @@ import JournalVideo from "./JournalTutorial.mp4";
 import AnalyticsVideo from "./AnalyticsTutorial.mp4";
 import ReportVideo from "./ReportTutorial.mp4";
 
+const VideoCard = ({ title, src, description }) => (
+  <div className="video-card">
+    <h3 className="video-title">{title}</h3>
+    <video controls className="video-element">
+      <source src={src} type="video/mp4" />
+      Il tuo browser non supporta il video.
+    </video>
+    <p className="video-description">{description}</p>
+  </div>
+);
+
 const DemoPage = () => {
   const videos = [
     {
@@ -24,17 +35,19 @@ const DemoPage = () => {
       title: "Journal",
       src: JournalVideo,
       description:
-        "Come utilizzare la sezione Journal. Inserimento di un' operazione reandom con date, ora di vendita e acquisto, lottaggio e tutte le informazioni necessarie per salvare un trade.",
+        "Come utilizzare la sezione Journal: inserimento di un'operazione con data, ora, lottaggio e tutte le info per salvare un trade.",
     },
     {
       title: "Analytics",
       src: AnalyticsVideo,
-      description: "Come analizzare i tuoi dati di trading. Visualizzazione dei vai grafici per trades distribuiti per long/short, profitto/perdita/break_even, curva di equità, trading per sessione e andamento del capitale nel tempo.",
+      description:
+        "Come analizzare i tuoi dati: grafici per long/short, profitto/perdita, curva di equità, sessioni e capitale.",
     },
     {
       title: "Report",
       src: ReportVideo,
-      description: "Come generare report dettagliati. Genrazione automatica dei report. percentuale di successo, capitale attuale, profitto/perdita, riepilogo di tutti i trade e possibilità di rimozione di un determinato trade.",
+      description:
+        "Come generare report dettagliati: percentuale di successo, capitale, PnL e rimozione trade.",
     },
   ];
 
@@ -42,25 +55,22 @@ const DemoPage = () => {
     <>
       <NavbarPage />
       <div className="demo-page-container">
-        <div className="demo-header text-center">
+        <header className="demo-header">
           <h1 className="demo-title">Guida al Trading Journal</h1>
           <p className="demo-description">
-            Esplora i video tutorial per imparare a utilizzare al meglio il
-            nostro sito.
+            Esplora i video tutorial per imparare a usare il nostro sito.
           </p>
-        </div>
-        <div className="videos-container">
+        </header>
+        <section className="videos-container">
           {videos.map((video, index) => (
-            <div className="video-card" key={index}>
-              <h3 className="video-title">{video.title}</h3>
-              <video controls className="video-element">
-                <source src={video.src} type="video/mp4" />
-                Il tuo browser non supporta il video.
-              </video>
-              <p className="video-description">{video.description}</p>
-            </div>
+            <VideoCard
+              key={index}
+              title={video.title}
+              src={video.src}
+              description={video.description}
+            />
           ))}
-        </div>
+        </section>
       </div>
       <FooterPage />
     </>

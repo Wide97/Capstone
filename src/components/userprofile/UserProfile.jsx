@@ -40,52 +40,45 @@ const UserProfile = () => {
     }
   }, [message]);
 
-const handleImageUpload = async (e) => {
-  e.preventDefault();
-  setUpdating(true);
-  const id = userData.id;
+  const handleImageUpload = async (e) => {
+    e.preventDefault();
+    setUpdating(true);
+    const id = userData.id;
 
-  if (!id) {
-    alert("ID utente non valido.");
-    return;
-  }
+    if (!id || !imageFile) {
+      alert("ID utente non valido o nessun file selezionato.");
+      setUpdating(false);
+      return;
+    }
 
-  console.log("📷 File selezionato:", imageFile); // 👈 LOG 1
+    const formData = new FormData();
+    formData.append("file", imageFile);
 
-  if (!imageFile) {
-    alert("Nessun file selezionato.");
-    setUpdating(false);
-    return;
-  }
-
-  const formData = new FormData();
-  formData.append("file", imageFile);
-
-  console.log("📦 FormData pronto per invio:"); // 👈 LOG 2
-  for (let [key, value] of formData.entries()) {
-    console.log(` - ${key}:`, value);
-  }
-
-  try {
-    const res = await uploadProfileImage(id, formData);
-    setUserData(res.user);
-    setImageUrl(res.user.profileImageUrl);
-    setMessage("Immagine aggiornata con successo.");
-  } catch (err) {
-    console.error("❌ Errore upload immagine:", err); // 👈 LOG 3
-    setMessage("Errore nel caricamento dell'immagine.");
-  } finally {
-    setUpdating(false);
-  }
-};
-
+    try {
+      const res = await uploadProfileImage(id, formData);
+      setUserData(res.user);
+      setImageUrl(res.user.profileImageUrl);
+      setMessage("Immagine aggiornata con successo.");
+    } catch (err) {
+      console.error("Errore upload immagine:", err);
+      setMessage("Errore nel caricamento dell'immagine.");
+    } finally {
+      setUpdating(false);
+    }
+  };
 
   const handleUserUpdate = async (e) => {
     e.preventDefault();
     setUpdating(true);
     const id = userData.id;
-    if (!id) return alert("ID utente non valido.");
-    if (newPassword.length < 8) {
+
+    if (!newUsername && !newPassword) {
+      setMessage("Inserisci almeno uno dei campi da aggiornare.");
+      setUpdating(false);
+      return;
+    }
+
+    if (newPassword && newPassword.length < 8) {
       setMessage("La password deve contenere almeno 8 caratteri.");
       setUpdating(false);
       return;
@@ -95,6 +88,8 @@ const handleImageUpload = async (e) => {
       const res = await updateUser(id, newUsername, newPassword);
       setUserData(res.user);
       setMessage("Dati aggiornati con successo.");
+      setNewUsername("");
+      setNewPassword("");
     } catch {
       setMessage("Errore nell'aggiornamento dei dati.");
     } finally {
@@ -118,7 +113,7 @@ const handleImageUpload = async (e) => {
               <div className="col-md-4 text-center">
                 <img
                   className="rounded-circle shadow-lg profile-img mb-3"
-                  src={imageUrl || userData.profileImageUrl || "https://placedog.net/500/280"}
+                  src={imageUrl || "https://placedog.net/500/280"}
                   alt="Profilo"
                 />
                 <form onSubmit={handleImageUpload}>
@@ -137,11 +132,11 @@ const handleImageUpload = async (e) => {
 
               <div className="col-md-6">
                 <div className="p-4 rounded shadow-sm bg-section mb-4">
-                  <p><strong>Username:</strong> {userData.username}</p>
-                  <p><strong>Email:</strong> {userData.email}</p>
-                  <p><strong>Nome:</strong> {userData.firstName}</p>
-                  <p><strong>Cognome:</strong> {userData.lastName}</p>
-                  <p><strong>Immagine Profilo:</strong> {userData.profileImageUrl ? "Presente" : "Nessuna immagine"}</p>
+                  <p><span className="profile-info-label">Username:</span> {userData.username}</p>
+                  <p><span className="profile-info-label">Email:</span> {userData.email}</p>
+                  <p><span className="profile-info-label">Nome:</span> {userData.firstName}</p>
+                  <p><span className="profile-info-label">Cognome:</span> {userData.lastName}</p>
+                  <p><span className="profile-info-label">Immagine Profilo:</span> {userData.profileImageUrl ? "Presente" : "Nessuna immagine"}</p>
                 </div>
 
                 <form onSubmit={handleUserUpdate} className="bg-section p-4 rounded shadow-sm">

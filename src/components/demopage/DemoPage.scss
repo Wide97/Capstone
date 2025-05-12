@@ -1,12 +1,14 @@
 @import "../../styles/variables.scss";
 
+// ────── Pagina Demo Tutorial ──────
+
 .demo-page-container {
-  background-color: rgb(0, 0, 0, 0.5);
+  background-color: rgba(0, 0, 0, 0.5);
   backdrop-filter: blur(10px);
   color: $text-paragraph;
   padding: $spacing-large;
-  min-height: 100vh;
   padding-top: 100px;
+  min-height: 100vh;
 
   .demo-header {
     text-align: center;
@@ -15,8 +17,8 @@
     .demo-title {
       font-family: $font-primary;
       font-size: $font-size-h2;
-      @include bold-gradient-text;
       font-weight: bolder;
+      @include bold-gradient-text;
     }
 
     .demo-description {
@@ -28,19 +30,20 @@
   }
 
   .videos-container {
-    margin-top: $spacing-xxlarge;
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
     gap: $spacing-large;
+    margin-top: $spacing-xxlarge;
 
     .video-card {
       background-color: $div-secondary;
       border-radius: 10px;
       padding: $spacing-medium;
-      box-shadow: $box-shadow-light;
       max-width: 300px;
       text-align: center;
+      box-shadow: $box-shadow-light;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
 
       &:hover {
         transform: scale(1.05);
@@ -69,14 +72,16 @@
   }
 }
 
-@media (max-width: $breakpoint-md) {
+// ────── Responsive ──────
+
+@include respond-to(md) {
   .videos-container {
     flex-direction: column;
     align-items: center;
-  }
 
-  .video-card {
-    width: 100%;
-    max-width: none;
+    .video-card {
+      width: 100%;
+      max-width: none;
+    }
   }
 }

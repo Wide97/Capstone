@@ -6,17 +6,12 @@ const FooterPage = () => {
   const [showButton, setShowButton] = useState(false);
 
   useEffect(() => {
-    const handleScroll = () => {
-      setShowButton(window.scrollY > 300);
-    };
-
+    const handleScroll = () => setShowButton(window.scrollY > 300);
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  const scrollToTop = () => {
-    window.scrollTo({ top: 0, behavior: "smooth" });
-  };
+  const scrollToTop = () => window.scrollTo({ top: 0, behavior: "smooth" });
 
   const socialLinks = [
     { href: "https://www.linkedin.com/in/marco-widesott-6187291b8/", icon: "fab fa-linkedin" },
@@ -31,27 +26,26 @@ const FooterPage = () => {
           <Col md={4} className="mb-3">
             <h2 className="footer-brand">Trading Journal</h2>
             <p className="footer-p">
-              Trading Journal ti aiuta a tracciare le tue operazioni, analizzare
-              i tuoi risultati e migliorare come trader. Scopri il potere del
-              journaling e delle analytics.
+              Traccia le tue operazioni, analizza i risultati e migliora come trader.
+              Scopri il potere del journaling e delle analytics.
             </p>
           </Col>
           <Col md={4} className="mb-3">
             <h2 className="footer-brand">Link Utili</h2>
             <ul className="quick-links">
-              <li>
-                <a href="/faq">FAQ</a>
-              </li>
-              <li>
-                <a href="/contact">Contattaci</a>
-              </li>
-              <li>
-                <a href="/terms">Termini e Condizioni</a>
-              </li>
+              {[
+                { href: "/faq", label: "FAQ" },
+                { href: "/contact", label: "Contattaci" },
+                { href: "/terms", label: "Termini e Condizioni" },
+              ].map((link, i) => (
+                <li key={i}>
+                  <a href={link.href}>{link.label}</a>
+                </li>
+              ))}
             </ul>
           </Col>
           <Col md={4}>
-            <h2 className="footer-brand">Seguici sui Social</h2>
+            <h2 className="footer-brand">Seguici</h2>
             <div className="social-icons">
               {socialLinks.map((link, index) => (
                 <a
@@ -68,6 +62,7 @@ const FooterPage = () => {
             </div>
           </Col>
         </Row>
+
         <Row>
           <Col className="text-center mt-3">
             <p className="footer-credit">
@@ -75,11 +70,12 @@ const FooterPage = () => {
             </p>
           </Col>
         </Row>
+
         {showButton && (
           <button
             className="scroll-to-top"
             onClick={scrollToTop}
-            aria-label="Scroll to top"
+            aria-label="Torna in alto"
           >
             ↑
           </button>
@@ -90,4 +86,3 @@ const FooterPage = () => {
 };
 
 export default FooterPage;
-

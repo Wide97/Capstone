@@ -1,12 +1,16 @@
-@import '../../styles/variables.scss';
+@import "../../styles/variables.scss";
+
+// ────────────────
+// FOOTER COMPONENT
+// ────────────────
 
 .footer-container {
   background: $div-primary;
-  background-size: 400%, 400%;
   color: $text-paragraph;
   padding: $spacing-large 0;
 
-  h2.footer-brand {
+  // Branding / Titoli
+  .footer-brand {
     font-family: $font-primary;
     font-size: $font-size-h4;
     @include bold-gradient-text;
@@ -17,17 +21,19 @@
     @include hover-scale(1.05);
   }
 
-  p.footer-p {
+  // Paragrafo descrittivo
+  .footer-p {
     font-family: $font-secondary;
     font-size: $font-size-body;
     line-height: 1.6;
     margin-bottom: $spacing-medium;
 
-    &:hover{
-       @include bold-gradient-text;
+    &:hover {
+      @include bold-gradient-text;
     }
   }
 
+  // Link utili
   .quick-links {
     list-style: none;
     padding: 0;
@@ -42,13 +48,14 @@
         transition: color 0.3s ease;
 
         &:hover {
-           @include bold-gradient-text;
+          @include bold-gradient-text;
           text-decoration: underline;
         }
       }
     }
   }
 
+  // Icone social
   .social-icons {
     display: flex;
     justify-content: center;
@@ -57,8 +64,8 @@
     .social-link {
       @include bold-gradient-text;
       font-size: 1.5rem;
-      transition: all 0.3s ease;
       @include hover-shadow(orange, 0.5);
+      transition: all 0.3s ease;
 
       &:hover {
         transform: rotate(10deg) scale(1.2);
@@ -66,6 +73,7 @@
     }
   }
 
+  // Crediti
   .footer-credit {
     font-family: $font-secondary;
     font-size: $font-size-small;
@@ -73,6 +81,7 @@
     margin-top: $spacing-medium;
   }
 
+  // Pulsante scroll to top
   .scroll-to-top {
     position: fixed;
     bottom: 20px;
@@ -98,35 +107,40 @@
   }
 }
 
-@media (max-width: $breakpoint-md) {
+// ────────────────
+// RESPONSIVE
+// ────────────────
+
+@include respond-to(md) {
   .footer-container {
     text-align: center;
 
-    h2.footer-brand {
+    .footer-brand {
       font-size: $font-size-h5;
+    }
+
+    .footer-p {
+      font-size: $font-size-small;
     }
 
     .social-icons {
       gap: $spacing-small;
     }
-
-    .footer-p {
-      font-size: $font-size-small;
-    }
   }
 }
 
-@media (max-width: $breakpoint-sm) {
+@include respond-to(sm) {
   .footer-container {
-    h2.footer-brand {
+    .footer-brand {
       font-size: $font-size-small;
     }
-    .social-icons {
-      font-size: 1.2rem;
-    }
+
     .footer-p {
       line-height: 1.4;
     }
+
+    .social-icons {
+      font-size: 1.2rem;
+    }
   }
 }
-

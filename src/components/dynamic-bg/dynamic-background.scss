@@ -1,86 +1,74 @@
-@keyframes gradient-overlay {
-    0% {
-      background-position: 0% 50%;
-    }
-    50% {
-      background-position: 100% 50%;
-    }
-    100% {
-      background-position: 0% 50%;
-    }
-  }
-  
- .dynamic-background {
+@import "../../styles/variables.scss";
+
+// ─────────────────────────────
+// 🌌 Dynamic Background Effect
+// ─────────────────────────────
+
+// Overlay animato su immagine con sfumature dinamiche
+.dynamic-background {
   background-image: 
     linear-gradient(
       135deg,
-      rgba(65, 90, 119, 0.85),      // #415a77 yinmn-blue con opacità
-      rgba(119, 141, 169, 0.85),    // #778da9 silver lake blue
-      rgba(119, 141, 169, 0.85),    // ripetuto per effetto omogeneo
-      rgba(65, 90, 119, 0.85)       // ritorno alla base
+      rgba($background-body, 0.85),
+      rgba($text-muted, 0.85),
+      rgba($text-muted, 0.85),
+      rgba($background-body, 0.85)
     ),
     url('./trading-background.webp');
-      
-    background-blend-mode: overlay;
-    background-size: 120% 100%; 
-    background-position: center;
-    background-attachment: fixed; 
-    animation: gradient-overlay 90s linear infinite; 
-    height: 100vh;
-    width: 100%;
-    position: fixed;
-    top: 0;
-    left: 0;
-    z-index: -1; 
-    filter: brightness(2.1) contrast(1.2);
-  
-    &::after {
-      content: "";
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: radial-gradient(
-        circle,
-        rgba(255, 255, 255, 0.2) 0%,
-        rgba(0, 0, 0, 0.4) 100%
-      ); /* Effetto di luce radiale */
-      mix-blend-mode: overlay; 
-      z-index: -1;
-    }
-  
-    &::before {
-      content: "";
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background-image: radial-gradient(
-        rgba(255, 255, 255, 0.1) 2px,
-        transparent 3px
-      );
-      background-size: 4px 4px;
-      opacity: 0.4;
-      z-index: -1;
-      animation: sparkle 8s linear infinite;
-    }
+
+  background-blend-mode: overlay;
+  background-size: 120% 100%;
+  background-position: center;
+  background-attachment: fixed;
+  animation: gradient-overlay 90s linear infinite;
+  height: 100vh;
+  width: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: -1;
+  filter: brightness(2.1) contrast(1.2);
+
+  // Radial light overlay
+  &::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(
+      circle,
+      rgba(255, 255, 255, 0.2) 0%,
+      rgba(0, 0, 0, 0.4) 100%
+    );
+    mix-blend-mode: overlay;
+    z-index: -1;
   }
-  
-  @keyframes sparkle {
-    0% {
-      opacity: 0.3;
-      transform: translate(0, 0);
-    }
-    50% {
-      opacity: 0.6;
-      transform: translate(2px, 2px);
-    }
-    100% {
-      opacity: 0.3;
-      transform: translate(-2px, -2px);
-    }
+
+  // Griglia luminosa animata
+  &::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-image: radial-gradient(
+      rgba(255, 255, 255, 0.1) 2px,
+      transparent 3px
+    );
+    background-size: 4px 4px;
+    opacity: 0.4;
+    animation: sparkle 8s linear infinite;
+    z-index: -1;
   }
-  
-  
+}
+
+// ───── Animazioni ─────
+
+@keyframes gradient-overlay {
+  0%   { background-position: 0% 50%; }
+  50%  { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+@keyframes sparkle {
+  0%   { opacity: 0.3; transform: translate(0, 0); }
+  50%  { opacity: 0.6; transform: translate(2px, 2px); }
+  100% { opacity: 0.3; transform: translate(-2px, -2px); }
+}

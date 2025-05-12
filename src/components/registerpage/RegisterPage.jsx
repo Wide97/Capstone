@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import NavbarPage from "../navbar/NavbarPage.jsx";
-import "./RegisterPage.scss";
 import FooterPage from "../footer/FooterPage.jsx";
 import LoadingSpinner from "../spinner/LoadingSpinner";
+import "./RegisterPage.scss";
 
 const RegisterPage = () => {
   const navigate = useNavigate();
@@ -23,7 +23,7 @@ const RegisterPage = () => {
   const [invalidFields, setInvalidFields] = useState({});
 
   useEffect(() => {
-    return () =>
+    return () => {
       setFormData({
         username: "",
         password: "",
@@ -31,30 +31,30 @@ const RegisterPage = () => {
         firstName: "",
         lastName: "",
       });
+    };
   }, []);
 
   const validateForm = () => {
-    const fields = {};
-    if (!formData.email.includes("@")) fields.email = true;
-    if (formData.password.length < 8) fields.password = true;
-    if (!formData.username) fields.username = true;
-    if (!formData.firstName) fields.firstName = true;
-    if (!formData.lastName) fields.lastName = true;
+    const errors = {};
+    if (!formData.email.includes("@")) errors.email = true;
+    if (formData.password.length < 8) errors.password = true;
+    if (!formData.username) errors.username = true;
+    if (!formData.firstName) errors.firstName = true;
+    if (!formData.lastName) errors.lastName = true;
 
-    setInvalidFields(fields);
-    if (Object.keys(fields).length > 0) {
+    setInvalidFields(errors);
+
+    if (Object.keys(errors).length > 0) {
       setError("Tutti i campi sono obbligatori e corretti.");
       return false;
     }
+
     return true;
   };
 
   const handleChange = (e) => {
-    setFormData({
-      ...formData,
-      [e.target.name]: e.target.value,
-    });
-    setInvalidFields({ ...invalidFields, [e.target.name]: false });
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+    setInvalidFields((prev) => ({ ...prev, [e.target.name]: false }));
   };
 
   const handleSubmit = async (e) => {
@@ -80,9 +80,7 @@ const RegisterPage = () => {
       });
 
       if (!response.ok) {
-        if (response.status === 400) {
-          throw new Error("Email o username già in uso.");
-        }
+        if (response.status === 400) throw new Error("Email o username già in uso.");
         throw new Error("Errore durante la registrazione. Riprova.");
       }
 
@@ -98,66 +96,37 @@ const RegisterPage = () => {
   return (
     <>
       <NavbarPage />
-      <div className="container-register d-flex justify-content-center align-items-center vh-100">
+      <div className="container-register">
         <div className="form-container">
           <h1 className="text-center mb-4">Registrazione</h1>
+
           {loading && <LoadingSpinner />}
-          {error && <div className="alert alert-danger">{error}</div>}
-          {success && <div className="alert alert-success">{success}</div>}
+          {error && <AlertMessage type="danger" message={error} />}
+          {success && <AlertMessage type="success" message={success} />}
+
           {!loading && (
-            <form onSubmit={handleSubmit}>
-              <input
-                type="text"
-                name="firstName"
-                placeholder="Nome"
-                className={`form-control ${
-                  invalidFields.firstName ? "invalid" : ""
-                }`}
-                value={formData.firstName}
-                onChange={handleChange}
-                required
-              />
-              <input
-                type="text"
-                name="lastName"
-                placeholder="Cognome"
-                className={`form-control ${
-                  invalidFields.lastName ? "invalid" : ""
-                }`}
-                value={formData.lastName}
-                onChange={handleChange}
-                required
-              />
-              <input
-                type="email"
-                name="email"
-                placeholder="Email"
-                className={`form-control ${
-                  invalidFields.email ? "invalid" : ""
-                }`}
-                value={formData.email}
-                onChange={handleChange}
-                required
-              />
-              <input
-                type="text"
-                name="username"
-                placeholder="Username"
-                className={`form-control ${
-                  invalidFields.username ? "invalid" : ""
-                }`}
-                value={formData.username}
-                onChange={handleChange}
-                required
-              />
+            <form onSubmit={handleSubmit} noValidate>
+              {["firstName", "lastName", "email", "username"].map((field) => (
+                <input
+                  key={field}
+                  type={field === "email" ? "email" : "text"}
+                  name={field}
+                  placeholder={field === "firstName" ? "Nome" :
+                               field === "lastName" ? "Cognome" :
+                               field === "username" ? "Username" : "Email"}
+                  className={`form-control ${invalidFields[field] ? "invalid" : ""}`}
+                  value={formData[field]}
+                  onChange={handleChange}
+                  required
+                />
+              ))}
+
               <div className="input-group mb-4">
                 <input
                   type={showPassword ? "text" : "password"}
                   name="password"
-                  placeholder="Password"
-                  className={`form-control ${
-                    invalidFields.password ? "invalid" : ""
-                  }`}
+                  placeholder="Password (min 8 caratteri)"
+                  className={`form-control ${invalidFields.password ? "invalid" : ""}`}
                   value={formData.password}
                   onChange={handleChange}
                   required
@@ -166,10 +135,9 @@ const RegisterPage = () => {
                   type="button"
                   className="btn toggle-password mb-3"
                   onClick={() => setShowPassword(!showPassword)}
+                  aria-label="Mostra/Nascondi password"
                 >
-                  <i
-                    className={`bi ${showPassword ? "bi-eye-slash" : "bi-eye"}`}
-                  ></i>
+                  <i className={`bi ${showPassword ? "bi-eye-slash" : "bi-eye"}`} />
                 </button>
               </div>
 
@@ -184,5 +152,9 @@ const RegisterPage = () => {
     </>
   );
 };
+
+const AlertMessage = ({ type, message }) => (
+  <div className={`alert alert-${type}`}>{message}</div>
+);
 
 export default RegisterPage;

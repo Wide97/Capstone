@@ -9,26 +9,30 @@ const NavbarPage = () => {
   return (
     <Navbar
       expand="lg"
-      className={`navbar-animated shadow fixed-top ${isVisible ? "visible" : "hidden"}`}
       variant="dark"
+      className={`navbar-animated shadow fixed-top ${isVisible ? "visible" : "hidden"}`}
     >
       <Container>
         <Navbar.Brand href="/" className="navbar-brand">
           <img
             src="/img/t-removebg-preview.png"
-            alt="Logo"
+            alt="Logo Trading Journal"
             onError={(e) => (e.target.src = "/img/fallback-logo.png")}
           />
           Trading Journal
         </Navbar.Brand>
+
+        {/* Custom Hamburger */}
         <div
           className={`navbar-toggler ${isToggled ? "toggled" : ""}`}
           onClick={() => setIsToggled(!isToggled)}
+          aria-label="Toggle navigation"
         >
           <span></span>
           <span></span>
           <span></span>
         </div>
+
         <Navbar.Collapse className={isToggled ? "show" : ""}>
           <Nav className="ms-auto">
             <Nav.Link href="/login">Login</Nav.Link>
@@ -41,11 +45,3 @@ const NavbarPage = () => {
 };
 
 export default NavbarPage;
-
-
-
-
-
-
-
-
