@@ -26,7 +26,7 @@
     .titolo-storico-us {
       font-family: $font-primary;
       font-size: $font-size-h2;
-      @include bold-gradient-text;
+      @include shimmer-text;
       margin-bottom: $spacing-large;
       font-weight: bolder;
   

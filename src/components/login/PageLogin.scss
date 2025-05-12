@@ -33,7 +33,7 @@
     font-family: $font-primary;
     font-size: $font-size-h2;
     text-align: center;
-    @include bold-gradient-text;
+    @include shimmer-text;
     font-weight: bold;
   }
 

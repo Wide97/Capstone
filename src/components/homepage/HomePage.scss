@@ -9,6 +9,7 @@
   padding: $spacing-large;
   padding-top: 200px;
   font-family: $font-secondary;
+  @include glass-effect;
 
   .hero-content {
     padding-bottom: $spacing-large;
@@ -17,7 +18,7 @@
   .hero-title {
     font-family: $font-primary;
     font-weight: 700;
-    @include bold-gradient-text;
+    @include shimmer-text;
 
     .highlight {
       color: $text-paragraph;
@@ -87,6 +88,7 @@
     font-size: 3rem;
     @include bold-gradient-text;
     margin-bottom: $spacing-small;
+    @include pulse-glow
   }
 
   .feature-heading {

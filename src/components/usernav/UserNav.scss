@@ -15,14 +15,14 @@
     transform: translateY(-100%);
   }
 
-  box-shadow: $box-shadow-light; 
+  box-shadow: $box-shadow-light;
 }
 
 /* Branding */
 .navbar-brand {
   font-family: $font-primary;
   font-size: $font-size-h5;
-  color: $title-color;
+  @include shimmer-text;
   display: flex;
   align-items: center;
 
@@ -50,7 +50,7 @@
 
   &:hover {
     color: $button-color;
-    background-color: rgba($button-color, 0.1); 
+    background-color: rgba($button-color, 0.1);
   }
 
   &:focus {
@@ -124,7 +124,7 @@
 
   .profile-icon {
     .profile-username {
-      display: none; 
+      display: none;
     }
 
     .profile-img {

@@ -18,7 +18,7 @@
       font-family: $font-primary;
       font-size: $font-size-h2;
       font-weight: bolder;
-      @include bold-gradient-text;
+      @include shimmer-text;
     }
 
     .demo-description {

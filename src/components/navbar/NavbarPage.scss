@@ -27,9 +27,10 @@
 .navbar-brand {
   font-family: $font-primary;
   font-size: $font-size-h3;
-  @include bold-gradient-text;
+  @include shimmer-text;
   display: flex;
   align-items: center;
+  font-weight: bolder;
 
   img {
     margin-right: $spacing-small;

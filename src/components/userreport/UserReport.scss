@@ -15,7 +15,7 @@
     .title-ur {
       font-family: $font-primary;
       font-size: $font-size-h2;
-      @include bold-gradient-text;
+      @include shimmer-text;
       text-align: center;
       font-weight: bolder;
     }
