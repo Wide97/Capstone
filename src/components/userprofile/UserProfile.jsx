@@ -40,26 +40,45 @@ const UserProfile = () => {
     }
   }, [message]);
 
-  const handleImageUpload = async (e) => {
-    e.preventDefault();
-    setUpdating(true);
-    const id = userData.id;
-    if (!id) return alert("ID utente non valido.");
+const handleImageUpload = async (e) => {
+  e.preventDefault();
+  setUpdating(true);
+  const id = userData.id;
 
-    const formData = new FormData();
-    formData.append("file", imageFile);
+  if (!id) {
+    alert("ID utente non valido.");
+    return;
+  }
 
-    try {
-      const res = await uploadProfileImage(id, formData);
-      setUserData(res.user);
-      setImageUrl(res.user.profileImageUrl);
-      setMessage("Immagine aggiornata con successo.");
-    } catch {
-      setMessage("Errore nel caricamento dell'immagine.");
-    } finally {
-      setUpdating(false);
-    }
-  };
+  console.log("📷 File selezionato:", imageFile); // 👈 LOG 1
+
+  if (!imageFile) {
+    alert("Nessun file selezionato.");
+    setUpdating(false);
+    return;
+  }
+
+  const formData = new FormData();
+  formData.append("file", imageFile);
+
+  console.log("📦 FormData pronto per invio:"); // 👈 LOG 2
+  for (let [key, value] of formData.entries()) {
+    console.log(` - ${key}:`, value);
+  }
+
+  try {
+    const res = await uploadProfileImage(id, formData);
+    setUserData(res.user);
+    setImageUrl(res.user.profileImageUrl);
+    setMessage("Immagine aggiornata con successo.");
+  } catch (err) {
+    console.error("❌ Errore upload immagine:", err); // 👈 LOG 3
+    setMessage("Errore nel caricamento dell'immagine.");
+  } finally {
+    setUpdating(false);
+  }
+};
+
 
   const handleUserUpdate = async (e) => {
     e.preventDefault();

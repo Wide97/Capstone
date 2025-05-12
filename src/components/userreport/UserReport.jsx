@@ -193,22 +193,22 @@ const UserReport = () => {
         {deleting && <LoadingSpinner />}
         {/* Statistiche */}
         <div className="stats-container-ur row text-center">
-          <div className="col-md-4 stat-box-ur">
+          <div className="stat-box-ur">
             <h5>Numero di Trade</h5>
             <p>{trades.length}</p>
           </div>
-          <div className="col-md-4 stat-box-ur">
+          <div className="stat-box-ur">
             <h5>Successo (%)</h5>
             <p>
               {(
                 (trades.filter((trade) => trade.result === "PROFIT").length /
                   trades.length) *
-                100 || 0
+                  100 || 0
               ).toFixed(2)}
               %
             </p>
           </div>
-          <div className="col-md-4 stat-box-ur">
+          <div className="stat-box-ur">
             <h5>Profitto Netto ({currencySymbol})</h5>
             <p>
               {trades
@@ -296,6 +296,46 @@ const UserReport = () => {
                 ))}
               </tbody>
             </table>
+            <div className="mobile-trade-list-ur">
+              {filteredTrades.map((trade) => (
+                <div key={trade.tradeId} className="trade-card-ur">
+                  <p>
+                    <strong>Acquisto:</strong> {trade.purchaseDate}
+                  </p>
+                  <p>
+                    <strong>Vendita:</strong> {trade.saleDate}
+                  </p>
+                  <p>
+                    <strong>Asset:</strong> {trade.asset}
+                  </p>
+                  <p>
+                    <strong>Posizione:</strong> {trade.positionSize}
+                  </p>
+                  <p>
+                    <strong>Leva:</strong> {trade.leverage}
+                  </p>
+                  <p>
+                    <strong>Strategia:</strong> {trade.strategy}
+                  </p>
+                  <p>
+                    <strong>Tipo:</strong> {trade.tradeType}
+                  </p>
+                  <p>
+                    <strong>Esito:</strong> {trade.result}
+                  </p>
+                  <p>
+                    <strong>Profitto/Perdita:</strong> {trade.profitLoss}{" "}
+                    {currencySymbol}
+                  </p>
+                  <button
+                    onClick={() => handleDelete(trade.tradeId)}
+                    className="btn-delete-ur"
+                  >
+                    Elimina
+                  </button>
+                </div>
+              ))}
+            </div>
           </div>
         </div>
         {/* Grafico */}

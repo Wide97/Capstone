@@ -45,12 +45,16 @@
   }
 
   .stats-container-ur {
-    margin-bottom: $spacing-large;
     display: flex;
     justify-content: center;
+    align-items: flex-start; // o center se vuoi anche verticalmente
     gap: $spacing-medium;
     flex-wrap: wrap;
     margin-top: $spacing-xxlarge;
+    text-align: center;
+    max-width: 1000px;
+    margin-left: auto;
+    margin-right: auto;
 
     .stat-box-ur {
       background: $gradient-dark-alternate;
@@ -156,14 +160,39 @@
   }
 }
 
-@media (max-width: $breakpoint-md) {
-  .stats-container-ur {
-    flex-direction: column;
+@media screen and (max-width: 730px) {
+  .table-container-ur {
+    display: none;
+  }
+}
 
-    .stat-box-ur {
-      width: 100%;
-      /* Box si allargano a schermi medi */
-      margin-bottom: $spacing-medium;
+.mobile-trade-list-ur {
+  display: none;
+}
+
+@media screen and (max-width: 730px) {
+  .mobile-trade-list-ur {
+    display: flex;
+    flex-direction: column;
+    gap: $spacing-medium;
+    margin-top: $spacing-xlarge;
+  }
+
+  .trade-card-ur {
+    background: $div-secondary;
+    color: $text-paragraph;
+    padding: $spacing-medium;
+    border-radius: 10px;
+    box-shadow: $box-shadow-light;
+    font-size: $font-size-small;
+
+    p {
+      margin: 0 0 $spacing-small 0;
+    }
+
+    button {
+      @include button-style($alert-color, darken($alert-color, 10%));
+      margin-top: $spacing-small;
     }
   }
 }
